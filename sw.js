@@ -1,5 +1,5 @@
 /* Abide offline worker: keeps the app working without internet. */
-const CACHE = 'abide-v27';
+const CACHE = 'abide-v28';
 const FONT_CACHE = 'abide-fonts-v1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
@@ -21,6 +21,8 @@ self.addEventListener('fetch', e => {
     return;
   }
   if (new URL(req.url).origin !== location.origin) return;
+  /* audio streams use range requests; let the browser handle them directly */
+  if (req.headers.has('range') || req.destination === 'audio' || req.destination === 'video') return;
   const isPage = req.mode === 'navigate' || req.destination === 'document';
   if (isPage) {
     /* page: try the network for updates, fall back to the saved copy when offline */

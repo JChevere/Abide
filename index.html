@@ -20634,6 +20634,14 @@ try{if(!S.settings)S.settings={};
 if(typeof applyTheme==='function'){applyTheme=function(){var t=(S.settings&&S.settings.theme)||'light';if(t==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t);};try{applyTheme();}catch(e){AB.err(e)}}
 })();
 
+/* ---------- Audio on any host: outside claude.ai the uploaded "/_blob/" files don't exist, so use the bundled audio/ folder ---------- */
+(function(){
+var onClaude=/claude\.ai|claudeusercontent|anthropic/.test(location.hostname);
+if(onClaude)return;
+try{Object.keys(MUSICLIB).forEach(function(k){var t=MUSICLIB[k];if(t.alt)t.src=t.alt;});}catch(e){AB.err(e)}
+try{Object.keys(SNDFILES).forEach(function(k){var t=SNDFILES[k];if(t.alt)t.src=t.alt;});}catch(e){AB.err(e)}
+})();
+
 /* ================= Install the hook registry once (outermost), replacing stacked wrappers ================= */
 (function(){
  var _r=render;render=function(){var i;for(i=0;i<AB.h.beforeRender.length;i++){try{AB.h.beforeRender[i]();}catch(e){AB.err(e,'beforeRender');}}
