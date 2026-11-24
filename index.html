@@ -25565,6 +25565,39 @@ var css=
 '[data-theme=dark] #app .ab-tabs{background:#262A20!important}[data-theme=dark] #app .ab-tabs>button{color:#EDEADF!important}[data-theme=dark] #app .ab-tabs>button.p{background:color-mix(in srgb,var(--tc) 22%,#23271D)!important}[data-theme=dark] #app .bh-hero{background:linear-gradient(160deg,#2C3324,#3A3524)!important}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 })();
+/* ---------- Design system: one set of tokens and component sizes for every screen ---------- */
+(function(){
+var LIGHT='--surface:#FBF6EA;--chip:#F1E7D6;--line:#E2D3B4;--panel-2:#F6ECD8;';
+var TAB2={meditate:'#7A5FA8',unwind:'#5E86A8',music:'#3F6A5A',sleep:'#2A3550'};
+function rtabs(){var app=el('app');if(!app)return;[].forEach.call(app.querySelectorAll('button[data-a=rTab]'),function(b){var row=b.parentElement;if(!row||row.querySelectorAll(':scope>button[data-a=rTab]').length<3)return;b.style.setProperty('--tc',TAB2[b.dataset.id]||'#3F4F26');row.classList.add('ab-tabs');});}
+var _r=render;render=function(){var x=_r.apply(this,arguments);try{rtabs();}catch(e){AB.err(e)}return x;};
+var css=
+/* tokens: warm cream cards in light mode */
+'@media (prefers-color-scheme:light){:root:not([data-theme=dark]){'+LIGHT+'}}:root[data-theme=light]{'+LIGHT+'}.p{--surface:#FBF6EA;--chip:#F1E7D6;--line:#E2D3B4}'+
+/* cards */
+'#app .card{border-radius:24px;box-shadow:var(--sh)}'+
+/* page titles and section headings */
+'#app .h1{font-weight:800!important;font-size:30px;line-height:1.06}#app .h1 b{font-weight:800}#app .h2,#app .h2s{font-size:22px!important;font-weight:800!important;line-height:1.15}'+
+/* every top card: same corner, padding and type */
+'#app .hero:not(.sban):not(.sp-hero){border-radius:26px!important}'+
+'#app .hero:not(.sban):not(.sp-hero) h1,#app .hero:not(.sban):not(.sp-hero) .h1{font-size:28px!important;font-weight:800!important;line-height:1.06!important}'+
+'#app .hero:not(.sban):not(.sp-hero) p,#app .hero:not(.sban):not(.sp-hero) .small{font-size:13.5px!important;line-height:1.45!important}'+
+/* buttons: one pill shape and two sizes */
+'#app .btn{border-radius:999px!important;height:48px;font-weight:700;font-size:15px}#app .btn.sm{height:40px;font-size:14px;padding:0 16px}#app .btn.wide{height:50px}'+
+'#app .btn-ghost{background:#FFFDF6;border:1.5px solid var(--line);color:var(--ink)}#app .btn-accent{background:#465A22;color:#fff}'+
+/* chips and fields */
+'#app .chip{border-radius:999px;background:var(--chip);border:1px solid var(--line);font-weight:600;font-size:14px;min-height:38px}#app .chip.on,#app .chip[aria-pressed=true],#app .chip.p.on{border-color:#465A22}'+
+'#app .field{border-color:var(--line);background:#FFFDF6;border-radius:999px}#app textarea.field{border-radius:20px}'+
+/* stepped rows: card rows everywhere, same icon size */
+'#app .stephd:not(.pic-row):not(.qz-row){background:var(--surface);border-radius:22px!important;box-shadow:var(--sh);padding:12px 12px 12px 12px!important;border-bottom:none!important;gap:12px!important;align-items:center!important}#app .stephd:not(.pic-row):not(.qz-row):before,#app .stephd:not(.pic-row):not(.qz-row):after{display:none!important}'+
+'#app .stephd .si{width:52px!important;height:52px!important}#app .stephd .si svg:not(.in svg){width:24px;height:24px}#app .stephd .st{font-size:20px!important}#app .stephd .sa{width:38px!important;height:38px!important;border:1.5px solid color-mix(in srgb,var(--sc) 30%,transparent)}'+
+/* segmented controls */
+'#app .seg{background:var(--chip);border-radius:999px}#app .seg button{border-radius:999px}#app .seg button.on,#app .seg button[aria-selected=true]{background:#FFFDF6;box-shadow:0 2px 6px rgba(0,0,0,.1);font-weight:800}'+
+/* round icon buttons */
+'#app .icon-btn{width:44px;height:44px}'+
+'[data-theme=dark] #app .btn-ghost,[data-theme=dark] #app .field,[data-theme=dark] #app .seg button.on{background:var(--surface)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) #app .btn-ghost,:root:not([data-theme=light]) #app .field{background:var(--surface)}}';
+var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+})();
 
 /* ================= Install the hook registry once (outermost), replacing stacked wrappers ================= */
 (function(){
