@@ -24960,6 +24960,103 @@ if(typeof MUSICLIB==='object'&&MUSICLIB)try{Object.keys(MUSICLIB).forEach(functi
 if(typeof SNDFILES==='object'&&SNDFILES)try{Object.keys(SNDFILES).forEach(function(k){var t=SNDFILES[k];if(t.alt)t.src=t.alt;});}catch(e){AB.err(e)}
 })();
 
+/* ---------- Bible home: new layout (Bible first, everything else after) ---------- */
+(function(){
+var BH_IC={
+ book:'<path d="M3 5.5C5.5 4.3 8.5 4.3 12 6c3.5-1.7 6.5-1.7 9-.5v13c-2.5-1.2-5.5-1.2-9 .5-3.5-1.7-6.5-1.7-9-.5z"/><path d="M12 6v13.5"/>',
+ notes:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/>',
+ mark:'<path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-4-6 4V4.5a1 1 0 0 1 1-1z"/>',
+ bars:'<path d="M6 20v-6M10 20V9M14 20V4M18 20v-9"/>',
+ bulb:'<path d="M12 3a6 6 0 0 0-6 6c0 2.5 1.5 3.5 2 5.5h8c.5-2 2-3 2-5.5a6 6 0 0 0-6-6z"/><path d="M9.5 18h5M10.5 21h3"/>',
+ music:'<path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>',
+ list:'<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 10h16M9 14.5h6"/>',
+ bk:'<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/>',
+ chev:'<path d="M9 6l6 6-6 6"/>'
+};
+function bhI(p,s,col,w){return '<svg aria-hidden="true" width="'+(s||24)+'" height="'+(s||24)+'" viewBox="0 0 24 24" fill="none" stroke="'+(col||'currentColor')+'" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
+function disc(p,col,s,is){return '<span class="bh-disc" style="width:'+s+'px;height:'+s+'px;background:'+col+'">'+bhI(p,is||Math.round(s*.5),'#fff',2)+'</span>';}
+var COMPASS='<svg aria-hidden="true" width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="#E2A23A"/><circle cx="22" cy="22" r="21" fill="url(#bhcg)"/><defs><radialGradient id="bhcg" cx=".35" cy=".3"><stop offset="0" stop-color="#F6D27A"/><stop offset="1" stop-color="#D08A24"/></radialGradient></defs><path d="M29.5 14.5l-4.6 10.4-10.4 4.6 4.6-10.4z" fill="#FFF8EA"/><path d="M29.5 14.5l-10.4 4.6 5.8 5.8z" fill="#F4E3C0"/><circle cx="22" cy="22" r="1.8" fill="#C27A1A"/></svg>';
+var OTART='<svg class="bh-art" aria-hidden="true" viewBox="0 0 200 120" preserveAspectRatio="xMaxYMax slice"><defs><linearGradient id="bhot1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9A548"/><stop offset="1" stop-color="#B9783A"/></linearGradient><linearGradient id="bhot2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2C27A"/><stop offset="1" stop-color="#D58F45"/></linearGradient></defs><circle cx="150" cy="44" r="30" fill="#F8DC94" opacity=".75"/><path d="M40 120 L96 70 L118 86 L150 44 L200 92 L200 120z" fill="url(#bhot1)" opacity=".55"/><path d="M70 120 L128 52 L150 70 L168 58 L200 86 L200 120z" fill="url(#bhot2)"/><path d="M128 52 L140 76 L132 92 L146 120 L118 120 L134 92 L122 74z" fill="#B46A2E" opacity=".55"/><path d="M168 58 L176 74 L172 88 L186 120 L176 120 L166 88 L172 74z" fill="#B46A2E" opacity=".45"/><path d="M0 120 Q60 100 110 112 T200 108 L200 120z" fill="#C88A4A" opacity=".55"/></svg>';
+var NTART='<svg class="bh-art" aria-hidden="true" viewBox="0 0 200 120" preserveAspectRatio="xMaxYMax slice"><defs><linearGradient id="bhnt1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5E9C8C"/><stop offset="1" stop-color="#2F6E6A"/></linearGradient></defs><path d="M30 120 Q90 70 150 64 Q186 62 200 74 L200 120z" fill="#8DBCAE" opacity=".55"/><path d="M60 120 Q110 76 160 70 Q190 70 200 82 L200 120z" fill="url(#bhnt1)"/><g fill="#2A4F4A"><rect x="156" y="20" width="5" height="52" rx="1"/><rect x="144" y="32" width="29" height="5" rx="1"/><rect x="128" y="40" width="4" height="36" rx="1"/><rect x="119" y="49" width="22" height="4" rx="1"/><rect x="185" y="40" width="4" height="38" rx="1"/><rect x="176" y="49" width="22" height="4" rx="1"/></g></svg>';
+function L(en,es){return LANG()==='es'?es:en;}
+function trCount(){var R=0;try{R=RPLANS.length;}catch(e){AB.err(e)}return R;}
+function themeCount(){try{return BTHEMES.length;}catch(e){return 0;}}
+function bookPct(b){var rd=(S.bible&&S.bible.read)||{},n=0,bk=BOOKS[bkIdx(b)];if(!bk)return 0;for(var c=1;c<=bk[2];c++)if(rd[b+':'+c])n++;return Math.round(n/bk[2]*100);}
+function tile(to,p,col,label){return '<button class="bh-tile" data-a="go" data-to="'+to+'">'+disc(p,col,50)+'<b class="serif">'+T(label)+'</b></button>';}
+function tile2(to,p,col,label,sub){return '<button class="bh-tile2" data-a="go" data-to="'+to+'">'+disc(p,col,44)+'<span class="stack" style="gap:3px;min-width:0"><b class="serif">'+T(label)+'</b><span class="bh-sub">'+sub+'</span></span></button>';}
+
+function bhHome(){
+ var B=S.bible,last=B.last,pct=bookPct(last.b),es=LANG()==='es';
+ var trs=[['kjv','KJV'],['web','WEB'],['rv1909','RV1909']];
+ var w=0,r=null;try{w=mwNow();r=MEM52[w];}catch(e){AB.err(e)}
+ return '<div class="stack bh">'+
+ '<div class="hero gban bh-hero"><span class="bh-wave" aria-hidden="true"></span><div class="row gap14" style="align-items:center;position:relative">'+
+   '<span class="bh-gold">'+bhI(BH_IC.book,46,'#fff',2.2)+'</span>'+
+   '<span class="stack" style="gap:6px;min-width:0"><h1 class="serif bh-h1">'+T('Holy Bible')+'</h1><span class="bh-tag">'+T('Read, Study, and Grow in the Word')+'</span></span></div></div>'+
+ '<button class="bh-cont" data-a="openCh" data-b="'+last.b+'" data-c="'+last.c+'"><span class="bh-cbadge">'+bhI(BH_IC.bk,34,'#2E3A1E',2)+'</span>'+
+   '<span class="stack" style="flex:1;gap:4px;min-width:0"><span class="bh-cl">'+T('Continue Reading')+'</span><span class="serif bh-ct">'+esc(chapName(last.b,last.c))+'</span>'+
+   '<span class="row" style="gap:10px;align-items:center"><span class="bh-bar"><i style="width:'+pct+'%"></i></span><span class="bh-pct">'+pct+'%</span></span></span>'+
+   '<span class="bh-chev">'+bhI(BH_IC.chev,20,'#1F2418',2.4)+'</span></button>'+
+ '<div class="bh-g4">'+tile('bguide',BH_IC.book,'#7A2E6A','Study Guide')+tile('bnotes',BH_IC.notes,'#9A5B43','Study Notes')+tile('saved',BH_IC.mark,'#2E8A8E',L('Saved','Guardados'))+tile('btrack',BH_IC.bars,'#8FB2CC','Reading Tracker')+'</div>'+
+ '<section class="bh-exp"><div class="row gap12" style="align-items:center">'+COMPASS+'<span class="stack" style="gap:2px"><h2 class="serif bh-h2">'+T('Explore the Bible')+'</h2><span class="bh-sub2">'+T('Browse books, learn, and dive deeper.')+'</span></span></div>'+
+   '<div class="bh-tg"><button class="bh-tc bh-ot" data-a="bhGo" data-id="ot"><span class="serif">'+T('Old Testament')+'</span>'+bhI(BH_IC.chev,18,'#2B2418',2.6)+OTART+'</button>'+
+   '<button class="bh-tc bh-nt" data-a="bhGo" data-id="nt"><span class="serif">'+T('New Testament')+'</span>'+bhI(BH_IC.chev,18,'#1F2D2A',2.6)+NTART+'</button></div>'+
+   '<button class="bh-all" data-a="bhGo" data-id="az">'+bhI(BH_IC.list,26,'#fff',2)+'<b class="serif">'+T('All Books (A–Z)')+'</b>'+bhI(BH_IC.chev,20,'#fff',2.6)+'</button></section>'+
+ '<div class="bh-g3">'+tile2('bmemory',BH_IC.bulb,'#4F8A8B','Memory Verse',r?esc(calRef(r)):(T('Week')+' '+(w+1)))+
+   tile2('bhymns',BH_IC.music,'#7FA6C2','Hymns',(typeof HYMNS!=='undefined'?HYMNS.length:16)+' '+T('hymns and their stories'))+
+   tile2('rplans',BH_IC.book,'#C4505C','Reading Plans',trCount()+' '+L('plans','planes')+' · '+themeCount()+' '+T('themes'))+'</div>'+
+ '<div class="bh-tr"><span class="serif bh-h2">'+T('Translation')+'</span><div class="bh-pills" role="tablist" aria-label="'+T('Translation')+'">'+trs.map(function(t){var on=B.tr===t[0];return '<button role="tab" aria-selected="'+on+'" class="'+(on?'on':'')+'" data-a="bTr" data-id="'+t[0]+'">'+t[1]+'</button>';}).join('')+'</div></div>'+
+ '<section class="card stack gap10 bh-search"><h2 class="h2">'+T('Search the Bible')+'</h2><div class="row gap8"><input id="bq" class="field" style="flex:1" placeholder="'+esc(T('Try “peace” or “love one another”'))+'" value="'+esc(UI.bq||'')+'" enterkeyhint="search"><button class="btn btn-accent sm" data-a="bSearch">'+T('Search')+'</button></div></section>'+
+ '<p class="small muted" style="line-height:1.55">'+T('The King James Version and Reina-Valera 1909 are built into Abide and work offline. Both are public domain (Project Gutenberg and eBible.org). WEB loads from bible-api.com.')+'</p></div>';
+}
+function bkBtn(b){var p=bookPct(b[0]);return '<button class="bk bh-bk" data-a="go" data-to="book" data-id="'+b[0]+'"><span>'+esc(T(b[1]))+'</span><span class="small muted" style="font-weight:500">'+b[2]+' '+(b[2]===1?L('chapter','capítulo'):L('chapters','capítulos'))+(p?' · '+p+'%':'')+'</span>'+(p?'<i class="bh-bkbar" style="width:'+p+'%"></i>':'')+'</button>';}
+function bhSub(k){
+ var head=function(t,s){return '<button class="icon-btn flat" data-a="go" data-to="bible" aria-label="'+T('Back')+'">'+ic(I.back,{w:2})+'</button><div class="stack gap8"><h1 class="h1 serif">'+T(t)+'</h1><p class="small muted" style="line-height:1.5">'+T(s)+'</p></div>';};
+ if(k==='az'){var ord=UI.bhOrd||'az',list=BOOKS.slice();if(ord==='az')list.sort(function(a,b){return T(a[1]).localeCompare(T(b[1]),LANG()==='es'?'es':'en');});
+  return '<div class="stack gap18">'+head('All Books (A–Z)','All 66 books of the Bible. Tap a book to see its chapters.')+
+   '<div class="seg" role="tablist"><button role="tab" aria-selected="'+(ord==='az')+'" class="'+(ord==='az'?'on':'')+'" data-a="bhOrd" data-id="az">A–Z</button><button role="tab" aria-selected="'+(ord==='bible')+'" class="'+(ord==='bible'?'on':'')+'" data-a="bhOrd" data-id="bible">'+T('Bible order')+'</button></div>'+
+   '<div class="books">'+list.map(bkBtn).join('')+'</div></div>';}
+ var ot=k==='ot',list2=BOOKS.filter(function(x,i){return ot?i<39:i>=39;});
+ return '<div class="stack gap18">'+head(ot?'Old Testament':'New Testament',ot?'39 books, from Creation to the prophets who waited for the Messiah.':'27 books about Jesus, His church and the hope of His return.')+
+  '<button class="bh-tc '+(ot?'bh-ot':'bh-nt')+' bh-intro" data-a="go" data-to="tintro" data-id="'+(ot?'OT':'NT')+'"><span class="stack" style="gap:2px;position:relative;z-index:1"><span class="small" style="font-style:italic">'+T('Introduction to the')+'</span><span class="serif">'+T(ot?'Old Testament':'New Testament')+'</span></span>'+(ot?OTART:NTART)+'</button>'+
+  '<div class="books">'+list2.map(bkBtn).join('')+'</div></div>';
+}
+var _vb=vBible;vBible=function(){var k=V.p&&V.p.bx;if(k==='ot'||k==='nt'||k==='az')return bhSub(k);try{var o='';try{o=_vb.apply(this,arguments);}catch(_){}var hi=o.indexOf('<header class="hello">'),he=hi>=0?o.indexOf('</header>',hi)+9:-1;return (hi>=0?o.slice(hi,he):'')+bhHome();}catch(e){try{console.warn('bhHome',e);}catch(_){}return _vb.apply(this,arguments);}};
+A.bhGo=function(t){go('bible',{bx:t.dataset.id});};
+A.bhOrd=function(t){UI.bhOrd=t.dataset.id;render();};
+A.rpBooks=function(){go('bible',{bx:'az'});};
+/* the side book tabs are not part of the Bible home */
+(function(){var _t=bjTabs;bjTabs=function(){if(V.name==='bible'){var x=el('bjtabs');if(x)x.remove();UI.btOpen=false;return;}return _t.apply(this,arguments);};})();
+
+Object.assign(ES,{'Holy Bible':'Santa Biblia','Read, Study, and Grow in the Word':'Lee, estudia y crece en la Palabra','Continue Reading':'Seguir leyendo','Study Guide':'Guía de estudio','Study Notes':'Notas de estudio','Reading Tracker':'Registro de lectura','Explore the Bible':'Explora la Biblia','Browse books, learn, and dive deeper.':'Recorre los libros, aprende y profundiza.','All Books (A–Z)':'Todos los libros (A–Z)','Memory Verse':'Memorizar','Reading Plans':'Planes de lectura','themes':'temas','Bible order':'Orden bíblico','All 66 books of the Bible. Tap a book to see its chapters.':'Los 66 libros de la Biblia. Toca un libro para ver sus capítulos.','39 books, from Creation to the prophets who waited for the Messiah.':'39 libros, desde la Creación hasta los profetas que esperaban al Mesías.','27 books about Jesus, His church and the hope of His return.':'27 libros sobre Jesús, su iglesia y la esperanza de su regreso.','Introduction to the':'Introducción al'});
+
+var css='.bh{gap:16px}'+
+'#app .bh-hero{background:linear-gradient(160deg,#E4EDD3 0%,#F6F0D6 55%,#FBF1D8 100%)!important;padding:22px 20px!important;border-radius:30px!important;overflow:hidden;position:relative;text-align:left}'+
+'.bh-wave{position:absolute;left:-10%;right:-10%;bottom:-38px;height:80px;border-radius:50%;background:radial-gradient(ellipse at 70% 30%,#D8E6D9,transparent 70%);opacity:.9}'+
+'.bh-gold{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#E7B23E,#C78A14);box-shadow:0 0 0 5px #fff,0 6px 16px rgba(120,80,10,.25)}'+
+'.bh-h1{font-size:36px;font-weight:800;line-height:1;color:#1F1A10;margin:0}.bh-tag{font-size:15px;color:#3A3A2E;line-height:1.3}'+
+'.bh-cont{display:flex;align-items:center;gap:14px;width:100%;border:none;border-radius:26px;padding:16px;background:#fff;box-shadow:var(--sh);text-align:left;color:#1F2418}'+
+'.bh-cbadge{flex:none;width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:#F7E7A4}.bh-cl{font-size:14px;color:#3A3A2E}.bh-ct{font-size:25px;font-weight:800;line-height:1.05}'+
+'.bh-bar{flex:1;height:8px;border-radius:5px;background:#E4E2D8;overflow:hidden}.bh-bar i{display:block;height:100%;border-radius:5px;background:#5E6E2A}.bh-pct{font-size:13px;color:#3A3A2E;font-weight:600}.bh-chev{flex:none;align-self:center}'+
+'.bh-g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.bh-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:none;border-radius:22px;padding:12px 4px 14px;background:#FBF8F2;box-shadow:var(--sh);color:#1F1A10;min-height:118px}.bh-tile b{font-size:16.5px;line-height:1.1;text-align:center;font-weight:800}'+
+'.bh-disc{flex:none;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 -3px 6px rgba(0,0,0,.12)}'+
+'.bh-exp{display:flex;flex-direction:column;gap:12px;border-radius:26px;padding:16px 12px 14px;background:#FBF8F2;box-shadow:var(--sh)}.bh-h2{font-size:22px;font-weight:800;line-height:1.1;margin:0;color:#1F1A10}.bh-sub2{font-size:13.5px;color:#3A3A2E}'+
+'.bh-tg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}.bh-tc{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:6px;border:none;border-radius:20px;padding:12px 14px;min-height:104px;text-align:left;box-shadow:var(--sh)}'+
+'.bh-tc>.serif{position:relative;z-index:1;font-size:21px;font-weight:800;line-height:1.05;max-width:62%}.bh-tc>svg:not(.bh-art){position:relative;z-index:1}.bh-art{position:absolute;right:0;bottom:0;width:100%;height:100%;pointer-events:none}'+
+'.bh-ot{background:linear-gradient(160deg,#FCEFD6,#F6DDB0);color:#2B2418}.bh-nt{background:linear-gradient(160deg,#EDF4EE,#CFE4DD);color:#1F2D2A}'+
+'.bh-intro{min-height:110px;width:100%}.bh-intro .serif{font-size:22px;font-weight:800}'+
+'.bh-all{display:flex;align-items:center;gap:12px;width:100%;border:none;border-radius:20px;padding:13px 18px;background:linear-gradient(180deg,#86924A,#6B7834);color:#fff;box-shadow:0 3px 8px rgba(80,90,30,.25)}.bh-all b{flex:1;text-align:center;font-size:18px}'+
+'.bh-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.bh-tile2{display:flex;align-items:center;gap:8px;border:none;border-radius:20px;padding:12px 8px;background:#FBF8F2;box-shadow:var(--sh);text-align:left;color:#1F1A10;min-height:86px}.bh-tile2 b{font-size:15px;line-height:1.1;font-weight:800}.bh-sub{font-size:11.5px;color:#3A3A2E;line-height:1.25}'+
+'@media (max-width:400px){.bh-tile2{flex-direction:column;align-items:flex-start}.bh-tile b{font-size:15px}}'+
+'.bh-tr{display:flex;align-items:center;gap:10px}.bh-tr .bh-h2{flex:none}.bh-pills{display:flex;gap:6px;flex:1;min-width:0}.bh-pills button{flex:1;min-width:0;border:none;border-radius:999px;padding:11px 2px;background:#FBF8F2;box-shadow:var(--sh);font-weight:600;font-size:14px;color:#1F1A10}.bh-pills button.on{background:#5E6E2A;color:#fff;box-shadow:0 0 0 3px #fff,0 3px 8px rgba(0,0,0,.15)}'+
+'.bh-bk{position:relative;overflow:hidden}.bh-bkbar{position:absolute;left:0;bottom:0;height:3px;background:#5E6E2A}'+
+'[data-theme=dark] #app .bh-hero{background:linear-gradient(160deg,#2C3324,#3A3524)!important}[data-theme=dark] .bh-wave{opacity:.15}[data-theme=dark] .bh-h1,[data-theme=dark] .bh-h2{color:#F1ECDD}[data-theme=dark] .bh-tag,[data-theme=dark] .bh-sub,[data-theme=dark] .bh-sub2,[data-theme=dark] .bh-cl,[data-theme=dark] .bh-pct{color:#CFCAB8}'+
+'[data-theme=dark] .bh-cont,[data-theme=dark] .bh-tile,[data-theme=dark] .bh-tile2,[data-theme=dark] .bh-exp,[data-theme=dark] .bh-pills button{background:#23271D;color:#EDEADF}[data-theme=dark] .bh-cont .bh-chev svg{stroke:#EDEADF}[data-theme=dark] .bh-bar{background:rgba(255,255,255,.12)}[data-theme=dark] .bh-bar i{background:#A8B86A}'+
+'[data-theme=dark] .bh-cbadge{background:#5A4E22}[data-theme=dark] .bh-cbadge svg{stroke:#F7E7A4}[data-theme=dark] .bh-gold{box-shadow:0 0 0 5px #2A2E22}[data-theme=dark] .bh-pills button.on{background:#7C8C3C;box-shadow:0 0 0 3px #2A2E22}'+
+'[data-theme=dark] .bh-ot{background:linear-gradient(160deg,#4A3A22,#5C4422);color:#F6E7C8}[data-theme=dark] .bh-nt{background:linear-gradient(160deg,#22362F,#284A40);color:#DDEFE8}[data-theme=dark] .bh-ot>svg:not(.bh-art){stroke:#F6E7C8}[data-theme=dark] .bh-nt>svg:not(.bh-art){stroke:#DDEFE8}';
+var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+})();
+
 /* ================= Install the hook registry once (outermost), replacing stacked wrappers ================= */
 (function(){
  var _r=render;render=function(){var i;for(i=0;i<AB.h.beforeRender.length;i++){try{AB.h.beforeRender[i]();}catch(e){AB.err(e,'beforeRender');}}
