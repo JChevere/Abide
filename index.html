@@ -26174,9 +26174,9 @@ var PANO=[
  p:[['temple','Zerubbabel, leader of the first return.','Zorobabel, líder del primer regreso.','EZR 3'],
     ['scroll','Ezra, teacher of the Law.','Esdras, maestro de la Ley.','EZR 7:10'],
     ['bricks','Nehemiah, builder of the walls.','Nehemías, constructor de los muros.','NEH 2'],
-    ['crown','Esther, who saved her people.','Ester, que salvó a su pueblo.','EST 4:14']],
+    ['crowng','Esther, who saved her people.','Ester, que salvó a su pueblo.','EST 4:14']],
  lt:['Steps of restoration','Pasos de la restauración'],
- l:[['camel','Back to Jerusalem','El regreso','EZR 1-2'],['temple','The temple rebuilt','El templo reconstruido','EZR 3-6'],['scroll','The Law read','La Ley leída','NEH 8'],['bricks','The walls rebuilt','Los muros','NEH 1-6'],['crown','Esther’s courage','El valor de Ester','EST 4-9']]},
+ l:[['camel','Back to Jerusalem','El regreso','EZR 1-2'],['temple','The temple rebuilt','El templo reconstruido','EZR 3-6'],['scroll','The Law read','La Ley leída','NEH 8'],['bricks','The walls rebuilt','Los muros','NEH 1-6'],['crowng','Esther’s courage','El valor de Ester','EST 4-9']]},
 
 {id:'p17',era:5,ref:'JOB-SNG',scene:['dusk','hills','scrolltree'],
  t:['Wisdom for a faithful life','Sabiduría para una vida fiel'],st:['Job, Psalms, Proverbs, Ecclesiastes, Song of Solomon','Job, Salmos, Proverbios, Eclesiastés, Cantares'],
@@ -26185,11 +26185,11 @@ var PANO=[
  pt:['Main themes','Temas principales'],
  p:[['mount','Job: suffering and trust.','Job: el sufrimiento y la confianza.','JOB 19:25'],
     ['harp','Psalms: worship and prayer.','Salmos: la adoración y la oración.','PSA 23'],
-    ['sprout','Proverbs: wisdom for daily life.','Proverbios: sabiduría para la vida.','PRO 3:5-6'],
+    ['wisdom','Proverbs: wisdom for daily life.','Proverbios: sabiduría para la vida.','PRO 3:5-6'],
     ['hourglass','Ecclesiastes: the meaning of life.','Eclesiastés: el sentido de la vida.','ECC 12:13'],
     ['ring','Song of Solomon: love and marriage.','Cantares: el amor y el matrimonio.','SNG 8:6-7']],
  lt:['The five books','Los cinco libros'],
- l:[['mount','Job','Job','JOB 1-2'],['harp','Psalms','Salmos','PSA 1'],['sprout','Proverbs','Proverbios','PRO 1'],['hourglass','Ecclesiastes','Eclesiastés','ECC 3'],['ring','Song of Solomon','Cantares','SNG 2']]},
+ l:[['mount','Job','Job','JOB 1-2'],['harp','Psalms','Salmos','PSA 1'],['wisdom','Proverbs','Proverbios','PRO 1'],['hourglass','Ecclesiastes','Eclesiastés','ECC 3'],['ring','Song of Solomon','Cantares','SNG 2']]},
 
 {id:'p18',era:5,ref:'ISA-MAL',scene:['dawn','hills','star'],
  t:['The prophets and the promise','Los profetas y la promesa'],st:['Waiting for the Messiah','Esperando al Mesías'],
@@ -26201,7 +26201,7 @@ var PANO=[
     ['sprout','Hope and restoration.','Esperanza y restauración.','JER 31:31-34'],
     ['star','The promised Messiah.','La promesa del Mesías.','ISA 53']],
  lt:['Promises of the Messiah','Promesas del Mesías'],
- l:[['star','Born of a virgin','Nacido de una virgen','ISA 7:14'],['compass','From Bethlehem','De Belén','MIC 5:2'],['lamb','The suffering servant','El siervo sufriente','ISA 53'],['crown','The humble king','El rey humilde','ZEC 9:9'],['sun','The sun of righteousness','El sol de justicia','MAL 4:2']]}
+ l:[['star','Born of a virgin','Nacido de una virgen','ISA 7:14'],['compass','From Bethlehem','De Belén','MIC 5:2'],['lamb','The suffering servant','El siervo sufriente','ISA 53'],['crowng','The humble king','El rey humilde','ZEC 9:9'],['sun','The sun of righteousness','El sol de justicia','MAL 4:2']]}
 ];
 
 /* ---------- Bible Panorama: the big story of the Bible, study by study ---------- */
@@ -26288,6 +26288,11 @@ function scene(sc,w,h,big){var sk=SKY[sc[0]]||SKY.day,gr=GROUND[sc[1]]||GROUND.h
  if(sc[1]==='sea')o+='<path d="M0 174 Q20 166 40 174 T80 174 T120 174 T160 174 T200 174 T240 174 T280 174 T320 174 T360 174 T400 174" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>';
  o+='<g transform="translate(200 '+(big?100:104)+') scale(2.5) translate(-50 -34)">'+emb(sc[2])+'</g>';
  return o+'</svg>';}
+/* ---- event icon art (Icon collection A01-G09), keyed by the study emblem names ---- */
+var PANO_ICON={"light":["A01_rays-of-light","rays of light","rayos de luz"],"sky":["A02_clouds-and-sky","clouds and sky","nubes y cielo"],"sprout":["A03_green-sprout","green sprout","brote verde"],"tree":["A03_green-sprout","green sprout","brote verde"],"sun":["A04_sun","sun","sol"],"moon":["A05_moon","moon","luna"],"fish":["A06_fish-and-bird","fish and bird","pez y ave"],"lion":["A07_lion","lion","león"],"people":["A08_humanity","humanity","la humanidad"],"heart":["A09_red-heart","red heart","corazón rojo"],"heartbreak":["B01_cracked-heart","cracked heart","corazón partido"],"tear":["B02_teardrop","teardrop","lágrima"],"breath":["B03_breath-over-dust","breath over dust","aliento sobre el polvo"],"apple":["B04_forbidden-fruit-tree","forbidden fruit tree","árbol del fruto prohibido"],"coat":["B05_garment-of-skins","garment of skins","túnica de pieles"],"altar":["B06_altar-with-fire","altar with fire","altar con fuego"],"ark":["B07_noah-ark","Noah ark","el arca de Noé"],"wave":["B08_ocean-waves","ocean waves","olas del mar"],"rainbow":["B09_rainbow","rainbow","arcoíris"],"tower":["C01_brick-tower","brick tower","torre de ladrillos"],"speech":["C02_two-speech-bubbles","two speech bubbles","dos globos de diálogo"],"globe":["C03_globe","globe","el globo terráqueo"],"compass":["C04_compass","compass","brújula"],"tent":["C05_desert-tent","desert tent","tienda en el desierto"],"ring":["C06_gold-ring","gold ring","anillo de oro"],"ladder":["C07_ladder-of-light","ladder of light","escalera de luz"],"scroll":["C08_scroll","scroll","rollo"],"hands":["C09_praying-hands","praying hands","manos en oración"],"chain":["D01_iron-chain","iron chain","cadena de hierro"],"crown":["D02_golden-crown","golden crown","corona de oro"],"bush":["D03_burning-bush","burning bush","zarza ardiente"],"harp":["D04_harp","harp","arpa"],"pyramid":["D05_egyptian-pyramids","Egyptian pyramids","pirámides de Egipto"],"bolt":["D06_lightning-bolt","lightning bolt","relámpago"],"lamb":["D07_lamb","lamb","cordero"],"sea":["D08_parted-sea","parted sea","el mar abierto"],"jar":["D09_clay-jar","clay jar","cántaro de barro"],"tablets":["E01_two-stone-tablets","two stone tablets","dos tablas de piedra"],"tabernacle":["E02_tabernacle-tent","tabernacle tent","el tabernáculo"],"calf":["E03_golden-calf","golden calf","becerro de oro"],"serpent":["E04_bronze-serpent-on-a-pole","bronze serpent on a pole","serpiente de bronce en un asta"],"walls":["E05_city-walls","city walls","murallas de una ciudad"],"river":["E06_river-through-hills","river through hills","río entre colinas"],"scales":["E07_balance-scales","balance scales","balanza"],"arm":["E08_strong-arm","strong arm","brazo fuerte"],"lamp":["E09_oil-lamp","oil lamp","lámpara de aceite"],"oil":["F01_oil-flask","oil flask","frasco de aceite"],"ship":["F02_sailing-ship","sailing ship","barco de vela"],"crown2":["F03_two-divided-crowns","two divided crowns","dos coronas divididas"],"flame":["F04_flame","flame","llama"],"gate":["F04_flame","flame","llama"],"chariot":["F05_fiery-chariot","fiery chariot","carro de fuego"],"firecity":["F06_burning-city","burning city","ciudad en llamas"],"mount":["F07_mountain","mountain","monte"],"hourglass":["F08_hourglass","hourglass","reloj de arena"],"trumpet":["F09_ram-horn-trumpet","ram horn trumpet","trompeta de cuerno de carnero"],"bricks":["G01_bricks-and-trowel","bricks and trowel","ladrillos y paleta"],"camel":["G02_camel","camel","camello"],"shield":["G03_shield","shield","escudo"],"temple":["G04_temple-with-columns","temple with columns","templo con columnas"],"wisdom":["G05_scroll-beside-a-tree","scroll beside a tree","rollo junto a un árbol"],"wheat":["G06_sheaf-of-wheat","sheaf of wheat","gavilla de trigo"],"stone":["G07_stone","stone","piedra"],"star":["G08_golden-star","golden star","estrella dorada"],"crowng":["G09_golden-crown","golden crown","corona de oro"]};
+function pnIcon(k,sz){var a=PANO_ICON[k];if(!a)return '';var b='assets/panorama/icons/'+a[0]+'-';
+ return '<img class="pn-icon-img" src="'+b+'96.webp" srcset="'+b+'96.webp 96w, '+b+'192.webp 192w" sizes="'+sz+'px" width="'+sz+'" height="'+sz+'" alt="'+esc(L2(a[1],a[2]))+'" decoding="async" loading="lazy" onerror="this.style.visibility=\'hidden\'">';}
+try{var pnIconCss=document.createElement('style');pnIconCss.textContent='.pn-disc.pn-has-art,[data-theme=dark] .pn-disc.pn-has-art{background:transparent;border:0}.pn-icon-img{display:block;width:100%;height:100%;border-radius:50%;object-fit:contain}';document.head.appendChild(pnIconCss);}catch(e){AB.err(e)}
 /* ---- era circle art (Era 1-8, transparent circles, no frame) ---- */
 var PANO_ERA_ART=[
  ['era-01-creation','A lion, a lamb, a deer and a parrot in a green garden with waterfalls under a rising sun','Un león, un cordero, un ciervo y un loro en un jardín verde con cascadas bajo el sol naciente'],
@@ -26325,7 +26330,7 @@ var PANO_ART=[
 function pnArt(n,big){var a=PANO_ART[n];if(!a)return '';var b='assets/panorama/'+a[0]+'-';
  return '<img class="pn-art-img" src="'+b+(big?'960':'480')+'.webp" srcset="'+b+'480.webp 480w, '+b+'960.webp 960w, '+b+'1600.webp 1600w" sizes="'+(big?'(min-width:900px) 820px, 100vw':'100px')+'" width="'+(big?960:480)+'" height="'+(big?480:240)+'" alt="'+esc(L2(a[2],a[3]))+'" style="object-position:'+a[1]+'" decoding="async" '+(big?'fetchpriority="high"':'loading="lazy"')+' onerror="this.style.visibility=\'hidden\'">';}
 try{var pnArtCss=document.createElement('style');pnArtCss.textContent='.pn-hero .pn-hpic{width:100%;height:auto;aspect-ratio:2/1;max-height:360px;background:#F6EBCF}.pn-art-img{display:block;width:100%;height:100%;object-fit:cover}.pn-row .pn-rthumb,.pn-entry .pn-epic{background:#F6EBCF}[data-theme=dark] .pn-hero .pn-hpic,[data-theme=dark] .pn-row .pn-rthumb,[data-theme=dark] .pn-entry .pn-epic{background:#2E3326}';document.head.appendChild(pnArtCss);}catch(e){AB.err(e)}
-function disc(k,s){return '<span class="pn-disc" style="width:'+s+'px;height:'+s+'px"><svg viewBox="14 0 72 64" aria-hidden="true">'+emb(k)+'</svg></span>';}
+function disc(k,s){if(PANO_ICON[k])return '<span class="pn-disc pn-has-art" style="width:'+s+'px;height:'+s+'px">'+pnIcon(k,s)+'</span>';return '<span class="pn-disc" style="width:'+s+'px;height:'+s+'px"><svg viewBox="14 0 72 64" aria-hidden="true">'+emb(k)+'</svg></span>';}
 
 /* ---- refs ---- */
 function bkName(c){var b=bookName(c);return b?T(b[1]):c;}

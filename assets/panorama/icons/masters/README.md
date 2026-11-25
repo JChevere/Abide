@@ -1,0 +1,2 @@
+# Abide icon collection
+63 individual RGBA PNGs, 384 × 384, with transparent padding. Original sheets included. Icons follow row-major order A01–G09. Circular masks conservatively trim original edges to remove overlap and artifacts; no new art generated. Scripture contexts are sheet-level, not exact verse mappings. Some objects are symbolic rather than historical reconstructions. Preserve masters; create alpha WebP derivatives for the app and use manifest paths and alt text. Review existing lesson mappings before integration.
