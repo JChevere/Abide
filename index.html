@@ -24982,7 +24982,7 @@ function L(en,es){return LANG()==='es'?es:en;}
 function trCount(){var R=0;try{R=RPLANS.length;}catch(e){AB.err(e)}return R;}
 function themeCount(){try{return BTHEMES.length;}catch(e){return 0;}}
 function bookPct(b){var rd=(S.bible&&S.bible.read)||{},n=0,bk=BOOKS[bkIdx(b)];if(!bk)return 0;for(var c=1;c<=bk[2];c++)if(rd[b+':'+c])n++;return Math.round(n/bk[2]*100);}
-function tile(to,p,col,label){return '<button class="bh-tile" data-a="go" data-to="'+to+'">'+disc(p,col,50)+'<b class="serif">'+T(label)+'</b></button>';}
+function tile(to,p,col,label,full){return '<button class="bh-tile" data-a="go" data-to="'+to+'"'+(full?' aria-label="'+esc(T(full))+'"':'')+'>'+disc(p,col,50)+'<b class="serif">'+T(label)+'</b></button>';}
 function tile2(to,p,col,label,sub){return '<button class="bh-tile2" data-a="go" data-to="'+to+'">'+disc(p,col,44)+'<span class="stack" style="gap:3px;min-width:0"><b class="serif">'+T(label)+'</b><span class="bh-sub">'+sub+'</span></span></button>';}
 
 function bhHome(){
@@ -24997,7 +24997,7 @@ function bhHome(){
    '<span class="stack" style="flex:1;gap:4px;min-width:0"><span class="bh-cl">'+T('Continue Reading')+'</span><span class="serif bh-ct">'+esc(chapName(last.b,last.c))+'</span>'+
    '<span class="row" style="gap:10px;align-items:center"><span class="bh-bar"><i style="width:'+pct+'%"></i></span><span class="bh-pct">'+pct+'%</span></span></span>'+
    '<span class="bh-chev">'+bhI(BH_IC.chev,20,'#1F2418',2.4)+'</span></button>'+
- '<div class="bh-g4">'+tile('bguide',BH_IC.book,'#7A2E6A','Study Guide')+tile('bnotes',BH_IC.notes,'#9A5B43','Study Notes')+tile('saved',BH_IC.mark,'#2E8A8E',L('Saved','Guardados'))+tile('btrack',BH_IC.bars,'#8FB2CC','Reading Tracker')+'</div>'+
+ '<div class="bh-g4">'+tile('bguide',BH_IC.book,'#7A2E6A',L('Guide','Guía'),'Study Guide')+tile('bnotes',BH_IC.notes,'#9A5B43',L('Notes','Notas'),'Study Notes')+tile('saved',BH_IC.mark,'#2E8A8E',L('Saved','Guardados'))+tile('btrack',BH_IC.bars,'#8FB2CC',L('Tracker','Registro'),'Reading Tracker')+'</div>'+
  '<section class="bh-exp"><div class="row gap12" style="align-items:center">'+COMPASS+'<span class="stack" style="gap:2px"><h2 class="serif bh-h2">'+T('Explore the Bible')+'</h2><span class="bh-sub2">'+T('Browse books, learn, and dive deeper.')+'</span></span></div>'+
    '<div class="bh-tg"><button class="bh-tc bh-ot" data-a="bhGo" data-id="ot"><span class="serif">'+T('Old Testament')+'</span>'+bhI(BH_IC.chev,18,'#2B2418',2.6)+OTART+'</button>'+
    '<button class="bh-tc bh-nt" data-a="bhGo" data-id="nt"><span class="serif">'+T('New Testament')+'</span>'+bhI(BH_IC.chev,18,'#1F2D2A',2.6)+NTART+'</button></div>'+
@@ -25618,6 +25618,16 @@ sz('#app .bh-disc',44,22)+sz('#app .pq-disc:not(.pq-rm .pq-disc)',44,22)+sz('#ap
 '#app .hero.gban:not(.sban):not(.sp-hero) .row>span:first-child{width:72px!important;height:72px!important;flex:none!important;display:grid;place-items:center}#app .hero.gban:not(.sban):not(.sp-hero) .row>span:first-child>svg,#app .hero.gban:not(.sban):not(.sp-hero) .row>span:first-child>img{width:72px!important;height:72px!important}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 })();
+/* ---------- Bible shortcuts row: same tray look as the Study · Pray · Quiz · Mind tabs ---------- */
+(function(){var css=
+'#app .bh-g4{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;padding:6px!important;border-radius:22px!important;background:#F1E7D6!important;box-shadow:none!important}'+
+'#app .bh-g4 .bh-tile{background:transparent!important;box-shadow:none!important;border:2px solid transparent!important;border-radius:18px!important;min-height:82px!important;padding:8px 2px!important;gap:5px!important;justify-content:center}'+
+'#app .bh-g4 .bh-tile:active{background:#FFFDF6!important}'+
+'#app .bh-g4 .bh-tile .bh-disc{width:42px!important;height:42px!important;min-width:42px;box-shadow:none!important}#app .bh-g4 .bh-tile .bh-disc svg{width:21px!important;height:21px!important}'+
+'#app .bh-g4 .bh-tile b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;font-family:var(--sans,inherit)!important;font-size:13.5px!important;letter-spacing:-.1px;font-weight:600!important;line-height:1.15!important;color:var(--ink)!important;text-align:center}'+
+'@media (max-width:370px){#app .bh-g4 .bh-tile b{font-size:12.5px!important}}'+
+'[data-theme=dark] #app .bh-g4{background:#262A20!important}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) #app .bh-g4{background:#262A20!important}}';
+var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);})();
 
 /* ---------- Home > Progress: Overview + More layout from the mockups ---------- */
 (function(){
