@@ -16955,7 +16955,18 @@ var PWA={evt:null,installed:false,sw:false};
  try{PWA.installed=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;}catch(e){AB.err(e)}
  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();PWA.evt=e;try{if(V&&V.name==='settings')render();}catch(x){}});
  window.addEventListener('appinstalled',function(){PWA.installed=true;PWA.evt=null;try{toast(T('Abide is installed'));render();}catch(x){}});
- function reg(){try{if(!('serviceWorker' in navigator))return;if(!/^https?:$/.test(location.protocol))return;navigator.serviceWorker.register('sw.js').then(function(){PWA.sw=true;}).catch(function(){});}catch(e){AB.err(e)}}
+ function reg(){try{if(!('serviceWorker' in navigator))return;if(!/^https?:$/.test(location.protocol))return;navigator.serviceWorker.register('sw.js').then(function(){PWA.sw=true;}).catch(function(){});
+/* new-version banner: shown when an update finished downloading while the older saved copy was open */
+(function(){var hadCtl=!!navigator.serviceWorker.controller,shown=false;
+ function es(){try{return LANG()==='es'}catch(e){return false}}
+ function show(){if(shown)return;shown=true;try{var st=document.createElement('style');st.textContent='.ab-upd{position:fixed;left:50%;transform:translateX(-50%);width:max-content;white-space:nowrap;bottom:calc(110px + env(safe-area-inset-bottom,0px));z-index:96;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);padding:8px 8px 8px 16px;border-radius:999px;background:#FBF6EA;color:#1F1A10;border:1px solid #E2D3B4;box-shadow:0 8px 28px rgba(31,26,16,.18);font-size:14px;font-weight:600}.ab-upd button{border:0;border-radius:999px;padding:9px 14px;font:inherit;cursor:pointer}.ab-upd .ab-upd-go{background:#6B7834;color:#fff}.ab-upd .ab-upd-x{background:transparent;color:#5A5040;padding:9px 10px}[data-theme=dark] .ab-upd{background:#2E3326;color:#F3EBD8;border-color:#4A4230}@media (min-width:900px){.ab-upd{bottom:24px}}';document.head.appendChild(st);
+  var d=document.createElement('div');d.className='ab-upd';d.setAttribute('role','status');
+  d.innerHTML='<span>'+(es()?'Hay una nueva versión lista':'New version ready')+'</span><button class="ab-upd-go" type="button">'+(es()?'Actualizar':'Refresh')+'</button><button class="ab-upd-x" type="button" aria-label="'+(es()?'Cerrar':'Close')+'">✕</button>';
+  d.querySelector('.ab-upd-go').onclick=function(){location.reload();};d.querySelector('.ab-upd-x').onclick=function(){d.remove();};
+  document.body.appendChild(d);}catch(e){AB.err(e)}}
+ navigator.serviceWorker.addEventListener('message',function(e){if(e.data&&e.data.type==='abide-update-ready')show();});
+ navigator.serviceWorker.addEventListener('controllerchange',function(){if(hadCtl)show();hadCtl=true;});
+ window.abShowUpdate=show;})();}catch(e){AB.err(e)}}
  if(document.readyState==='complete')reg();else window.addEventListener('load',reg);
 })();
 function pwaWhere(){var ua=navigator.userAgent||'';var ios=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);var framed=false;try{framed=window.self!==window.top;}catch(e){framed=true;}return {ios:ios,framed:framed,android:/Android/.test(ua)};}

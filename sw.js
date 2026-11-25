@@ -1,5 +1,5 @@
 /* Abide offline worker: keeps the app working without internet. */
-const CACHE = 'abide-v62';
+const CACHE = 'abide-v63';
 const FONT_CACHE = 'abide-fonts-v1';
 /* Bible Panorama hero art: the phone and tablet sizes are saved in the background so the pictures work offline */
 const PANO_ART = ["hero-00-panorama", "hero-01-creation", "hero-02-garden-and-fall", "hero-03-before-the-flood", "hero-04-nations-and-babel", "hero-05-abraham", "hero-06-jacob", "hero-07-joseph", "hero-08-out-of-egypt", "hero-09-sinai-and-wilderness", "hero-10-joshua", "hero-11-judges-and-ruth", "hero-12-samuel-saul-david", "hero-13-solomon", "hero-14-divided-kingdom", "hero-15-exile-in-babylon", "hero-16-return-and-rebuilding", "hero-17-wisdom-books", "hero-18-prophets-and-promise"];
@@ -37,16 +37,26 @@ self.addEventListener('fetch', e => {
   if (isPage) {
     /* page: try for the newest version, but never keep you waiting.
        If the network is slow or down, open the saved copy after 3 seconds and finish updating in the background. */
+    let servedSaved = false;
+    const tag = r => r && (r.headers.get('etag') || r.headers.get('last-modified'));
     const net = fetch(req.url, {cache: 'no-cache', credentials: 'same-origin'}).then(r => {
       if (!r || !r.ok) throw new Error('bad');
-      const copy = r.clone(); caches.open(CACHE).then(c => c.put('./index.html', copy)); return r;
+      const copy = r.clone();
+      /* save the new page; if the app already opened the older saved copy, tell it a new version is ready */
+      caches.open(CACHE).then(c => c.match('./index.html').then(old => {
+        const changed = old && tag(old) && tag(copy) && tag(old) !== tag(copy);
+        return c.put('./index.html', copy).then(() => {
+          if (servedSaved && changed) self.clients.matchAll({type: 'window'}).then(cs => cs.forEach(cl => cl.postMessage({type: 'abide-update-ready'})));
+        });
+      }));
+      return r;
     });
     const saved = () => caches.match(req).then(r => r || caches.match('./index.html'));
     e.waitUntil(net.catch(() => null));
     e.respondWith(new Promise(resolve => {
       let done = false;
       const finish = r => { if (!done && r) { done = true; resolve(r); } };
-      const timer = setTimeout(() => saved().then(finish), 3000);
+      const timer = setTimeout(() => saved().then(r => { if (r && !done) servedSaved = true; finish(r); }), 3000);
       net.then(r => { clearTimeout(timer); finish(r); })
          .catch(() => { clearTimeout(timer); saved().then(r => r ? finish(r) : finish(fetch(req))); });
     }));
