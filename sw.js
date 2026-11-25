@@ -1,5 +1,5 @@
 /* Abide offline worker: keeps the app working without internet. */
-const CACHE = 'abide-v51';
+const CACHE = 'abide-v52';
 const FONT_CACHE = 'abide-fonts-v1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
