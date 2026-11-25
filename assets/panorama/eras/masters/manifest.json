@@ -1,0 +1,66 @@
+[
+  {
+    "era": 1,
+    "title": "Creation",
+    "scripture": "Genesis 1–2",
+    "file": "eras/era-01-creation.png",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "era": 2,
+    "title": "The Fall",
+    "scripture": "Genesis 3:1–24",
+    "file": "eras/era-02-the-fall.png",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "era": 3,
+    "title": "The Promise to Abraham",
+    "scripture": "Genesis 15:1–6",
+    "file": "eras/era-03-the-promise-to-abraham.png",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "era": 4,
+    "title": "Egypt and the Law",
+    "scripture": "Exodus 19–20; 31:18",
+    "file": "eras/era-04-egypt-and-the-law.png",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "era": 5,
+    "title": "Land, Kings and Prophets",
+    "scripture": "Joshua–Kings; prophetic books",
+    "file": "eras/era-05-land-kings-and-prophets.png",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "era": 6,
+    "title": "Jesus",
+    "scripture": "Matthew–John",
+    "file": "eras/era-06-jesus.png",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "era": 7,
+    "title": "The Church",
+    "scripture": "Acts 2:1–47",
+    "file": "eras/era-07-the-church.png",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "era": 8,
+    "title": "All Things Made New",
+    "scripture": "Revelation 21–22",
+    "file": "eras/era-08-all-things-made-new.png",
+    "width": 1254,
+    "height": 1254
+  }
+]

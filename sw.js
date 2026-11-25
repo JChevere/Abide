@@ -1,9 +1,11 @@
 /* Abide offline worker: keeps the app working without internet. */
-const CACHE = 'abide-v60';
+const CACHE = 'abide-v61';
 const FONT_CACHE = 'abide-fonts-v1';
 /* Bible Panorama hero art: the phone and tablet sizes are saved in the background so the pictures work offline */
 const PANO_ART = ["hero-00-panorama", "hero-01-creation", "hero-02-garden-and-fall", "hero-03-before-the-flood", "hero-04-nations-and-babel", "hero-05-abraham", "hero-06-jacob", "hero-07-joseph", "hero-08-out-of-egypt", "hero-09-sinai-and-wilderness", "hero-10-joshua", "hero-11-judges-and-ruth", "hero-12-samuel-saul-david", "hero-13-solomon", "hero-14-divided-kingdom", "hero-15-exile-in-babylon", "hero-16-return-and-rebuilding", "hero-17-wisdom-books", "hero-18-prophets-and-promise"];
 const PANO_SAVE = PANO_ART.flatMap(n => ['480', '960'].map(w => './assets/panorama/' + n + '-' + w + '.webp'));
+const PANO_ERAS = ['era-01-creation', 'era-02-the-fall', 'era-03-the-promise-to-abraham', 'era-04-egypt-and-the-law', 'era-05-land-kings-and-prophets', 'era-06-jesus', 'era-07-the-church', 'era-08-all-things-made-new'];
+PANO_ERAS.forEach(n => ['192', '384'].forEach(w => PANO_SAVE.push('./assets/panorama/eras/' + n + '-' + w + '.webp')));
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => Promise.all(CORE.map(u => c.add(u).catch(() => null)))).then(() => self.skipWaiting()));
@@ -46,11 +48,11 @@ self.addEventListener('fetch', e => {
       net.then(r => { clearTimeout(timer); finish(r); })
          .catch(() => { clearTimeout(timer); saved().then(r => r ? finish(r) : finish(fetch(req))); });
     }));
-  } else if (/\/assets\/panorama\/hero-\d\d-[a-z-]+-\d+\.webp$/.test(req.url)) {
+  } else if (/\/assets\/panorama\/(eras\/era|hero)-\d\d-[a-z-]+-\d+\.webp$/.test(req.url)) {
     /* hero art: saved copy first; if this size is not saved and there is no internet, show another saved size of the same picture */
     const base = req.url.replace(/-\d+\.webp$/, '');
     e.respondWith(caches.match(req).then(r => r || fetch(req).then(n => { if (n && n.ok) { const copy = n.clone(); caches.open(CACHE).then(c => c.put(req, copy)); } return n; })
-      .catch(() => caches.match(base + '-960.webp').then(a => a || caches.match(base + '-480.webp')).then(a => a || caches.match(base + '-1600.webp')).then(a => a || Response.error()))));
+      .catch(() => caches.match(base + '-960.webp').then(a => a || caches.match(base + '-480.webp')).then(a => a || caches.match(base + '-1600.webp')).then(a => a || caches.match(base + '-384.webp')).then(a => a || caches.match(base + '-192.webp')).then(a => a || Response.error()))));
   } else {
     e.respondWith(caches.match(req).then(r => r || fetch(req).then(n => { const copy = n.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return n; })));
   }

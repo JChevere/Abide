@@ -26288,6 +26288,19 @@ function scene(sc,w,h,big){var sk=SKY[sc[0]]||SKY.day,gr=GROUND[sc[1]]||GROUND.h
  if(sc[1]==='sea')o+='<path d="M0 174 Q20 166 40 174 T80 174 T120 174 T160 174 T200 174 T240 174 T280 174 T320 174 T360 174 T400 174" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>';
  o+='<g transform="translate(200 '+(big?100:104)+') scale(2.5) translate(-50 -34)">'+emb(sc[2])+'</g>';
  return o+'</svg>';}
+/* ---- era circle art (Era 1-8, transparent circles, no frame) ---- */
+var PANO_ERA_ART=[
+ ['era-01-creation','A lion, a lamb, a deer and a parrot in a green garden with waterfalls under a rising sun','Un león, un cordero, un ciervo y un loro en un jardín verde con cascadas bajo el sol naciente'],
+ ['era-02-the-fall','Adam and Eve in the garden as Eve reaches for a fruit beside a serpent in the tree','Adán y Eva en el jardín mientras Eva toma un fruto junto a una serpiente en el árbol'],
+ ['era-03-the-promise-to-abraham','Abraham holding his staff and looking up at a starry sky beside his tents','Abraham con su cayado mirando un cielo estrellado junto a sus tiendas'],
+ ['era-04-egypt-and-the-law','Moses holding two stone tablets before a glowing mountain and the camp of Israel','Moisés sosteniendo dos tablas de piedra ante un monte resplandeciente y el campamento de Israel'],
+ ['era-05-land-kings-and-prophets','A crowned king with a harp before Jerusalem’s walls as a prophet blows a horn','Un rey coronado con un arpa ante los muros de Jerusalén mientras un profeta toca un cuerno'],
+ ['era-06-jesus','Jesus with open hands before the empty tomb, three crosses on the hill behind','Jesús con las manos abiertas ante la tumba vacía, con tres cruces en el monte detrás'],
+ ['era-07-the-church','Believers praising together with flames above them and a dove in bright light','Creyentes alabando juntos con llamas sobre ellos y una paloma en una luz brillante'],
+ ['era-08-all-things-made-new','Jesus with open hands before a shining golden city, a river, a rainbow and a lamb','Jesús con las manos abiertas ante una ciudad dorada y resplandeciente, un río, un arcoíris y un cordero']];
+function pnEra(n,s){var a=PANO_ERA_ART[n-1];if(!a)return '';var b='assets/panorama/eras/'+a[0]+'-';
+ return '<img class="pn-era-img" src="'+b+'192.webp" srcset="'+b+'192.webp 192w, '+b+'384.webp 384w" sizes="'+s+'px" width="'+s+'" height="'+s+'" alt="'+esc(L2(a[1],a[2]))+'" decoding="async" loading="lazy" onerror="this.style.visibility=\'hidden\'">';}
+try{var pnEraCss=document.createElement('style');pnEraCss.textContent='.pn-era .pn-era-img{display:block;flex:none;width:88px;height:88px;border-radius:50%;object-fit:contain;margin-bottom:4px}@media (max-width:380px){.pn-era .pn-era-img{width:80px;height:80px}}';document.head.appendChild(pnEraCss);}catch(e){AB.err(e)}
 /* ---- illustrated hero art (Hero 00 cover, Heroes 01-18 = studies p1-p18) ---- */
 var PANO_ART=[
  ['hero-00-panorama','40% 62%','An open scroll resting on a rock beneath a leafy tree, green hills and a golden sunrise beyond','Un rollo abierto sobre una roca bajo un árbol frondoso, con colinas verdes y un amanecer dorado al fondo'],
@@ -26325,7 +26338,7 @@ function idx(id){for(var i=0;i<PANO.length;i++)if(PANO[i].id===id)return i;retur
 
 /* ---- index page ---- */
 window.vPano=function(){var sn=seen(),done=PANO.filter(function(s){return sn[s.id];}).length;
- var eras='<div class="pn-eras">'+PANO_ERAS.map(function(e,i){return (i?'<span class="pn-arr">'+svgI(ARROW,16,'#8A7A5A',2)+'</span>':'')+'<button class="pn-era'+(e.soon?' soon':'')+'" '+(e.soon?'disabled':'data-a="pnOpen" data-id="'+e.from+'"')+'>'+disc(e.emb,64)+'<b class="serif">'+esc(L(e.t))+'</b><span>'+esc(L(e.s))+'</span><em>'+(e.soon?esc(L2('Coming soon','Próximamente')):esc(refTx(e.ref)))+'</em></button>';}).join('')+'</div>';
+ var eras='<div class="pn-eras">'+PANO_ERAS.map(function(e,i){return (i?'<span class="pn-arr">'+svgI(ARROW,16,'#8A7A5A',2)+'</span>':'')+'<button class="pn-era'+(e.soon?' soon':'')+'" '+(e.soon?'disabled':'data-a="pnOpen" data-id="'+e.from+'"')+'>'+pnEra(e.n,88)+'<b class="serif">'+esc(L(e.t))+'</b><span>'+esc(L(e.s))+'</span><em>'+(e.soon?esc(L2('Coming soon','Próximamente')):esc(refTx(e.ref)))+'</em></button>';}).join('')+'</div>';
  var list=PANO.map(function(s,i){return '<button class="pn-row" data-a="pnOpen" data-id="'+s.id+'"><span class="pn-rthumb">'+pnArt(+s.id.slice(1),0)+'</span><span class="pn-rtx"><em>'+esc(L2('STUDY','ESTUDIO'))+' '+(i+1)+'</em><b class="serif">'+esc(L(s.t))+'</b><span>'+esc(refTx(s.ref))+'</span></span>'+(sn[s.id]?'<span class="pn-ok">'+svgI(CHECK,16,'#fff',3)+'</span>':svgI(CHEV,18,'#1F1A10',2.6))+'</button>';}).join('');
  return '<div class="stack gap18 pn-page">'+
  '<div class="row between"><button class="icon-btn flat" data-a="go" data-to="bible" aria-label="Back">'+ic(I.back,{w:2})+'</button><span class="small muted">'+esc(T('Holy Bible'))+'</span><span style="width:46px"></span></div>'+
