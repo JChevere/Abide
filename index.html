@@ -25623,11 +25623,17 @@ var st=document.createElement('style');st.textContent=css;document.head.appendCh
 '#app .bh-g4{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;padding:6px!important;border-radius:22px!important;background:#F1E7D6!important;box-shadow:none!important}'+
 '#app .bh-g4 .bh-tile{background:transparent!important;box-shadow:none!important;border:2px solid transparent!important;border-radius:18px!important;min-height:82px!important;padding:8px 2px!important;gap:5px!important;justify-content:center}'+
 '#app .bh-g4 .bh-tile:active{background:#FFFDF6!important}'+
-'#app .bh-g4 .bh-tile .bh-disc{width:42px!important;height:42px!important;min-width:42px;box-shadow:none!important}#app .bh-g4 .bh-tile .bh-disc svg{width:21px!important;height:21px!important}'+
+'#app .bh-g4 .bh-tile .bh-disc{width:34px!important;height:34px!important;min-width:34px;box-shadow:none!important;margin:4px 0}#app .bh-g4 .bh-tile .bh-disc svg{width:18px!important;height:18px!important}'+
+'#app .bh-g4 .bh-tile{transition:background .12s,border-color .12s}#app .bh-g4 .bh-tile.on,#app .bh-g4 .bh-tile:active{background:color-mix(in srgb,var(--tc) 12%,#FFFDF6)!important;border-color:var(--tc)!important;box-shadow:0 2px 6px rgba(0,0,0,.08)!important}#app .bh-g4 .bh-tile.on b{font-weight:800!important}'+
 '#app .bh-g4 .bh-tile b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;font-family:var(--sans,inherit)!important;font-size:13.5px!important;letter-spacing:-.1px;font-weight:600!important;line-height:1.15!important;color:var(--ink)!important;text-align:center}'+
 '@media (max-width:370px){#app .bh-g4 .bh-tile b{font-size:12.5px!important}}'+
 '[data-theme=dark] #app .bh-g4{background:#262A20!important}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) #app .bh-g4{background:#262A20!important}}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);})();
+
+/* Bible shortcuts: show the selected outline for a moment before opening the page */
+(function(){function col(b){var d=b.querySelector('.bh-disc');return d?getComputedStyle(d).backgroundColor:'#465A22';}
+ var _r=render;render=function(){var x=_r.apply(this,arguments);try{[].forEach.call(document.querySelectorAll('#app .bh-g4 .bh-tile'),function(b){b.style.setProperty('--tc',col(b));});}catch(e){AB.err(e)}return x;};
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#app .bh-g4 .bh-tile');if(!b||b.dataset.go)return;e.preventDefault();e.stopPropagation();b.classList.add('on');b.dataset.go=1;var to=b.dataset.to;setTimeout(function(){try{go(to);}catch(_){}},170);},true);})();
 
 /* ---------- Home > Progress: Overview + More layout from the mockups ---------- */
 (function(){
