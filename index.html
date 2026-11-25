@@ -714,6 +714,8 @@ function render(){
   else if(n==='church'){h=vChurch();tabs='bible';}
   else if(n==='langtools'){h=vLangTools();tabs='bible';}
   else if(n==='vstudy'){h=vVStudy();tabs='bible';}
+  else if(n==='pano'){h=vPano();tabs='bible';}
+  else if(n==='pstudy'){h=vPStudy();tabs='bible';}
   else if(n==='medals'){h=vMedals();tabs='home';}
   else if(n==='visions'){h=vVisions();tabs='bible';}
   else if(n==='ptoday'){h=vPToday();tabs='bible';}
@@ -25967,6 +25969,399 @@ var css='#app .sp-chip.on{border:2px solid #465A22!important;background:color-mi
 '.qc-cont{display:block;text-align:center;font-size:12.5px;color:var(--muted);margin-top:-4px}.qc-cont b{color:var(--ink)}'+
 '@media (max-width:370px){#app .sp-chip b{font-size:12.5px!important;letter-spacing:-.2px;white-space:nowrap}#app .sp-chip{gap:3px!important;padding:9px 3px!important}#app .sp-chip svg{width:17px!important;height:17px!important}}#app .qc-chips{margin:0}#app .qc-div{margin:2px 6px}@media (max-width:400px){#app .qc-chips .sp-chip{padding:9px 4px}#app .qc-chips .sp-chip svg{width:19px;height:19px}}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+})();
+
+/* ---------- Bible Panorama: original study content (Old Testament) ----------
+   ref format: "GEN 1:3-5", "GEN 2-3", "EXO-DEU" (book range).  Text pairs are [English, Spanish]. */
+var PANO_ERAS=[
+ {n:1,t:['Creation','La Creación'],s:['and the origin of people','y el origen del ser humano'],ref:'GEN 1-2',emb:'globe',from:'p1'},
+ {n:2,t:['The fall','La caída'],s:['and what followed','y sus consecuencias'],ref:'GEN 3-11',emb:'apple',from:'p2'},
+ {n:3,t:['The promise to Abraham','La promesa a Abraham'],s:['and the beginning of Israel','y el origen de Israel'],ref:'GEN 12-50',emb:'star',from:'p5'},
+ {n:4,t:['Out of Egypt','La salida de Egipto'],s:['and the Law','y la Ley'],ref:'EXO-DEU',emb:'tablets',from:'p8'},
+ {n:5,t:['Land, kings and prophets','Tierra, reyes y profetas'],s:['from Joshua to Malachi','de Josué a Malaquías'],ref:'JOS-MAL',emb:'crown',from:'p10'},
+ {n:6,t:['The coming of Jesus','La venida de Jesucristo'],s:['the four Gospels','los cuatro Evangelios'],ref:'MAT-JHN',emb:'lamp',soon:1},
+ {n:7,t:['The Church is born','El nacimiento de la Iglesia'],s:['and the good news spreads','y la expansión del evangelio'],ref:'ACT-JUD',emb:'flame',soon:1},
+ {n:8,t:['All things made new','La restauración final'],s:['and the eternal kingdom','y el reino eterno'],ref:'REV 1-22',emb:'gate',soon:1}];
+
+var PANO=[
+{id:'p1',era:1,ref:'GEN 1:1-2:3',scene:['night','hills','globe'],
+ t:['The origin of everything','El origen de todo'],st:['In the beginning','En el principio'],
+ sum:['The Bible opens by presenting God as the Creator of all things. By His word He brought the universe, the earth and every kind of life into being. Creation was no accident: it shows His power, His wisdom and His purpose.',
+      'La Biblia comienza presentando a Dios como el Creador de todas las cosas. Con su palabra dio origen al universo, a la tierra y a toda forma de vida. La creación no fue un accidente: muestra su poder, su sabiduría y su propósito.'],
+ pt:['Main ideas','Ideas principales'],
+ p:[['sprout','God made an ordered world, full of life.','Dios hizo un mundo ordenado y lleno de vida.','GEN 1:31'],
+    ['people','People are made in His image, with dignity and a calling.','El ser humano fue creado a su imagen, con dignidad y responsabilidad.','GEN 1:27'],
+    ['sun','God finished His work and set apart a day of rest.','Dios terminó su obra y apartó un día de reposo.','GEN 2:2-3'],
+    ['heart','Creation shows the value of every life.','La creación muestra el valor de cada vida.','PSA 139:14']],
+ lt:['The seven days','Los siete días'],
+ l:[['light','Day 1 · Light','Día 1 · La luz','GEN 1:3-5'],['sky','Day 2 · The sky','Día 2 · El cielo','GEN 1:6-8'],['sprout','Day 3 · Land and plants','Día 3 · Tierra y plantas','GEN 1:9-13'],
+    ['moon','Day 4 · Sun, moon and stars','Día 4 · Sol, luna y estrellas','GEN 1:14-19'],['fish','Day 5 · Sea life and birds','Día 5 · Peces y aves','GEN 1:20-23'],['lion','Day 6 · Animals and people','Día 6 · Animales y ser humano','GEN 1:24-31'],['sun','Day 7 · Rest','Día 7 · El reposo','GEN 2:1-3']]},
+
+{id:'p2',era:2,ref:'GEN 2-3',scene:['day','garden','tree'],
+ t:['The garden and the fall','El jardín y la caída'],st:['Trust that was broken','La confianza quebrantada'],
+ sum:['God formed the first man from the dust, placed him in a garden full of good things and gave him a companion. He invited them to trust Him and obey. Instead they listened to the serpent, ate the forbidden fruit, and sin and separation entered the world.',
+      'Dios formó al primer hombre del polvo, lo puso en un jardín lleno de cosas buenas y le dio una compañera. Los invitó a confiar en Él y obedecer. Pero escucharon a la serpiente, comieron del fruto prohibido, y el pecado y la separación entraron en el mundo.'],
+ pt:['What followed','Las consecuencias'],
+ p:[['heartbreak','Their closeness with God was broken.','Se rompió su comunión con Dios.','GEN 3:8'],
+    ['wheat','Work became hard and tiring.','El trabajo se volvió duro y cansado.','GEN 3:17-19'],
+    ['tear','Pain came into family life.','Llegó el dolor a la vida familiar.','GEN 3:16'],
+    ['stone','Death entered the human story.','La muerte entró en la historia humana.','GEN 3:19']],
+ lt:['Step by step','Paso a paso'],
+ l:[['breath','God forms man','Dios forma al hombre','GEN 2:7'],['tree','The garden of Eden','El jardín de Edén','GEN 2:8-17'],['heart','A companion','La compañera','GEN 2:18-25'],
+    ['apple','Temptation','La tentación','GEN 3:1-6'],['coat','God covers them','Dios los viste','GEN 3:21'],['gate','Leaving the garden','La salida del jardín','GEN 3:22-24']]},
+
+{id:'p3',era:2,ref:'GEN 4-9',scene:['storm','hills','ark'],
+ t:['A world before the flood','Un mundo antes del diluvio'],st:['Sin spreads, grace remains','El pecado se extiende, la gracia permanece'],
+ sum:['Sin spread quickly: Cain took the life of his brother Abel, and violence filled the earth. God judged that evil with the flood, but He also showed grace by saving Noah, his family and the animals in the ark, and by making a covenant with all life.',
+      'El pecado se extendió pronto: Caín le quitó la vida a su hermano Abel, y la violencia llenó la tierra. Dios juzgó esa maldad con el diluvio, pero también mostró su gracia salvando a Noé, a su familia y a los animales en el arca, e hizo un pacto con toda la vida.'],
+ pt:['Key points','Puntos clave'],
+ p:[['altar','Abel brings an offering God accepts.','Abel presenta una ofrenda aceptada.','GEN 4:3-5'],
+    ['heartbreak','Cain kills his brother out of envy.','Caín mata a su hermano por envidia.','GEN 4:6-8'],
+    ['tree','The family line of Seth continues.','La descendencia de Set continúa.','GEN 5:1-32'],
+    ['ark','Noah walks with God and builds the ark.','Noé camina con Dios y construye el arca.','GEN 6:9-22']],
+ lt:['Main steps','Pasos principales'],
+ l:[['altar','Cain and Abel','Caín y Abel','GEN 4'],['people','Growing evil','La creciente maldad','GEN 6:1-7'],['ark','Noah and the ark','Noé y el arca','GEN 6:8-22'],['wave','The flood','El diluvio','GEN 7'],['rainbow','God’s covenant','El pacto de Dios','GEN 8-9']]},
+
+{id:'p4',era:2,ref:'GEN 9-11',scene:['dusk','desert','tower'],
+ t:['The nations and Babel','Las naciones y Babel'],st:['A city that reached for fame','Una ciudad que buscaba fama'],
+ sum:['After the flood God renewed His covenant with Noah. In time people gathered to build a city and a tower to make a name for themselves. God confused their language and scattered them across the earth, and the nations began.',
+      'Después del diluvio Dios renovó su pacto con Noé. Con el tiempo la gente se unió para construir una ciudad y una torre para hacerse famosa. Dios confundió su idioma y los dispersó por toda la tierra, y así comenzaron las naciones.'],
+ pt:['Why it matters','Por qué importa'],
+ p:[['rainbow','God keeps His promise to all life.','Dios cumple su promesa con toda la vida.','GEN 9:12-16'],
+    ['tower','Pride wants a name without God.','El orgullo busca fama sin Dios.','GEN 11:4'],
+    ['speech','One language becomes many.','Un idioma se convierte en muchos.','GEN 11:7-9'],
+    ['globe','The nations prepare the way for Abraham.','Las naciones preparan el camino para Abraham.','GEN 11:27-32']],
+ lt:['Key events','Eventos clave'],
+ l:[['rainbow','Covenant with Noah','El pacto con Noé','GEN 9'],['people','The peoples of the earth','Los pueblos de la tierra','GEN 10'],['tower','The tower of Babel','La torre de Babel','GEN 11:1-4'],['speech','Languages confused','Confusión de idiomas','GEN 11:5-9'],['globe','Scattered nations','La dispersión','GEN 11:9']]},
+
+{id:'p5',era:3,ref:'GEN 12-25',scene:['night','desert','tent'],
+ t:['Abraham and the promise','Abraham y la promesa'],st:['A man who believed God','Un hombre que le creyó a Dios'],
+ sum:['God called Abram to leave his homeland and promised him a land, a great family and a blessing for every nation. Abram believed, and God counted it to him as righteousness. Years later the promised son, Isaac, was born.',
+      'Dios llamó a Abram a dejar su tierra y le prometió una tierra, una gran descendencia y una bendición para todas las naciones. Abram creyó, y Dios se lo contó por justicia. Años después nació Isaac, el hijo de la promesa.'],
+ pt:['The three promises','Las tres promesas'],
+ p:[['compass','A land to call home.','Una tierra para habitar.','GEN 12:1'],
+    ['star','A family as many as the stars.','Una descendencia como las estrellas.','GEN 15:5'],
+    ['globe','A blessing for all nations.','Una bendición para todas las naciones.','GEN 12:3'],
+    ['heart','Faith counted as righteousness.','La fe contada por justicia.','GEN 15:6']],
+ lt:['The promise unfolds','La promesa avanza'],
+ l:[['tent','The call of Abram','El llamado de Abram','GEN 12'],['star','Count the stars','Cuenta las estrellas','GEN 15'],['heart','Isaac is born','Nace Isaac','GEN 21'],['altar','The test of faith','La prueba de la fe','GEN 22'],['ring','A wife for Isaac','Una esposa para Isaac','GEN 24']]},
+
+{id:'p6',era:3,ref:'GEN 25-36',scene:['dusk','hills','ladder'],
+ t:['Jacob and the twelve tribes','Jacob y las doce tribus'],st:['God keeps working through weak people','Dios obra a través de personas débiles'],
+ sum:['Isaac’s sons were twins, Esau and Jacob. Jacob took his brother’s birthright and blessing, fled, and met God in a dream of a ladder to heaven. After years of struggle he was renamed Israel, and his twelve sons became the tribes of Israel.',
+      'Los hijos de Isaac fueron gemelos, Esaú y Jacob. Jacob tomó la primogenitura y la bendición de su hermano, huyó y se encontró con Dios en un sueño de una escalera al cielo. Tras años de lucha recibió el nombre de Israel, y sus doce hijos fueron las tribus de Israel.'],
+ pt:['Key people','Personajes clave'],
+ p:[['ring','Isaac, the son of the promise.','Isaac, el hijo de la promesa.','GEN 25:19-26'],
+    ['wheat','Esau, who sold his birthright.','Esaú, que vendió su primogenitura.','GEN 25:29-34'],
+    ['ladder','Jacob, renamed Israel.','Jacob, llamado Israel.','GEN 32:28'],
+    ['people','Twelve sons, twelve tribes.','Doce hijos, doce tribus.','GEN 35:22-26']],
+ lt:['Jacob’s journey','El camino de Jacob'],
+ l:[['wheat','The birthright','La primogenitura','GEN 25'],['heart','The stolen blessing','La bendición robada','GEN 27'],['ladder','Jacob’s ladder','La escalera de Jacob','GEN 28'],['tent','Years with Laban','Años con Labán','GEN 29-31'],['moon','Wrestling till dawn','La lucha hasta el alba','GEN 32'],['people','Meeting Esau','El encuentro con Esaú','GEN 33']]},
+
+{id:'p7',era:3,ref:'GEN 37-50',scene:['day','desert','coat'],
+ t:['Joseph: from pit to palace','José: del pozo al palacio'],st:['God meant it for good','Dios lo encaminó a bien'],
+ sum:['Joseph, Jacob’s favorite son, was sold by his jealous brothers and taken to Egypt. Through slavery, false charges and prison, God was with him. He rose to rule Egypt, saved many from famine and forgave his brothers.',
+      'José, el hijo preferido de Jacob, fue vendido por sus hermanos celosos y llevado a Egipto. En la esclavitud, las acusaciones falsas y la cárcel, Dios estuvo con él. Llegó a gobernar Egipto, salvó a muchos del hambre y perdonó a sus hermanos.'],
+ pt:['Lessons from Joseph','Lecciones de José'],
+ p:[['heart','God is present in hard places.','Dios está presente en los lugares difíciles.','GEN 39:21'],
+    ['scroll','Faithfulness when no one is watching.','Fidelidad cuando nadie mira.','GEN 39:9'],
+    ['wheat','Wisdom that provides for others.','Sabiduría que provee para otros.','GEN 41:33-36'],
+    ['hands','Forgiveness that restores a family.','Perdón que restaura una familia.','GEN 50:20']],
+ lt:['Joseph’s road','El camino de José'],
+ l:[['coat','The colorful coat','La túnica de colores','GEN 37'],['chain','Sold into Egypt','Vendido a Egipto','GEN 37:28'],['stone','In prison','En la cárcel','GEN 39-40'],['crown','Ruler of Egypt','Gobernador de Egipto','GEN 41'],['wheat','Famine and grain','Hambre y grano','GEN 42-44'],['hands','Brothers forgiven','El perdón','GEN 45-50']]},
+
+{id:'p8',era:4,ref:'EXO 1-18',scene:['day','sea','sea'],
+ t:['From slavery to freedom','De la esclavitud a la libertad'],st:['The Lord rescues His people','El Señor rescata a su pueblo'],
+ sum:['Generations later Israel was enslaved in Egypt. God called Moses from a burning bush to lead them out. After ten plagues and the first Passover, Israel walked through the Red Sea on dry ground, and God fed them in the desert.',
+      'Generaciones después Israel fue esclavizado en Egipto. Dios llamó a Moisés desde una zarza ardiente para sacarlos. Tras diez plagas y la primera Pascua, Israel cruzó el mar Rojo en seco, y Dios los alimentó en el desierto.'],
+ pt:['Key people','Personajes clave'],
+ p:[['bush','Moses, called at the burning bush.','Moisés, llamado en la zarza.','EXO 3:1-10'],
+    ['speech','Aaron, who spoke for Moses.','Aarón, que hablaba por Moisés.','EXO 4:14-16'],
+    ['harp','Miriam, who led the song.','María, que dirigió el canto.','EXO 15:20-21'],
+    ['crown','Pharaoh, who would not let them go.','Faraón, que no los dejaba ir.','EXO 5:1-2']],
+ lt:['The road to freedom','El camino a la libertad'],
+ l:[['pyramid','Slavery in Egypt','La esclavitud','EXO 1-2'],['bush','The burning bush','La zarza ardiente','EXO 3-4'],['bolt','The plagues','Las plagas','EXO 7-11'],['lamb','The Passover','La Pascua','EXO 12'],['sea','The Red Sea','El mar Rojo','EXO 14-15'],['jar','Manna in the desert','El maná','EXO 16']]},
+
+{id:'p9',era:4,ref:'EXO 19-DEU 34',scene:['dusk','desert','tablets'],
+ t:['Sinai and the wilderness','El Sinaí y el desierto'],st:['A holy nation learns to trust','Una nación santa aprende a confiar'],
+ sum:['At Mount Sinai God gave His people the Ten Commandments and showed them how to live and worship, with the tabernacle at the center of the camp. Fear and complaint kept them in the wilderness forty years, yet God guided and provided until a new generation stood at the edge of the promised land.',
+      'En el monte Sinaí Dios dio a su pueblo los Diez Mandamientos y les mostró cómo vivir y adorar, con el tabernáculo en el centro del campamento. El miedo y las quejas los mantuvieron cuarenta años en el desierto, pero Dios los guió y proveyó hasta que una nueva generación llegó a la entrada de la tierra prometida.'],
+ pt:['The books of the Law','Los libros de la Ley'],
+ p:[['tablets','Exodus: the covenant and the Ten Commandments.','Éxodo: el pacto y los Diez Mandamientos.','EXO 20'],
+    ['tabernacle','Leviticus: holiness and worship.','Levítico: santidad y adoración.','LEV 19:2'],
+    ['compass','Numbers: forty years of journeys.','Números: cuarenta años de viaje.','NUM 14:33-34'],
+    ['scroll','Deuteronomy: love the Lord with all your heart.','Deuteronomio: ama al Señor con todo tu corazón.','DEU 6:4-5']],
+ lt:['Main sequence','Secuencia principal'],
+ l:[['tablets','The Law at Sinai','La Ley en el Sinaí','EXO 19-20'],['calf','The golden calf','El becerro de oro','EXO 32'],['tabernacle','The tabernacle','El tabernáculo','EXO 40'],['people','The twelve spies','Los doce espías','NUM 13-14'],['serpent','The bronze serpent','La serpiente de bronce','NUM 21:4-9'],['scroll','Moses’ last words','Las últimas palabras de Moisés','DEU 31-34']]},
+
+{id:'p10',era:5,ref:'JOS 1-24',scene:['day','city','walls'],
+ t:['Into the promised land','La entrada a la tierra prometida'],st:['Be strong and courageous','Esfuérzate y sé valiente'],
+ sum:['Joshua led Israel across the Jordan River into Canaan. The walls of Jericho fell as they obeyed God, and step by step the tribes received their land. Before he died, Joshua called the people to choose to serve the Lord.',
+      'Josué guió a Israel a cruzar el río Jordán hacia Canaán. Los muros de Jericó cayeron mientras obedecían a Dios, y poco a poco las tribus recibieron su tierra. Antes de morir, Josué llamó al pueblo a decidir servir al Señor.'],
+ pt:['Key moments','Momentos clave'],
+ p:[['scroll','God’s charge to Joshua.','El mandato de Dios a Josué.','JOS 1:9'],
+    ['heart','Rahab’s faith and the scarlet cord.','La fe de Rahab y el cordón rojo.','JOS 2'],
+    ['walls','Jericho’s walls fall.','Caen los muros de Jericó.','JOS 6'],
+    ['hands','“As for me and my house…”','“Yo y mi casa…”','JOS 24:15']],
+ lt:['The conquest','La conquista'],
+ l:[['heart','Rahab and the spies','Rahab y los espías','JOS 2'],['river','Crossing the Jordan','El cruce del Jordán','JOS 3-4'],['walls','Jericho','Jericó','JOS 6'],['sun','The sun stands still','El sol se detiene','JOS 10'],['compass','The land divided','El reparto de la tierra','JOS 13-21'],['hands','Choose this day','Escogeos hoy','JOS 24']]},
+
+{id:'p11',era:5,ref:'JDG 1-RUT 4',scene:['dusk','hills','scales'],
+ t:['Judges and Ruth','Los jueces y Rut'],st:['A cycle of falling and rescue','Un ciclo de caída y rescate'],
+ sum:['Without a faithful leader, Israel kept turning to other gods, falling under enemies, crying out, and being rescued by judges God raised up. In the same dark days, the story of Ruth shows quiet loyalty and kindness, and leads to King David.',
+      'Sin un líder fiel, Israel volvía una y otra vez a otros dioses, caía bajo enemigos, clamaba y era rescatado por jueces que Dios levantaba. En esos mismos días oscuros, la historia de Rut muestra lealtad y bondad, y conduce al rey David.'],
+ pt:['The cycle','El ciclo'],
+ p:[['calf','Israel turns to idols.','Israel se vuelve a los ídolos.','JDG 2:11-13'],
+    ['chain','Enemies oppress them.','Los enemigos los oprimen.','JDG 2:14'],
+    ['hands','They cry out to God.','Claman a Dios.','JDG 3:9'],
+    ['shield','God raises a judge to save them.','Dios levanta un juez que los salva.','JDG 2:16']],
+ lt:['People of this time','Personajes de este tiempo'],
+ l:[['scales','Deborah','Débora','JDG 4-5'],['jar','Gideon','Gedeón','JDG 6-7'],['arm','Samson','Sansón','JDG 13-16'],['wheat','Ruth and Boaz','Rut y Booz','RUT 1-4']]},
+
+{id:'p12',era:5,ref:'1SA 1-2SA 24',scene:['day','hills','harp'],
+ t:['Samuel, Saul and David','Samuel, Saúl y David'],st:['A king after God’s own heart','Un rey conforme al corazón de Dios'],
+ sum:['Samuel, the last judge, anointed Israel’s first king, Saul. Saul’s disobedience cost him the kingdom, and God chose a young shepherd, David. David defeated Goliath, became king, made Jerusalem his city, and received God’s promise of a forever throne.',
+      'Samuel, el último juez, ungió a Saúl como primer rey de Israel. La desobediencia de Saúl le costó el reino, y Dios escogió a un joven pastor, David. David venció a Goliat, llegó a ser rey, hizo de Jerusalén su ciudad y recibió la promesa de Dios de un trono para siempre.'],
+ pt:['Key people','Personajes clave'],
+ p:[['lamp','Samuel, prophet and judge.','Samuel, profeta y juez.','1SA 3'],
+    ['crown','Saul, the first king.','Saúl, el primer rey.','1SA 10'],
+    ['harp','David, shepherd and king.','David, pastor y rey.','1SA 16'],
+    ['heart','Jonathan, a faithful friend.','Jonatán, un amigo fiel.','1SA 18:1-4']],
+ lt:['Stages of the kingdom','Etapas del reino'],
+ l:[['lamp','Samuel is called','El llamado de Samuel','1SA 3'],['crown','Saul is king','Saúl es rey','1SA 10'],['oil','David anointed','David es ungido','1SA 16'],['stone','David and Goliath','David y Goliat','1SA 17'],['walls','Jerusalem','Jerusalén','2SA 5'],['star','A forever throne','Un trono eterno','2SA 7']]},
+
+{id:'p13',era:5,ref:'1KI 1-11',scene:['day','city','temple'],
+ t:['Solomon’s wisdom and splendor','La sabiduría y el esplendor de Salomón'],st:['A temple for the Lord','Un templo para el Señor'],
+ sum:['David’s son Solomon asked God for wisdom and received riches and honor too. He built the temple in Jerusalem and led Israel to its greatest glory. But in his later years his heart turned to other gods, and trouble followed.',
+      'Salomón, hijo de David, pidió a Dios sabiduría y recibió también riquezas y honra. Construyó el templo en Jerusalén y llevó a Israel a su mayor esplendor. Pero en sus últimos años su corazón se fue tras otros dioses, y vinieron problemas.'],
+ pt:['Key aspects','Aspectos clave'],
+ p:[['lamp','He asks for wisdom.','Pide sabiduría.','1KI 3'],
+    ['temple','He builds the temple.','Construye el templo.','1KI 5-8'],
+    ['crown','The kingdom shines.','El esplendor del reino.','1KI 10'],
+    ['heartbreak','His heart turns away.','Su corazón se aparta.','1KI 11']],
+ lt:['Solomon’s reign','El reinado de Salomón'],
+ l:[['scales','A wise ruling','Un juicio sabio','1KI 3:16-28'],['temple','The temple','El templo','1KI 5-8'],['ship','Wealth and fame','Riqueza y fama','1KI 10'],['heartbreak','Decline','El declive','1KI 11']]},
+
+{id:'p14',era:5,ref:'1KI 12-2KI 17',scene:['dusk','city','crown2'],
+ t:['A divided kingdom','El reino dividido'],st:['Israel in the north, Judah in the south','Israel al norte, Judá al sur'],
+ sum:['After Solomon the kingdom split in two: Israel with ten tribes in the north, and Judah in the south. Israel quickly turned to idols. God sent prophets like Elijah and Elisha to call the people back, but they would not listen, and Assyria carried Israel into exile.',
+      'Después de Salomón el reino se dividió en dos: Israel, con diez tribus, al norte, y Judá al sur. Israel pronto se volvió a los ídolos. Dios envió profetas como Elías y Eliseo para llamar al pueblo, pero no escucharon, y Asiria llevó a Israel al exilio.'],
+ pt:['Key people','Personajes clave'],
+ p:[['calf','Jeroboam, first king of Israel.','Jeroboam, primer rey de Israel.','1KI 12'],
+    ['crown','Ahab, who served Baal.','Acab, que sirvió a Baal.','1KI 16:29-33'],
+    ['flame','Elijah, prophet of fire.','Elías, profeta del fuego.','1KI 18'],
+    ['jar','Elisha, who carried on.','Eliseo, su sucesor.','2KI 2']],
+ lt:['The northern kingdom','El reino del norte'],
+ l:[['crown2','The kingdom splits','La división','1KI 12'],['calf','Golden calves','Los becerros de oro','1KI 12:28'],['flame','Fire on Carmel','Fuego en el Carmelo','1KI 18'],['chariot','Elijah taken up','Elías es llevado','2KI 2'],['chain','Israel’s exile','El exilio de Israel','2KI 17']]},
+
+{id:'p15',era:5,ref:'2KI 18-25',scene:['fire','city','firecity'],
+ t:['Judah and the exile in Babylon','Judá y el exilio en Babilonia'],st:['From warning to exile','Del aviso al exilio'],
+ sum:['Judah had faithful kings like Hezekiah and Josiah, and also long seasons of idolatry. God sent Isaiah, Jeremiah and Ezekiel to call for repentance. In the end Babylon destroyed Jerusalem and the temple and took the people into exile, where Daniel and others stayed faithful.',
+      'Judá tuvo reyes fieles como Ezequías y Josías, y también largos tiempos de idolatría. Dios envió a Isaías, Jeremías y Ezequiel para llamar al arrepentimiento. Al final Babilonia destruyó Jerusalén y el templo y llevó al pueblo al exilio, donde Daniel y otros se mantuvieron fieles.'],
+ pt:['The prophets','Los profetas'],
+ p:[['scroll','Isaiah: judgment and hope.','Isaías: juicio y esperanza.','ISA 9:6'],
+    ['tear','Jeremiah: the weeping prophet.','Jeremías: el profeta que lloró.','JER 29:11'],
+    ['wave','Ezekiel: hope in exile.','Ezequiel: esperanza en el exilio.','EZK 37'],
+    ['lion','Daniel: faithful in Babylon.','Daniel: fiel en Babilonia.','DAN 6']],
+ lt:['Toward the exile','Hacia el exilio'],
+ l:[['shield','Hezekiah trusts God','Ezequías confía','2KI 18-19'],['scroll','Josiah finds the Law','Josías halla la Ley','2KI 22-23'],['firecity','Jerusalem falls','La caída de Jerusalén','2KI 25'],['chain','Exile in Babylon','El exilio','2KI 25:11'],['lion','Daniel in Babylon','Daniel en Babilonia','DAN 1-6']]},
+
+{id:'p16',era:5,ref:'EZR 1-EST 10',scene:['day','city','bricks'],
+ t:['Return and rebuilding','El regreso y la reconstrucción'],st:['God keeps His word','Dios cumple su palabra'],
+ sum:['After about seventy years, God kept His promise and let a remnant return to Jerusalem. Under Zerubbabel they rebuilt the temple, Ezra taught the Law, and Nehemiah led the rebuilding of the walls. Meanwhile in Persia, God protected His people through Queen Esther.',
+      'Después de unos setenta años, Dios cumplió su promesa y permitió que un remanente regresara a Jerusalén. Con Zorobabel reconstruyeron el templo, Esdras enseñó la Ley y Nehemías dirigió la reconstrucción de los muros. Mientras tanto en Persia, Dios protegió a su pueblo por medio de la reina Ester.'],
+ pt:['Key people','Personajes clave'],
+ p:[['temple','Zerubbabel, leader of the first return.','Zorobabel, líder del primer regreso.','EZR 3'],
+    ['scroll','Ezra, teacher of the Law.','Esdras, maestro de la Ley.','EZR 7:10'],
+    ['bricks','Nehemiah, builder of the walls.','Nehemías, constructor de los muros.','NEH 2'],
+    ['crown','Esther, who saved her people.','Ester, que salvó a su pueblo.','EST 4:14']],
+ lt:['Steps of restoration','Pasos de la restauración'],
+ l:[['camel','Back to Jerusalem','El regreso','EZR 1-2'],['temple','The temple rebuilt','El templo reconstruido','EZR 3-6'],['scroll','The Law read','La Ley leída','NEH 8'],['bricks','The walls rebuilt','Los muros','NEH 1-6'],['crown','Esther’s courage','El valor de Ester','EST 4-9']]},
+
+{id:'p17',era:5,ref:'JOB-SNG',scene:['dusk','hills','scrolltree'],
+ t:['Wisdom for a faithful life','Sabiduría para una vida fiel'],st:['Job, Psalms, Proverbs, Ecclesiastes, Song of Solomon','Job, Salmos, Proverbios, Eclesiastés, Cantares'],
+ sum:['These books show real human life: suffering, worship, the search for wisdom and purpose, and the gift of love. Through them God teaches His people to trust Him at all times, to live wisely and to enjoy His good gifts.',
+      'Estos libros muestran la vida humana real: el sufrimiento, la adoración, la búsqueda de sabiduría y propósito, y el regalo del amor. Por medio de ellos Dios enseña a su pueblo a confiar en Él en todo tiempo, a vivir con sabiduría y a disfrutar de sus buenos regalos.'],
+ pt:['Main themes','Temas principales'],
+ p:[['mount','Job: suffering and trust.','Job: el sufrimiento y la confianza.','JOB 19:25'],
+    ['harp','Psalms: worship and prayer.','Salmos: la adoración y la oración.','PSA 23'],
+    ['sprout','Proverbs: wisdom for daily life.','Proverbios: sabiduría para la vida.','PRO 3:5-6'],
+    ['hourglass','Ecclesiastes: the meaning of life.','Eclesiastés: el sentido de la vida.','ECC 12:13'],
+    ['ring','Song of Solomon: love and marriage.','Cantares: el amor y el matrimonio.','SNG 8:6-7']],
+ lt:['The five books','Los cinco libros'],
+ l:[['mount','Job','Job','JOB 1-2'],['harp','Psalms','Salmos','PSA 1'],['sprout','Proverbs','Proverbios','PRO 1'],['hourglass','Ecclesiastes','Eclesiastés','ECC 3'],['ring','Song of Solomon','Cantares','SNG 2']]},
+
+{id:'p18',era:5,ref:'ISA-MAL',scene:['dawn','hills','star'],
+ t:['The prophets and the promise','Los profetas y la promesa'],st:['Waiting for the Messiah','Esperando al Mesías'],
+ sum:['Through the prophets, God called His people to repent, to do justice and to love mercy. They warned of judgment, but they also announced hope: a coming King and Servant, the Messiah. The Old Testament ends with Malachi, and four hundred years of waiting begin.',
+      'Por medio de los profetas, Dios llamó a su pueblo a arrepentirse, a hacer justicia y a amar la misericordia. Advirtieron del juicio, pero también anunciaron esperanza: un Rey y Siervo que vendría, el Mesías. El Antiguo Testamento termina con Malaquías, y comienzan cuatrocientos años de espera.'],
+ pt:['Key messages','Mensajes clave'],
+ p:[['trumpet','A call to return to God.','Un llamado a volver a Dios.','JOL 2:12-13'],
+    ['scales','Justice and mercy.','Justicia y misericordia.','MIC 6:8'],
+    ['sprout','Hope and restoration.','Esperanza y restauración.','JER 31:31-34'],
+    ['star','The promised Messiah.','La promesa del Mesías.','ISA 53']],
+ lt:['Promises of the Messiah','Promesas del Mesías'],
+ l:[['star','Born of a virgin','Nacido de una virgen','ISA 7:14'],['compass','From Bethlehem','De Belén','MIC 5:2'],['lamb','The suffering servant','El siervo sufriente','ISA 53'],['crown','The humble king','El rey humilde','ZEC 9:9'],['sun','The sun of righteousness','El sol de justicia','MAL 4:2']]}
+];
+
+/* ---------- Bible Panorama: the big story of the Bible, study by study ---------- */
+(function(){
+function L(p){return LANG()==='es'?p[1]:p[0];}
+function L2(en,es){return LANG()==='es'?es:en;}
+function svgI(p,s,c,w){return '<svg aria-hidden="true" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+(c||'currentColor')+'" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
+var CHEV='<path d="M9 6l6 6-6 6"/>',LEFT='<path d="M15 6l-6 6 6 6"/>',BOOK='<path d="M4 5.5Q8 4 12 6q4-2 8-.5V19q-4-1.5-8 .5-4-2-8-.5z"/><path d="M12 6v13.5"/>',ARROW='<path d="M4 12h15M14 7l5 5-5 5"/>',CHECK='<path d="M5 12.5l4.5 4.5L19 7"/>';
+var uid=0;function u(p){return (p||'pn')+(++uid);}
+function leaf(x,y,a,l,c){return '<path transform="translate('+x+' '+y+') rotate('+a+')" d="M0 0Q'+(l/2)+' -'+(l*.26)+' '+l+' 0Q'+(l/2)+' '+(l*.26)+' 0 0z" fill="'+(c||'#6F8A3E')+'" stroke="#3E5424" stroke-width=".6"/>';}
+
+/* ---- emblems (100x64 space, same hand-drawn style as the rest of the app) ---- */
+var E={};
+function addEmb(){var B=(window.ABPQ&&ABPQ.EMB)||{};
+ E.light='<circle cx="50" cy="32" r="12" fill="#FFF3C4" stroke="#E2A23A" stroke-width="1.4"/>'+[0,1,2,3,4,5,6,7].map(function(i){var a=Math.PI*i/4;return '<path d="M'+(50+Math.cos(a)*16).toFixed(1)+' '+(32+Math.sin(a)*16).toFixed(1)+' L'+(50+Math.cos(a)*24).toFixed(1)+' '+(32+Math.sin(a)*24).toFixed(1)+'" stroke="#F2B860" stroke-width="2.6" stroke-linecap="round"/>';}).join('');
+ E.sky='<path d="M14 50 Q50 44 86 50 V56 H14z" fill="#5E8EC0"/><path d="M28 30 Q28 22 36 22 Q40 14 50 18 Q60 14 62 24 Q72 24 70 32 H30 Q26 32 28 30z" fill="#fff" stroke="#9AB4CE"/><path d="M58 42 Q58 38 64 38 Q68 34 72 38 Q78 38 76 44 H58z" fill="#fff" stroke="#9AB4CE"/>';
+ E.fish='<path d="M24 32 Q40 16 62 32 Q40 48 24 32z" fill="#5E9AC8" stroke="#2E5A7A" stroke-width="1.2"/><path d="M62 32 L76 22 V42z" fill="#4A84B4" stroke="#2E5A7A"/><circle cx="34" cy="29" r="2" fill="#1F2A3A"/><path d="M44 24 Q48 32 44 40" stroke="#2E5A7A" fill="none"/><path d="M70 12 Q76 8 80 14 Q82 18 78 20" stroke="#5A3A1E" stroke-width="1.4" fill="none"/><path d="M76 14 l6 -2 -2 6" fill="#E2A23A"/>';
+ E.lion='<circle cx="50" cy="30" r="17" fill="#C8802E" stroke="#7A4A1A" stroke-width="1.2"/><circle cx="50" cy="32" r="11" fill="#F2C27A" stroke="#7A4A1A"/><circle cx="46" cy="30" r="1.4" fill="#2A1A0A"/><circle cx="54" cy="30" r="1.4" fill="#2A1A0A"/><path d="M47 35 Q50 38 53 35M50 33 v2" stroke="#2A1A0A" stroke-width="1.1" fill="none"/><path d="M34 54 Q50 46 66 54z" fill="#7EA83A"/>';
+ E.tree='<rect x="46" y="32" width="8" height="22" fill="#7A5230" stroke="#4A2E18"/><circle cx="50" cy="24" r="17" fill="#6E9A3E" stroke="#3E5A24" stroke-width="1.2"/><circle cx="38" cy="30" r="9" fill="#7EAA4A" stroke="#3E5A24"/><circle cx="62" cy="30" r="9" fill="#7EAA4A" stroke="#3E5A24"/><circle cx="44" cy="20" r="2.6" fill="#D0403A"/><circle cx="58" cy="26" r="2.6" fill="#D0403A"/><circle cx="50" cy="33" r="2.6" fill="#D0403A"/><path d="M28 56 Q50 50 72 56z" fill="#5E8A2E"/>';
+ E.apple='<path d="M50 20 Q40 14 34 22 Q28 32 34 44 Q40 54 50 50 Q60 54 66 44 Q72 32 66 22 Q60 14 50 20z" fill="#C8403A" stroke="#7A1E1E" stroke-width="1.2"/><path d="M50 20 Q50 14 54 10" stroke="#5A3A1E" stroke-width="2" fill="none"/>'+leaf(52,13,-30,12,'#6E9A3E')+'<path d="M40 26 Q37 32 39 38" stroke="#F2A0A0" stroke-width="2" fill="none"/><path d="M58 38 Q64 40 66 36" stroke="#5A2A1A" fill="none"/>';
+ E.chain='<g fill="none" stroke="#6A6E74" stroke-width="3.4">'+[0,1,2,3].map(function(i){return '<ellipse cx="'+(28+i*15)+'" cy="'+(i%2?34:30)+'" rx="9" ry="6" transform="rotate('+(i%2?-20:20)+' '+(28+i*15)+' '+(i%2?34:30)+')"/>';}).join('')+'</g>';
+ E.gate='<rect x="26" y="20" width="48" height="36" fill="#D9C08A" stroke="#7A5A34"/><path d="M38 56 V36 Q50 24 62 36 V56z" fill="#FFF3C4" stroke="#7A5A34"/><path d="M40 52 V38 Q50 30 60 38" stroke="#F2B860" stroke-width="2" fill="none"/><path d="M24 20 H76 L72 14 H28z" fill="#C9A06A" stroke="#7A5A34"/>';
+ E.altar='<rect x="32" y="38" width="36" height="16" fill="#B8A88A" stroke="#6A5A44"/><path d="M32 44h36M44 38v6M56 44v10" stroke="#6A5A44"/><path d="M42 38 Q40 28 46 22 Q46 30 50 30 Q50 20 56 16 Q54 26 60 30 Q60 36 58 38z" fill="#F2A23A" stroke="#C8601A"/><path d="M48 38 Q47 32 50 28 Q53 32 52 38z" fill="#FFE08A"/>';
+ E.ark='<path d="M16 40 H84 L76 52 H24z" fill="#9A6A3A" stroke="#5A3A1E" stroke-width="1.2"/><path d="M18 44h64M21 48h58" stroke="#6A4224"/><rect x="34" y="26" width="32" height="14" fill="#B8824A" stroke="#5A3A1E"/><path d="M30 26 L50 16 L70 26z" fill="#7A4A24" stroke="#5A3A1E"/><rect x="46" y="30" width="8" height="6" fill="#3A2A1A"/>';
+ E.wave='<path d="M14 40 Q24 28 34 40 T54 40 T74 40 T94 40 V58 H14z" fill="#5E8EC0" stroke="#2E5A7A"/><path d="M14 48 Q24 38 34 48 T54 48 T74 48 T94 48 V58 H14z" fill="#3E6E9E"/><path d="M28 34 Q34 26 40 32" stroke="#fff" stroke-width="2" fill="none"/><path d="M60 34 Q66 26 72 32" stroke="#fff" stroke-width="2" fill="none"/>';
+ E.rainbow=['#C8403A','#E28A3A','#F2C24A','#6EA83A','#4A84C4','#7A5AB0'].map(function(c,i){return '<path d="M'+(16+i*4)+' 52 A'+(34-i*4)+' '+(34-i*4)+' 0 0 1 '+(84-i*4)+' 52" stroke="'+c+'" stroke-width="4" fill="none"/>';}).join('')+'<path d="M12 54 Q22 46 30 54z M70 54 Q78 46 88 54z" fill="#fff" stroke="#C8D4E0"/>';
+ E.people='<g stroke="#5A3A1E" stroke-width="1">'+[[34,'#C8803E','#7A9A4A'],[50,'#8A5A34','#C8603C'],[66,'#E2B07A','#4F7FAA']].map(function(p){return '<circle cx="'+p[0]+'" cy="26" r="7" fill="'+p[1]+'"/><path d="M'+(p[0]-10)+' 52 Q'+(p[0]-10)+' 36 '+p[0]+' 36 Q'+(p[0]+10)+' 36 '+(p[0]+10)+' 52z" fill="'+p[2]+'"/>';}).join('')+'</g>';
+ E.tower='<path d="M34 56 L38 14 H62 L66 56z" fill="#D9B07A" stroke="#7A5230" stroke-width="1.2"/><path d="M36 46h28M37 36h26M38 26h24M38 18h24" stroke="#7A5230"/><path d="M46 56 V48 Q50 44 54 48 V56z" fill="#5A3A1E"/><path d="M40 14 L44 6 H56 L60 14" fill="#C9965A" stroke="#7A5230"/>';
+ E.speech='<path d="M18 16 H52 V38 H32 L24 46 V38 H18z" fill="#FBF3DC" stroke="#7A5A34" stroke-width="1.2"/><path d="M48 26 H82 V48 H76 V56 L68 48 H48z" fill="#E8EEF6" stroke="#4A6A8A" stroke-width="1.2"/><text x="35" y="31" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#7A3A1E">א</text><text x="65" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#2E5A7A">Ω</text>';
+ E.globe='<circle cx="50" cy="32" r="21" fill="#5E9AC8" stroke="#2E5A7A" stroke-width="1.4"/><path d="M38 18 Q46 20 44 28 Q36 30 40 38 Q46 42 44 50 Q34 46 31 36 Q30 24 38 18z" fill="#7EAA4A" stroke="#3E5A24"/><path d="M56 14 Q66 16 70 26 Q64 30 58 26 Q52 22 56 14z M58 36 Q66 34 68 42 Q62 50 56 46z" fill="#7EAA4A" stroke="#3E5A24"/><path d="M36 22 Q44 24 46 18" stroke="#fff" stroke-width="1.4" fill="none" opacity=".6"/>';
+ E.tent='<path d="M18 52 L46 18 L82 52z" fill="#D9A86A" stroke="#7A5230" stroke-width="1.2"/><path d="M46 18 L56 52 H38z" fill="#5A3A1E"/><path d="M30 38 H64M24 46 H72" stroke="#B8824A"/><path d="M46 18 V12" stroke="#5A3A1E" stroke-width="1.6"/><path d="M14 54 Q50 48 86 54z" fill="#C9A06A"/>';
+ E.star='<path d="M50 10 l5.6 12 13 1.4-9.8 8.8 2.8 12.8L50 38.4 38.4 45l2.8-12.8-9.8-8.8 13-1.4z" fill="#F6D27A" stroke="#C8901A" stroke-width="1.2"/>'+[[24,18],[78,16],[28,46],[74,44],[86,30],[16,32]].map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.6" fill="#F6D27A"/>';}).join('');
+ E.ladder='<path d="M38 56 L48 8M58 56 L64 8" stroke="#8A5A34" stroke-width="2.6"/>'+[0,1,2,3,4,5].map(function(i){var y=50-i*8;return '<path d="M'+(39.2+i*1.66)+' '+y+' L'+(58.8+i*1.04)+' '+y+'" stroke="#8A5A34" stroke-width="2"/>';}).join('')+'<circle cx="56" cy="8" r="7" fill="#FFF3C4" opacity=".9"/>';
+ E.coat='<path d="M36 14 L50 18 L64 14 L76 24 L70 32 L64 28 V56 H36 V28 L30 32 L24 24z" fill="#C8403A" stroke="#5A1E1E" stroke-width="1.2"/><path d="M36 30h28v6H36z" fill="#F2C24A"/><path d="M36 40h28v6H36z" fill="#4A84C4"/><path d="M36 50h28v6H36z" fill="#6EA83A"/><path d="M45 17 L50 26 L55 17" fill="none" stroke="#5A1E1E"/>';
+ E.wheat='<g stroke="#A8761E" stroke-width="1.4">'+[[-14,40],[0,50],[14,60]].map(function(p){var x=p[1];return '<path d="M50 56 Q'+(50+p[0]*.4)+' 40 '+x+' 18" fill="none"/>'+[0,1,2,3].map(function(i){return '<ellipse cx="'+(x-(x-50)*i*.12)+'" cy="'+(20+i*6)+'" rx="3" ry="5" fill="#E8C060" transform="rotate('+(p[0]*1.2)+' '+(x-(x-50)*i*.12)+' '+(20+i*6)+')"/>';}).join('');}).join('')+'</g>';
+ E.crown='<path d="M28 46 L24 20 L38 32 L50 14 L62 32 L76 20 L72 46z" fill="#F2C24A" stroke="#8A5A10" stroke-width="1.4"/><rect x="28" y="46" width="44" height="7" rx="2" fill="#E2A23A" stroke="#8A5A10"/><circle cx="50" cy="38" r="3.4" fill="#C8403A"/><circle cx="38" cy="40" r="2.4" fill="#4A84C4"/><circle cx="62" cy="40" r="2.4" fill="#4A84C4"/>';
+ E.crown2='<g transform="translate(-14 4) rotate(-12 50 34) scale(.72) translate(19 12)">'+E.crown+'</g><g transform="translate(14 4) rotate(12 50 34) scale(.72) translate(19 12)">'+E.crown+'</g><path d="M50 10 L46 26 L52 30 L48 54" stroke="#7A3A1E" stroke-width="2" fill="none"/>';
+ E.pyramid='<path d="M14 54 L42 18 L70 54z" fill="#E2C07A" stroke="#8A6A34" stroke-width="1.2"/><path d="M42 18 L70 54 H52z" fill="#C9A060"/><path d="M58 54 L74 32 L90 54z" fill="#D9B46A" stroke="#8A6A34"/><path d="M10 56 Q50 50 92 56z" fill="#D9B46A"/>';
+ E.bush='<path d="M30 54 Q26 40 36 36 Q34 26 44 26 Q50 18 58 26 Q68 26 66 36 Q76 40 70 54z" fill="#6E8A3A" stroke="#3E5424" stroke-width="1.2"/><path d="M40 40 Q38 28 46 22 Q46 30 50 30 Q50 16 58 12 Q56 26 62 30 Q64 38 60 44z" fill="#F2A23A" stroke="#C8601A" opacity=".95"/><path d="M48 42 Q46 34 52 28 Q56 34 54 42z" fill="#FFE08A"/>';
+ E.lamb='<g stroke="#8A7A6A" stroke-width="1">'+[[38,32],[46,26],[56,26],[64,32],[60,40],[50,42],[40,40]].map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="8" fill="#FBF6EA"/>';}).join('')+'</g><ellipse cx="72" cy="28" rx="7" ry="6" fill="#3A322A"/><circle cx="74" cy="27" r="1" fill="#fff"/><path d="M42 44v10M48 46v10M56 46v10M62 44v10" stroke="#3A322A" stroke-width="2.4"/>';
+ E.sea='<path d="M10 22 Q22 36 30 58 H10z" fill="#3E6E9E" stroke="#2E5A7A"/><path d="M90 22 Q78 36 70 58 H90z" fill="#3E6E9E" stroke="#2E5A7A"/><path d="M30 58 Q40 30 50 26 Q60 30 70 58z" fill="#E2C890"/><path d="M14 30 Q20 28 22 36M84 30 Q80 28 78 36" stroke="#fff" stroke-width="1.6" fill="none"/><g fill="#5A3A1E">'+[[46,44],[52,40],[56,48],[44,52]].map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.6"/>';}).join('')+'</g>';
+ E.tablets='<path d="M26 54 V22 Q26 12 37 12 Q48 12 48 22 V54z" fill="#C9C0AE" stroke="#6A6254" stroke-width="1.2"/><path d="M52 54 V22 Q52 12 63 12 Q74 12 74 22 V54z" fill="#C9C0AE" stroke="#6A6254" stroke-width="1.2"/><text x="37" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#5A5246">I II</text><text x="37" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#5A5246">III IV</text><text x="63" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#5A5246">V VI</text><text x="63" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#5A5246">VII X</text>';
+ E.tabernacle='<rect x="16" y="40" width="68" height="14" fill="#FBF6EA" stroke="#8A7A5A"/>'+[20,30,40,50,60,70,80].map(function(x){return '<path d="M'+x+' 40 V54" stroke="#8A7A5A"/>';}).join('')+'<rect x="40" y="22" width="28" height="22" fill="#7A5AB0" stroke="#4A2A7A"/><path d="M38 22 H70 L66 16 H42z" fill="#5A3A8A"/><path d="M54 12 Q50 6 54 2 Q58 6 54 12z" fill="#F2B860" opacity=".8"/>';
+ E.serpent='<rect x="48" y="12" width="4" height="44" fill="#8A6A3A" stroke="#5A3A1E" stroke-width=".8"/><path d="M50 18 Q64 20 60 28 Q40 32 40 40 Q42 48 60 46" stroke="#C8902A" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="60" cy="46" r="3" fill="#C8902A"/><path d="M38 14 H62" stroke="#8A6A3A" stroke-width="3"/>';
+ E.walls='<path d="M14 54 V30 H22 V26 H28 V30 H36 V26 H42 V30 H58 V26 H64 V30 H72 V26 H78 V30 H86 V54z" fill="#D9C08A" stroke="#7A5A34" stroke-width="1.2"/><path d="M42 54 V42 Q50 34 58 42 V54z" fill="#5A3A1E"/><path d="M20 40h12M66 40h12M22 46h8M68 46h8" stroke="#A88A5A"/><path d="M76 26 L84 18 M30 24 L24 16" stroke="#7A5A34" stroke-width="1.4"/>';
+ E.trumpet='<path d="M24 36 L60 30 Q72 18 82 16 V52 Q72 50 60 40 L24 38z" fill="#E8D8B0" stroke="#8A6A3A" stroke-width="1.2"/><path d="M24 36 Q18 37 24 38" stroke="#8A6A3A" fill="none"/><path d="M66 28 Q70 34 66 42" stroke="#8A6A3A" fill="none"/>';
+ E.scales='<path d="M50 14 V52M36 54 H64" stroke="#8A5A10" stroke-width="2.4"/><path d="M26 22 H74" stroke="#8A5A10" stroke-width="2"/><path d="M26 22 L18 38 H34z M74 22 L66 38 H82z" fill="none" stroke="#8A5A10"/><path d="M16 38 Q26 46 36 38z M64 38 Q74 46 84 38z" fill="#F2C24A" stroke="#8A5A10"/><circle cx="50" cy="13" r="3" fill="#F2C24A" stroke="#8A5A10"/>';
+ E.harp='<path d="M32 54 Q30 22 46 12 Q64 18 70 54z" fill="none" stroke="#A8761E" stroke-width="3.4"/><path d="M32 54 H70" stroke="#A8761E" stroke-width="3.4"/>'+[38,44,50,56,62].map(function(x,i){return '<path d="M'+x+' 54 V'+(22+Math.abs(2-i)*3-(i<2?0:-2))+'" stroke="#C8B48A" stroke-width="1"/>';}).join('');
+ E.ship='<path d="M20 42 H80 L70 54 H30z" fill="#9A6A3A" stroke="#5A3A1E" stroke-width="1.2"/><path d="M50 42 V10" stroke="#5A3A1E" stroke-width="2"/><path d="M50 12 Q70 22 50 38z" fill="#FBF6EA" stroke="#8A7A5A"/><path d="M48 14 Q32 24 48 36z" fill="#F2DCA8" stroke="#8A7A5A"/><path d="M12 56 Q30 50 50 56 T88 56" stroke="#5E8EC0" stroke-width="2" fill="none"/>';
+ E.calf='<ellipse cx="48" cy="38" rx="18" ry="10" fill="#F2C24A" stroke="#8A5A10" stroke-width="1.2"/><circle cx="68" cy="30" r="8" fill="#F2C24A" stroke="#8A5A10"/><path d="M64 23 Q62 18 66 18M72 23 Q74 18 70 18" stroke="#8A5A10" stroke-width="1.6" fill="none"/><path d="M36 46v8M44 47v8M54 47v8M60 46v8" stroke="#8A5A10" stroke-width="3"/><rect x="28" y="54" width="44" height="4" fill="#B8A88A"/><path d="M36 34 Q44 30 50 34" stroke="#FFF3C4" stroke-width="2" fill="none"/>';
+ E.flame='<path d="M50 56 Q30 52 32 36 Q34 26 42 20 Q42 30 48 32 Q46 18 56 8 Q56 22 64 28 Q72 36 68 46 Q64 56 50 56z" fill="#F2A23A" stroke="#C8601A" stroke-width="1.2"/><path d="M50 54 Q40 50 42 42 Q44 36 48 34 Q50 42 54 40 Q60 46 56 52z" fill="#FFE08A"/>';
+ E.camel='<path d="M22 40 Q26 30 34 34 Q38 22 46 30 Q52 22 58 32 Q64 30 66 26 Q66 18 72 18 Q78 18 78 22 L74 24 Q72 34 66 40 Q58 44 40 44 Q28 44 22 40z" fill="#D9A86A" stroke="#7A5230" stroke-width="1.2"/><path d="M30 42v12M38 44v12M58 44v12M64 42v12" stroke="#7A5230" stroke-width="2.6"/>';
+ E.bricks='<g fill="#D08A5A" stroke="#7A4224" stroke-width="1">'+[[22,44],[40,44],[58,44],[31,34],[49,34],[67,34],[40,24]].map(function(p){return '<rect x="'+p[0]+'" y="'+p[1]+'" width="18" height="10" rx="1"/>';}).join('')+'</g><path d="M60 22 L74 14 L80 20 L66 28z" fill="#9A9EA4" stroke="#4A4E54"/><path d="M66 26 L56 34" stroke="#7A5230" stroke-width="2.4"/>';
+ E.hourglass='<path d="M34 12 H66 M34 54 H66" stroke="#7A5230" stroke-width="3.4" stroke-linecap="round"/><path d="M38 14 Q38 28 50 33 Q38 38 38 52 H62 Q62 38 50 33 Q62 28 62 14z" fill="#EAF2F6" stroke="#5A7A8A" stroke-width="1.2"/><path d="M42 20 H58 Q56 28 50 31 Q44 28 42 20z M42 50 Q46 42 50 40 Q54 42 58 50z" fill="#E2C07A"/>';
+ E.lamp='<path d="M26 40 Q30 30 50 32 Q66 32 72 40 Q62 48 44 48 Q30 48 26 40z" fill="#C2763E" stroke="#5A3018" stroke-width="1.2"/><path d="M72 40 L82 36" stroke="#5A3018" stroke-width="2"/><path d="M82 34 Q78 26 82 18 Q88 26 84 34z" fill="#F2B860" stroke="#C8801A"/><path d="M44 32 Q46 26 52 26 Q56 26 56 32" fill="none" stroke="#5A3018" stroke-width="1.6"/>';
+ E.heartbreak='<path d="M50 52 C20 34 28 14 42 18 Q48 20 50 26 Q52 20 58 18 C72 14 80 34 50 52z" fill="#C8484A" stroke="#7A1E1E" stroke-width="1.2"/><path d="M50 26 L45 34 L53 38 L47 50" stroke="#FBF6EA" stroke-width="2.4" fill="none"/>';
+ E.tear='<path d="M50 12 Q36 32 36 40 Q36 54 50 54 Q64 54 64 40 Q64 32 50 12z" fill="#7AAED6" stroke="#2E5A7A" stroke-width="1.2"/><path d="M44 36 Q42 42 46 48" stroke="#fff" stroke-width="2" fill="none"/>';
+ E.breath='<path d="M24 56 Q50 46 76 56z" fill="#B88A5A"/><path d="M50 50 Q44 46 44 38 Q44 32 50 32 Q56 32 56 38 Q56 46 50 50z" fill="#C8A07A" stroke="#7A5230"/><path d="M28 24 Q40 16 52 22 T76 20M30 32 Q40 26 48 30M58 28 Q68 24 76 28" stroke="#8AB4D6" stroke-width="2" fill="none" stroke-linecap="round"/>';
+ E.ring='<circle cx="50" cy="36" r="15" fill="none" stroke="#E2A23A" stroke-width="5"/><circle cx="50" cy="36" r="15" fill="none" stroke="#8A5A10" stroke-width="1"/><path d="M44 20 L50 12 L56 20 L50 24z" fill="#BFE0F2" stroke="#4A7A9A"/>';
+ E.river='<path d="M14 54 Q30 42 50 44 Q70 46 86 36 V56 H14z" fill="#7EAA4A"/><path d="M40 56 Q46 44 60 40 Q72 36 80 24 L86 26 Q78 40 66 46 Q54 50 52 56z" fill="#5E9AC8" stroke="#2E5A7A"/><path d="M20 30 L30 20 L40 30z M64 18 L74 8 L84 18z" fill="#C9B898" stroke="#6A5A44"/>';
+ E.oil='<path d="M44 14 H56 V22 Q66 28 64 42 Q62 54 50 54 Q38 54 36 42 Q34 28 44 22z" fill="#8A6A3A" stroke="#4A2E18" stroke-width="1.2"/><path d="M38 40 Q50 44 62 40 Q62 52 50 52 Q38 52 38 40z" fill="#E2C04A"/><rect x="43" y="10" width="14" height="5" rx="1.5" fill="#5A3A1E"/><path d="M66 20 Q70 28 66 30 Q62 28 66 20z" fill="#E2C04A" stroke="#A8761E"/>';
+ E.chariot='<path d="M30 40 H62 L66 30 H34z" fill="#C8403A" stroke="#7A1E1E"/><circle cx="42" cy="46" r="8" fill="none" stroke="#5A3A1E" stroke-width="2.4"/><path d="M42 38v16M34 46h16" stroke="#5A3A1E"/><path d="M62 34 Q76 30 82 20" stroke="#5A3A1E" stroke-width="2"/><path d="M20 50 Q28 30 40 30 Q30 20 44 14 Q42 22 54 22 Q50 12 64 10 Q60 22 72 26" stroke="#F2A23A" stroke-width="4" fill="none" stroke-linecap="round" opacity=".85"/>';
+ E.firecity='<path d="M18 56 V36 H28 V30 H36 V36 H46 V24 H56 V36 H64 V30 H72 V36 H82 V56z" fill="#8A7A6A" stroke="#4A3E32" stroke-width="1.2"/><path d="M40 56 V46 Q46 40 52 46 V56z" fill="#2A221A"/><path d="M30 30 Q26 20 32 14 Q32 22 36 22 Q36 12 42 8 Q40 18 46 22 Q48 28 44 30z M58 24 Q56 14 62 10 Q62 18 66 18 Q68 10 72 8 Q72 20 74 26z" fill="#F2A23A" stroke="#C8601A"/>';
+ E.scrolltree='<rect x="20" y="22" width="34" height="26" fill="#F6E2B4" stroke="#7A5A34"/><rect x="16" y="18" width="7" height="34" rx="3.5" fill="#C89A5A" stroke="#7A5A34"/><rect x="51" y="18" width="7" height="34" rx="3.5" fill="#C89A5A" stroke="#7A5A34"/><path d="M26 30h22M26 35h22M26 40h16" stroke="#A8946A"/><rect x="68" y="36" width="5" height="18" fill="#7A5230"/><circle cx="70" cy="30" r="11" fill="#6E9A3E" stroke="#3E5A24"/>';
+ E.mount=B.mount||'<path d="M16 54 L36 22 L46 34 L58 16 L84 54z" fill="#8E7AAE" stroke="#4A3A6A"/><path d="M54 22 L58 16 L62 22z" fill="#fff"/><path d="M14 56 Q50 46 86 56z" fill="#7EA83A"/>';
+ E.arm=B.arm||E.people;E.bolt=B.bolt||'<path d="M54 10 L34 36 H48 L44 56 L66 28 H52z" fill="#F2C24A" stroke="#A8761E" stroke-width="1.2"/>';
+ ['sprout','people','sun','heart','moon','wheat','stone','altar','tree','hands','scroll','jar','compass','shield','temple','check'].forEach(function(k){if(!E[k]&&B[k])E[k]=B[k];});
+ Object.keys(B).forEach(function(k){if(!E[k])E[k]=B[k];});}
+function emb(k){if(!E.light)addEmb();return E[k]||E.star;}
+
+/* ---- scenes ---- */
+var SKY={night:['#1F2C4E','#3E4E7A','#F6E2A0',1],day:['#BFDDF2','#EAF4F8','#F6D27A',0],dusk:['#E8A27A','#F6DDB0','#F2B860',0],storm:['#5A6878','#9AA8B4','#DDE4EA',2],dawn:['#F2C6A0','#FBEFD2','#F6C25A',0],fire:['#7A3A2A','#D0804A','#F2A23A',3]};
+var GROUND={hills:['#8FB45A','#6E9A3E'],garden:['#7EAA4A','#5E8A2E'],desert:['#E8C890','#D4AC6A'],sea:['#5E8EC0','#3E6E9E'],city:['#D9C08A','#BFA06A']};
+function scene(sc,w,h,big){var sk=SKY[sc[0]]||SKY.day,gr=GROUND[sc[1]]||GROUND.hills,g=u('sk'),o='<svg class="pn-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="'+g+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+sk[0]+'"/><stop offset="1" stop-color="'+sk[1]+'"/></linearGradient></defs><rect width="400" height="200" fill="url(#'+g+')"/>';
+ if(sk[3]===1){for(var i=0;i<26;i++){o+='<circle cx="'+((i*73)%400)+'" cy="'+((i*37)%110+6)+'" r="'+(i%3?1:1.6)+'" fill="#FFF6D0" opacity=".9"/>';}o+='<circle cx="330" cy="40" r="16" fill="'+sk[2]+'"/>';}
+ else if(sk[3]===2){o+='<path d="M40 50 Q50 26 80 34 Q96 14 126 26 Q156 18 160 44 Q170 60 140 62 H50 Q28 62 40 50z M230 40 Q244 20 270 30 Q292 12 316 28 Q346 26 344 48 Q340 60 316 58 H240 Q220 56 230 40z" fill="#6E7C8A" opacity=".85"/><path d="M290 60 L280 84 H292 L282 108" stroke="#F6E27A" stroke-width="3" fill="none"/>';for(var r=0;r<30;r++)o+='<path d="M'+((r*41)%400)+' '+(70+(r*13)%60)+' l-4 10" stroke="#C8D4E0" stroke-width="1.2"/>';}
+ else if(sk[3]===3){o+='<circle cx="80" cy="50" r="20" fill="'+sk[2]+'" opacity=".7"/><path d="M0 80 Q60 60 120 76 T260 70 T400 74" stroke="#5A2A1A" stroke-width="18" fill="none" opacity=".25"/>';}
+ else o+='<circle cx="'+(sc[0]==='dusk'||sc[0]==='dawn'?70:330)+'" cy="'+(sc[0]==='dusk'||sc[0]==='dawn'?110:42)+'" r="22" fill="'+sk[2]+'"/><path d="M60 46 Q66 36 78 40 Q86 30 98 38 Q110 38 106 48 H64z M250 30 Q256 20 268 24 Q276 16 288 24 Q298 26 294 34 H254z" fill="#fff" opacity=".85"/>';
+ o+='<path d="M0 140 Q70 108 150 128 T300 118 T400 126 V200 H0z" fill="'+gr[0]+'" opacity=".75"/>';
+ if(sc[1]==='city')o+='<g fill="#C9A86A" stroke="#8A6E48" stroke-width="1">'+[[20,120,30,40],[60,108,26,52],[300,112,34,48],[350,122,30,38]].map(function(b){return '<rect x="'+b[0]+'" y="'+b[1]+'" width="'+b[2]+'" height="'+b[3]+'"/>';}).join('')+'</g>';
+ if(sc[1]==='garden'||sc[1]==='hills')o+=[30,70,340,372].map(function(x,i){return '<path d="M'+x+' 160 V'+(132-(i%2)*8)+'" stroke="#6A4A2A" stroke-width="3"/><circle cx="'+x+'" cy="'+(126-(i%2)*8)+'" r="'+(14+(i%2)*4)+'" fill="'+gr[1]+'" stroke="#3E5A24"/>';}).join('');
+ if(sc[1]==='desert')o+='<path d="M20 150 L60 96 L100 150z M300 150 L336 104 L372 150z" fill="#D4AC6A" stroke="#A8803E" opacity=".8"/>';
+ o+='<path d="M0 166 Q100 146 200 158 T400 154 V200 H0z" fill="'+gr[1]+'"/>';
+ if(sc[1]==='sea')o+='<path d="M0 174 Q20 166 40 174 T80 174 T120 174 T160 174 T200 174 T240 174 T280 174 T320 174 T360 174 T400 174" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>';
+ o+='<g transform="translate(200 '+(big?100:104)+') scale(2.5) translate(-50 -34)">'+emb(sc[2])+'</g>';
+ return o+'</svg>';}
+function disc(k,s){return '<span class="pn-disc" style="width:'+s+'px;height:'+s+'px"><svg viewBox="14 0 72 64" aria-hidden="true">'+emb(k)+'</svg></span>';}
+
+/* ---- refs ---- */
+function bkName(c){var b=bookName(c);return b?T(b[1]):c;}
+function refTx(r){if(!r)return '';var m=/^([1-3]?[A-Z]{2,3})\s*([\d:,\-]*)(?:-([1-3]?[A-Z]{2,3})\s*([\d:]*))?$/.exec(r);if(!m)return r;var a=bkName(m[1])+(m[2]?' '+m[2]:'');if(m[3])a+=' – '+bkName(m[3])+(m[4]?' '+m[4]:'');return a;}
+function refOpen(r){var m=/^([1-3]?[A-Z]{2,3})\s*(\d*)/.exec(r||'');return m?{b:m[1],c:+(m[2]||1)}:null;}
+A.pnRead=function(t){var o=refOpen(t.dataset.r);if(!o)return;var x=document.createElement('button');x.dataset.b=o.b;x.dataset.c=o.c;A.openCh(x);};
+A.pnOpen=function(t){go('pstudy',{id:t.dataset.id});};
+function seen(){S.pano=S.pano||{seen:{}};S.pano.seen=S.pano.seen||{};return S.pano.seen;}
+function idx(id){for(var i=0;i<PANO.length;i++)if(PANO[i].id===id)return i;return 0;}
+
+/* ---- index page ---- */
+window.vPano=function(){var sn=seen(),done=PANO.filter(function(s){return sn[s.id];}).length;
+ var eras='<div class="pn-eras">'+PANO_ERAS.map(function(e,i){return (i?'<span class="pn-arr">'+svgI(ARROW,16,'#8A7A5A',2)+'</span>':'')+'<button class="pn-era'+(e.soon?' soon':'')+'" '+(e.soon?'disabled':'data-a="pnOpen" data-id="'+e.from+'"')+'>'+disc(e.emb,64)+'<b class="serif">'+esc(L(e.t))+'</b><span>'+esc(L(e.s))+'</span><em>'+(e.soon?esc(L2('Coming soon','Próximamente')):esc(refTx(e.ref)))+'</em></button>';}).join('')+'</div>';
+ var list=PANO.map(function(s,i){return '<button class="pn-row" data-a="pnOpen" data-id="'+s.id+'"><span class="pn-rthumb">'+scene(s.scene)+'</span><span class="pn-rtx"><em>'+esc(L2('STUDY','ESTUDIO'))+' '+(i+1)+'</em><b class="serif">'+esc(L(s.t))+'</b><span>'+esc(refTx(s.ref))+'</span></span>'+(sn[s.id]?'<span class="pn-ok">'+svgI(CHECK,16,'#fff',3)+'</span>':svgI(CHEV,18,'#1F1A10',2.6))+'</button>';}).join('');
+ return '<div class="stack gap18 pn-page">'+
+ '<div class="row between"><button class="icon-btn flat" data-a="go" data-to="bible" aria-label="Back">'+ic(I.back,{w:2})+'</button><span class="small muted">'+esc(T('Holy Bible'))+'</span><span style="width:46px"></span></div>'+
+ '<div class="pn-hero"><div class="pn-hpic">'+scene(['dawn','hills','scrolltree'],0,0,1)+'</div><div class="pn-htx"><h1 class="serif">'+esc(L2('Bible Panorama','Panorama de la Biblia'))+'</h1><span>'+esc(L2('From Creation to eternity: the big story of the Bible, one study at a time.','De la Creación a la eternidad: la gran historia de la Biblia, un estudio a la vez.'))+'</span><div class="pn-prog"><i style="width:'+Math.round(done/PANO.length*100)+'%"></i></div><small>'+done+' / '+PANO.length+' '+esc(L2('studies explored','estudios explorados'))+'</small></div></div>'+
+ '<div class="sp-div"><span>'+esc(L2('THE BIG STORY','LA GRAN HISTORIA'))+'</span></div>'+eras+
+ '<div class="sp-div"><span>'+esc(L2('OLD TESTAMENT','ANTIGUO TESTAMENTO'))+'</span></div><div class="stack" style="gap:10px">'+list+'</div>'+
+ '<p class="pn-note">'+esc(L2('Original summaries written for Abide. Tap any reference to read it in the Bible.','Resúmenes originales escritos para Abide. Toca cualquier referencia para leerla en la Biblia.'))+'</p></div>';};
+
+/* ---- study page ---- */
+window.vPStudy=function(){var id=(V.p&&V.p.id)||'p1',i=idx(id),s=PANO[i],sn=seen();if(!sn[s.id]){sn[s.id]=1;try{save();}catch(e){AB.err(e)}}
+ var era=PANO_ERAS[s.era-1];
+ var pts='<div class="pn-card"><h3 class="serif">'+esc(L(s.pt))+'</h3><div class="stack" style="gap:8px">'+s.p.map(function(p){return '<button class="pn-pt" data-a="pnRead" data-r="'+p[3]+'">'+disc(p[0],46)+'<span><b>'+esc(LANG()==='es'?p[2]:p[1])+'</b><em>'+esc(refTx(p[3]))+'</em></span></button>';}).join('')+'</div></div>';
+ var tl='<div class="pn-card"><h3 class="serif">'+esc(L(s.lt))+'</h3><div class="pn-tl">'+s.l.map(function(p,j){return (j?'<span class="pn-tarr">'+svgI(ARROW,14,'#8A7A5A',2)+'</span>':'')+'<button class="pn-step" data-a="pnRead" data-r="'+p[3]+'">'+disc(p[0],62)+'<b>'+esc(LANG()==='es'?p[2]:p[1])+'</b><em>'+esc(refTx(p[3]))+'</em></button>';}).join('')+'</div></div>';
+ var prev=i>0?PANO[i-1]:null,next=i<PANO.length-1?PANO[i+1]:null;
+ return '<div class="stack gap18 pn-page">'+
+ '<div class="row between"><button class="icon-btn flat" data-a="go" data-to="pano" aria-label="Back">'+ic(I.back,{w:2})+'</button><span class="small muted">'+esc(L2('Bible Panorama','Panorama de la Biblia'))+'</span><span style="width:46px"></span></div>'+
+ '<div class="pn-hero pn-sh"><div class="pn-hpic">'+scene(s.scene,0,0,1)+'<span class="pn-badge">'+esc(L2('STUDY','ESTUDIO'))+' '+(i+1)+'</span></div><div class="pn-htx"><small class="pn-era-l">'+esc(L(era.t))+'</small><h1 class="serif">'+esc(L(s.t))+'</h1><span class="pn-st">'+esc(L(s.st))+'</span><button class="pn-ref" data-a="pnRead" data-r="'+s.ref+'">'+svgI(BOOK,16,'#465A22',2)+esc(refTx(s.ref))+'</button><p>'+esc(L(s.sum))+'</p></div></div>'+
+ pts+tl+
+ '<button class="pn-readbtn" data-a="pnRead" data-r="'+s.ref+'">'+svgI(BOOK,20,'#fff',2)+'<b class="serif">'+esc(L2('Read in the Bible','Leer en la Biblia'))+'</b></button>'+
+ '<div class="pn-nav">'+(prev?'<button data-a="pnOpen" data-id="'+prev.id+'">'+svgI(LEFT,18,'#1F1A10',2.6)+'<span><em>'+esc(L2('Previous','Anterior'))+'</em><b class="serif">'+esc(L(prev.t))+'</b></span></button>':'<span></span>')+(next?'<button class="nx" data-a="pnOpen" data-id="'+next.id+'"><span><em>'+esc(L2('Next','Siguiente'))+'</em><b class="serif">'+esc(L(next.t))+'</b></span>'+svgI(CHEV,18,'#1F1A10',2.6)+'</button>':'<span></span>')+'</div></div>';};
+
+/* ---- nav, menu, search ---- */
+var _n=navHl;navHl=function(n){if(n==='pano'||n==='pstudy')return 'bible';return _n(n);};
+try{for(var g=0;g<MENU.length;g++)if(MENU[g][0]==='Bible'){MENU[g][1].splice(2,0,['pano','Bible Panorama','The big story, study by study','c1','<path d="M3 18h18"/><circle cx="6" cy="12" r="2.2"/><circle cx="12" cy="9" r="2.2"/><circle cx="18" cy="12" r="2.2"/><path d="M8 11l2-1M14 10l2 1"/>']);break;}}catch(e){AB.err(e)}
+try{NAV2_PAGES.push(['Bible Panorama','Bible','panorama big story timeline overview old testament creation abraham moses kings prophets panorama de la biblia','pano']);}catch(e){AB.err(e)}
+try{Object.assign(ES,{'Bible Panorama':'Panorama de la Biblia','The big story, study by study':'La gran historia, estudio por estudio'});}catch(e){AB.err(e)}
+try{var _nl=navLabel;navLabel=function(e){if(e==='pano'||(e&&e.to==='pano'))return 'Bible Panorama';return _nl.apply(this,arguments);};}catch(e){AB.err(e)}
+
+/* ---- Bible page entry card ---- */
+var _vb=vBible;vBible=function(){var h=_vb.apply(this,arguments);if(V.p&&V.p.bx)return h;var k=h.indexOf('<button class="bh-all"');if(k<0)return h;var e=h.indexOf('</button>',k)+9;
+ var card='<button class="pn-entry" data-a="go" data-to="pano"><span class="pn-epic">'+scene(['dawn','hills','scrolltree'])+'</span><span class="pn-etx"><em>'+esc(L2('NEW','NUEVO'))+'</em><b class="serif">'+esc(L2('Bible Panorama','Panorama de la Biblia'))+'</b><span>'+esc(L2('From Creation to eternity, study by study','De la Creación a la eternidad, estudio por estudio'))+'</span></span>'+svgI(CHEV,20,'#1F1A10',2.6)+'</button>';
+ return h.slice(0,e)+card+h.slice(e);};
+
+/* ---- styles ---- */
+var css=document.createElement('style');css.textContent=
+'.pn-page{padding-bottom:10px}'+
+'.pn-hero{background:#FBF6EA;border-radius:28px;box-shadow:var(--sh);overflow:hidden}.pn-hpic{position:relative;height:190px;overflow:hidden}.pn-hpic svg.pn-art,.pn-rthumb svg,.pn-epic svg{display:block;width:100%;height:100%}'+
+'.pn-htx{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;color:#1F1A10}.pn-htx h1{font-size:28px;font-weight:800;line-height:1.05;margin:0}.pn-htx>span{font-size:15px;line-height:1.4;color:#3E3626}.pn-htx p{margin:6px 0 0;font-size:16px;line-height:1.55;color:#2B2418}'+
+'.pn-st{font-style:italic}.pn-era-l{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:#7A6A4A}'+
+'.pn-badge{position:absolute;left:14px;top:14px;background:#FBF6EA;color:#465A22;font-weight:800;font-size:13px;letter-spacing:2px;padding:6px 12px;border-radius:999px;box-shadow:var(--sh)}'+
+'.pn-ref{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;border:1px solid #E2D3B4;background:#F1E7D6;color:#465A22;font-weight:700;font-size:14px;border-radius:999px;padding:6px 12px}'+
+'.pn-prog{height:8px;border-radius:99px;background:#E9DEC6;overflow:hidden;margin-top:6px}.pn-prog i{display:block;height:100%;background:#6B7834;border-radius:99px}.pn-htx small{font-size:13px;color:#5A5040}'+
+'.pn-eras{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}.pn-arr,.pn-tarr{flex:none;display:flex;align-items:center;padding-bottom:30px}'+
+'.pn-era{flex:none;width:128px;scroll-snap-align:start;border:none;background:#FBF6EA;box-shadow:var(--sh);border-radius:22px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;color:#1F1A10}.pn-era b{font-size:15px;line-height:1.1}.pn-era span{font-size:12px;color:#5A5040;line-height:1.2}.pn-era em{font-style:normal;font-size:11.5px;font-weight:700;color:#465A22}.pn-era.soon{opacity:.6}.pn-era.soon em{color:#8A7A5A}'+
+'.pn-disc{flex:none;display:inline-flex;border-radius:50%;background:#F6EBCF;border:2px solid #E2D3B4;overflow:hidden}.pn-disc svg{width:100%;height:100%}'+
+'.pn-row{display:flex;align-items:center;gap:12px;width:100%;border:none;background:#FBF6EA;box-shadow:var(--sh);border-radius:22px;padding:8px 14px 8px 8px;text-align:left;color:#1F1A10}.pn-rthumb{flex:none;width:92px;height:64px;border-radius:16px;overflow:hidden}.pn-rtx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.pn-rtx em{font-style:normal;font-size:11px;letter-spacing:2px;font-weight:800;color:#7A6A4A}.pn-rtx b{font-size:17px;line-height:1.15}.pn-rtx span{font-size:13px;color:#5A5040}'+
+'.pn-ok{flex:none;width:26px;height:26px;border-radius:50%;background:#6B7834;display:flex;align-items:center;justify-content:center}'+
+'.pn-card{background:#FBF6EA;box-shadow:var(--sh);border-radius:24px;padding:16px}.pn-card h3{margin:0 0 12px;font-size:20px;font-weight:800;color:#1F1A10}'+
+'.pn-pt{display:flex;align-items:center;gap:12px;width:100%;border:none;background:#F4ECDC;border-radius:18px;padding:8px 12px 8px 8px;text-align:left;color:#1F1A10}.pn-pt span{display:flex;flex-direction:column;gap:2px;min-width:0}.pn-pt b{font-size:15.5px;font-weight:600;line-height:1.3}.pn-pt em{font-style:normal;font-size:13px;font-weight:700;color:#465A22}'+
+'.pn-tl{display:flex;align-items:flex-start;gap:2px;overflow-x:auto;padding:2px 2px 6px;-webkit-overflow-scrolling:touch}.pn-tarr{padding:24px 0 0}.pn-step{flex:none;width:96px;border:none;background:none;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;color:#1F1A10;padding:0}.pn-step b{font-size:13px;line-height:1.2}.pn-step em{font-style:normal;font-size:11.5px;font-weight:700;color:#465A22}'+
+'.pn-readbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:none;border-radius:20px;padding:14px 18px;background:#6B7834;color:#fff;box-shadow:var(--sh)}.pn-readbtn b{font-size:18px}'+
+'.pn-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pn-nav button{display:flex;align-items:center;gap:8px;border:none;background:#FBF6EA;box-shadow:var(--sh);border-radius:18px;padding:10px 12px;text-align:left;color:#1F1A10;min-width:0}.pn-nav button.nx{justify-content:flex-end;text-align:right}.pn-nav span{display:flex;flex-direction:column;min-width:0}.pn-nav em{font-style:normal;font-size:12px;color:#7A6A4A}.pn-nav b{font-size:14px;line-height:1.2}'+
+'.pn-note{font-size:13px;color:#7A6A4A;text-align:center;margin:0 10px}'+
+'.pn-entry{display:flex;align-items:center;gap:12px;width:100%;border:none;background:#FBF6EA;box-shadow:var(--sh);border-radius:22px;padding:8px 14px 8px 8px;text-align:left;color:#1F1A10;margin-top:12px}.pn-epic{flex:none;width:96px;height:66px;border-radius:16px;overflow:hidden}.pn-etx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.pn-etx em{font-style:normal;font-size:11px;letter-spacing:2px;font-weight:800;color:#C8603C}.pn-etx b{font-size:18px;line-height:1.1}.pn-etx span{font-size:13px;color:#5A5040;line-height:1.3}'+
+'@media (max-width:380px){.pn-htx h1{font-size:24px}.pn-rthumb{width:76px;height:56px}.pn-rtx b{font-size:15.5px}.pn-nav b{font-size:13px}}'+
+'[data-theme=dark] .pn-hero,[data-theme=dark] .pn-era,[data-theme=dark] .pn-row,[data-theme=dark] .pn-card,[data-theme=dark] .pn-nav button,[data-theme=dark] .pn-entry,[data-theme=dark] .pn-badge{background:#23271D;color:#EDEADF}'+
+'[data-theme=dark] .pn-htx,[data-theme=dark] .pn-htx p,[data-theme=dark] .pn-htx>span,[data-theme=dark] .pn-card h3,[data-theme=dark] .pn-era,[data-theme=dark] .pn-row,[data-theme=dark] .pn-step,[data-theme=dark] .pn-pt{color:#EDEADF}[data-theme=dark] .pn-pt{background:#2C3124}[data-theme=dark] .pn-ref{background:#2C3124;border-color:#4A4230;color:#B8CC7A}'+
+'[data-theme=dark] .pn-era span,[data-theme=dark] .pn-rtx span,[data-theme=dark] .pn-etx span,[data-theme=dark] .pn-htx small,[data-theme=dark] .pn-nav em,[data-theme=dark] .pn-note,[data-theme=dark] .pn-era-l,[data-theme=dark] .pn-rtx em{color:#C9C2AE}[data-theme=dark] .pn-pt em,[data-theme=dark] .pn-step em,[data-theme=dark] .pn-era em,[data-theme=dark] .pn-badge{color:#B8CC7A}'+
+'[data-theme=dark] .pn-disc{background:#3A3A2C;border-color:#4A4230}[data-theme=dark] .pn-nav svg,[data-theme=dark] .pn-row>svg,[data-theme=dark] .pn-entry>svg{stroke:#EDEADF}';
+document.head.appendChild(css);
 })();
 
 /* ================= Install the hook registry once (outermost), replacing stacked wrappers ================= */
