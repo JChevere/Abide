@@ -25149,7 +25149,7 @@ function info(root,k){var h=k==='world'?root.querySelector('[data-a=dlTog][data-
 function row(k,n,inf){var d=SP[k];return '<button class="sp-row" data-a="spGo" data-id="'+k+'" style="--sc:'+d.c+'"><span class="sp-artw">'+SPART[d.art]()+'</span>'+
  '<span class="sp-ic" style="background:'+d.c+'">'+svgI(d.ic,26,'#fff',2)+'<i>'+n+'</i></span><span class="sp-tx"><b class="serif">'+esc(inf.t)+'</b><span>'+esc(inf.s)+'</span></span><span class="sp-go">'+svgI(CHEV,20,'#1F1A10',2.6)+'</span></button>';}
 function hero(title,sub,art,next){return '<div class="hero gban sp-hero">'+art+'<span class="sp-hfade"></span><span class="sp-htx"><h1 class="serif">'+esc(title)+'</h1><span>'+esc(sub)+'</span></span>'+(next?'<button class="sp-hnext" data-a="spGo" data-id="'+next+'" aria-label="'+esc(L('Next step','Siguiente paso'))+'">'+svgI(CHEV,22,'#1F1A10',2.6)+'</button>':'')+'</div>';}
-function chips(){var c=[['start','<path d="M12 21V4"/><path d="M12 5h7l2 2.5-2 2.5h-7"/><path d="M12 12H6l-2 2 2 2h6"/>',L('Start Here','Empieza aquí'),'spGo'],['portals','<path d="M3 21h18M4 10h16M12 3l8 5H4z"/><path d="M6 10v8M10 10v8M14 10v8M18 10v8"/>',L('Bible Portals','Portales bíblicos'),'spGo'],['rplans','<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/>',L('Study Plans','Planes de estudio'),'go']];
+function chips(){var c=[['start','<path d="M12 21V4"/><path d="M12 5h7l2 2.5-2 2.5h-7"/><path d="M12 12H6l-2 2 2 2h6"/>',L('Start Here','Empieza'),'spGo'],['portals','<path d="M3 21h18M4 10h16M12 3l8 5H4z"/><path d="M6 10v8M10 10v8M14 10v8M18 10v8"/>',L('Bible Portals','Portales'),'spGo'],['rplans','<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/>',L('Study Plans','Planes'),'go']];
  return '<div class="sp-chips">'+c.map(function(x){return '<button class="sp-chip" '+(x[3]==='go'?'data-a="go" data-to="rplans"':'data-a="spGo" data-id="'+x[0]+'"')+'>'+svgI(x[1],22,'#2B2418',1.7)+'<b class="serif">'+x[2]+'</b></button>';}).join('')+'</div>';}
 
 function spHome(root){
@@ -25900,6 +25900,62 @@ try{BJ_TABS=BJ_TABS.filter(function(t){return t[0]!=='memory';});var i=BJ_PAGES.
 var _l=learnTab;learnTab=function(P){var h=_l(P);var k=h.indexOf('<button data-a="go" data-to="enc"');if(k<0)return h;var e=h.indexOf('</button>',k)+9;return h.slice(0,k)+h.slice(e);};
 /* Encyclopedia back button returns to the Bible */
 var _e=vEnc;vEnc=function(){return _e.apply(this,arguments).replace('data-a="gTab" data-id="learn" aria-label="Back"','data-a="go" data-to="bible" aria-label="Back"');};
+})();
+
+/* ---------- Quick-jump chips + section divider (like Study's "Start Here · Bible Portals · Study Plans / STUDY PATH") on every main page ---------- */
+(function(){
+function L(en,es){return LANG()==='es'?es:en;}
+var IC={
+ flag:'<path d="M12 21V4"/><path d="M12 5h7l2 2.5-2 2.5h-7"/><path d="M12 12H6l-2 2 2 2h6"/>',
+ hands:'<path d="M12 21c-2-3-5-6-5-11a5 5 0 0 1 5-5"/><path d="M12 21c2-3 5-6 5-11a5 5 0 0 0-5-5"/>',
+ list:'<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+ jar:'<path d="M8 3h8M9 3v3a5 5 0 0 0-3 4.6V18a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3v-7.4A5 5 0 0 0 15 6V3"/>',
+ scroll:'<path d="M8 4h11v13a3 3 0 0 1-3 3H7"/><path d="M8 4a2 2 0 0 0-4 0v2h4M7 20a3 3 0 0 0 3-3V4"/><path d="M12 9h4M12 13h4"/>',
+ bulb:'<path d="M12 3a6 6 0 0 0-6 6c0 2.5 1.5 3.5 2 5.5h8c.5-2 2-3 2-5.5a6 6 0 0 0-6-6z"/><path d="M9.5 18h5M10.5 21h3"/>',
+ grid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/>',
+ play:'<circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/>',
+ brain:'<path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 3 5 3 3 0 0 0 5 1V5a3 3 0 0 0-3-1z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-3 5 3 3 0 0 1-5 1"/>',
+ game:'<rect x="3" y="7" width="18" height="11" rx="5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="12" r="1"/><circle cx="17.5" cy="14" r="1"/>',
+ heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+ star:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+ pen:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
+ medal:'<circle cx="12" cy="14" r="5.5"/><path d="M8.5 9.5L6 3h4l2 4 2-4h4l-2.5 6.5"/>',
+ shield:'<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/>',
+ cal:'<rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M8 3v4M16 3v4"/>',
+ chart:'<path d="M5 20V11M10 20V6M15 20v-8M20 20V4"/>',
+ wind:'<path d="M3 9h11a3 3 0 1 0-3-3"/><path d="M3 14h15a3 3 0 1 1-3 3"/>',
+ moon:'<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+ music:'<path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>',
+ book:'<path d="M3 5.5C5.5 4.3 8.5 4.3 12 6c3.5-1.7 6.5-1.7 9-.5v13c-2.5-1.2-5.5-1.2-9 .5-3.5-1.7-6.5-1.7-9-.5z"/><path d="M12 6v13.5"/>',
+ cross:'<path d="M12 3v18M7 8h10"/>',
+ search:'<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/>'};
+function svg(p){return '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
+/* chip: [icon, en, es, kind, value]  kind: open (toggle a row open and scroll to it), go (open a page), scroll (scroll to a part), act (run an action) */
+function chipsHtml(list){return '<div class="sp-chips qc-chips">'+list.map(function(c){var attrs=c[3]==='go'?'data-a="go" data-to="'+c[4]+'"':c[3]==='act'?'data-a="'+c[4].split('|')[0]+'" data-id="'+(c[4].split('|')[1]||'')+'"':'data-a="qc" data-k="'+c[3]+'" data-v="'+esc(c[4])+'"';return '<button class="sp-chip" '+attrs+'>'+svg(IC[c[0]])+'<b class="serif">'+L(c[1],c[2])+'</b></button>';}).join('')+'</div>';}
+function divHtml(en,es){return '<div class="sp-div qc-div"><span>'+L(en,es)+'</span></div>';}
+
+A.qc=function(t){var k=t.dataset.k,v=t.dataset.v;
+ if(k==='open'){var p=v.split('|'),sel='#app [data-a="'+p[0]+'"][data-id="'+p[1]+'"]',e=document.querySelector(sel);if(!e)return;if(e.getAttribute('aria-expanded')!=='true')e.click();setTimeout(function(){var e2=document.querySelector(sel);if(e2)e2.scrollIntoView({behavior:'smooth',block:'start'});},90);}
+ else if(k==='scroll'){var e3=document.querySelector('#app '+v);if(e3){e3.scrollIntoView({behavior:'smooth',block:'start'});if(e3.tagName==='INPUT')setTimeout(function(){e3.focus();},350);}}};
+
+/* page setups: where the chips go, what they do, and where the divider sits */
+function page(){var n=V.name,ht=UI.htab||'today',gt=UI.gtab;
+ if(n==='home'&&ht==='today')return {after:'.ab-tabs',chips:[['heart','Check in','Registrarte','act','hmStep|feel'],['star','Promise','Promesa','scroll','#promday'],['pen','Journal','Diario','act','hTab|journal']],div:['YOUR DAY','TU DÍA'],divBefore:null};
+ if(n==='home'&&ht==='me')return {after:'.ab-tabs',chips:[['pen','Character','Personaje','act','meEd|'],['medal','Medals','Medallas','go','patches'],['shield','Armor','Armadura','go','soldier']],div:['MY STORY','MI HISTORIA'],divBefore:null};
+ if(n==='home'&&ht==='journal')return {after:'.ab-tabs',chips:[['pen','Write','Escribir','act','write|'],['cal','Calendar','Calendario','act','calOpen|'],['chart','Insights','Reflexiones','go','jinsights']],div:['MY JOURNAL','MI DIARIO'],divBefore:null};
+ if(n==='grow'&&gt==='pray')return {after:'.ab-tabs',chips:[['hands','Pray now','Ora ahora','open','tgTog|pw'],['list','Prayer list','Mi lista','open','tgTog|keep'],['jar','Fasting','Ayuno','open','tgTog|fast']],div:['PRAYER PATH','RUTA DE ORACIÓN'],divBefore:'.g-part'};
+ if(n==='quiz')return {after:'.ab-tabs',chips:[['scroll','Quests','Misiones','open','gcTog|arc-quests'],['bulb','Memory','Memorizar','go','bmemory'],['grid','Topics','Temas','open','gcTog|test-Test a topic']],div:['ARCADE','ARCADE'],divBefore:'.arc-hub [data-id=arc-quests]'};
+ if(n==='mind')return {after:'.m-stats',chips:[['play','Workout','Entrenar','act','mWork|daily'],['brain','Brain Check','Prueba','go','mcheck'],['game','All games','Juegos','scroll','.mq-cats']],div:['TRAINING PATH','RUTA DE ENTRENAMIENTO'],divBefore:'.m-today'};
+ if(n==='rest'&&(UI.rtab||'meditate')!=='music')return {after:'.ab-tabs',chips:[['wind','Breathe','Respira','go','wings'],['moon','Be still','Quietud','go','still'],['music','Sleep music','Música','act','rTab|music']],div:['TONIGHT','ESTA NOCHE'],divBefore:null};
+ if(n==='bible'&&!(V.p&&V.p.bx))return {after:'.bh-g4',chips:[['book','Old Test.','Antiguo','act','bhGo|ot'],['cross','New Test.','Nuevo','act','bhGo|nt'],['search','Search','Buscar','scroll','#bq']],div:['EXPLORE','EXPLORA'],divBefore:null};
+ return null;}
+function run(){var app=el('app');if(!app||app.querySelector('.qc-chips'))return;var P=page();if(!P)return;var a=app.querySelector(P.after);if(!a)return;
+ a.insertAdjacentHTML('afterend',chipsHtml(P.chips));var ch=a.nextElementSibling;
+ var b=P.divBefore?app.querySelector(P.divBefore):null;if(b){var host=b.closest('.stephd')||b;if(P.divBefore.indexOf('arc-quests')>=0)host=(b.closest('section')||b);host.insertAdjacentHTML('beforebegin',divHtml(P.div[0],P.div[1]));}
+ else ch.insertAdjacentHTML('afterend',divHtml(P.div[0],P.div[1]));}
+var _r=render;render=function(){var x=_r.apply(this,arguments);try{run();}catch(e){try{console.warn('pageChips',e);}catch(_){}}return x;};
+var css='@media (max-width:370px){#app .sp-chip b{font-size:12.5px!important;letter-spacing:-.2px;white-space:nowrap}#app .sp-chip{gap:3px!important;padding:9px 3px!important}#app .sp-chip svg{width:17px!important;height:17px!important}}#app .qc-chips{margin:0}#app .qc-div{margin:2px 6px}@media (max-width:400px){#app .qc-chips .sp-chip{padding:9px 4px}#app .qc-chips .sp-chip svg{width:19px;height:19px}}';
+var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 })();
 
 /* ================= Install the hook registry once (outermost), replacing stacked wrappers ================= */
