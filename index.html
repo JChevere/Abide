@@ -25602,6 +25602,22 @@ var css=
 '[data-theme=dark] #app .btn-ghost,[data-theme=dark] #app .field,[data-theme=dark] #app .seg button.on{background:var(--surface)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) #app .btn-ghost,:root:not([data-theme=light]) #app .field{background:var(--surface)}}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 })();
+/* ---------- Icon size scale: row icons 38, feature/tile icons 44, top-card icons 72 ---------- */
+(function(){
+function sz(sel,px,g){return sel+'{width:'+px+'px!important;height:'+px+'px!important;min-width:'+px+'px}'+sel.split(',').map(function(s){return s+' svg';}).join(',')+'{width:'+g+'px!important;height:'+g+'px!important}';}
+var css=
+/* Mind: line-icon circles that were 44px inside smaller slots */
+'#app .mq-mth[data-mdi],#app .mq-sic[data-mdi]{width:auto!important;height:auto!important;overflow:visible;background:none;display:grid;place-items:center;border-radius:0}'+
+sz('#app .mq-mth[data-mdi]>.tic,#app .mq-sic[data-mdi]>.tic,#app .m-gi[data-mdi]>.tic',38,20)+
+/* row / list icons */
+sz('#app .sp-ic',46,22)+'#app .sp-ic i{width:22px!important;height:22px!important;font-size:11px!important;right:-5px!important;bottom:-5px!important}'+
+/* feature and tile icons */
+sz('#app .bh-disc',44,22)+sz('#app .pq-disc:not(.pq-rm .pq-disc)',44,22)+sz('#app .mq-cloud',44,22)+sz('#app .cal-season .tic,#app .tic[style*="width:64px"]',48,24)+
+'#app .pq-rm .pq-disc{width:38px!important;height:38px!important}#app .pq-rm .pq-disc svg{width:19px!important;height:19px!important}'+
+/* top-card icons: one size everywhere */
+'#app .hero.gban:not(.sban):not(.sp-hero) .row>span:first-child{width:72px!important;height:72px!important;flex:none!important;display:grid;place-items:center}#app .hero.gban:not(.sban):not(.sp-hero) .row>span:first-child>svg,#app .hero.gban:not(.sban):not(.sp-hero) .row>span:first-child>img{width:72px!important;height:72px!important}';
+var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+})();
 
 /* ---------- Home > Progress: Overview + More layout from the mockups ---------- */
 (function(){
