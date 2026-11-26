@@ -1,0 +1,229 @@
+[
+  {
+    "id": 19,
+    "title_en": "The Birth of Jesus",
+    "title_es": "El nacimiento de Jesús",
+    "scripture": "Luke 2:1–20",
+    "asset": "heroes/hero-19-birth-of-jesus.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 20,
+    "title_en": "The Baptism of Jesus",
+    "title_es": "El bautismo de Jesús",
+    "scripture": "Matthew 3:13–17",
+    "asset": "heroes/hero-20-baptism-of-jesus.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 21,
+    "title_en": "The Temptation of Jesus",
+    "title_es": "La tentación de Jesús",
+    "scripture": "Matthew 4:1–11",
+    "asset": "heroes/hero-21-temptation-of-jesus.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 22,
+    "title_en": "The Calling of the Disciples",
+    "title_es": "El llamado de los discípulos",
+    "scripture": "Matthew 4:18–22",
+    "asset": "heroes/hero-22-calling-of-disciples.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 23,
+    "title_en": "The Sermon on the Mount",
+    "title_es": "El sermón del monte",
+    "scripture": "Matthew 5–7",
+    "asset": "heroes/hero-23-sermon-on-the-mount.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 24,
+    "title_en": "Feeding the Five Thousand",
+    "title_es": "La alimentación de los cinco mil",
+    "scripture": "John 6:1–15",
+    "asset": "heroes/hero-24-feeding-five-thousand.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 25,
+    "title_en": "Jesus Walks on Water",
+    "title_es": "Jesús camina sobre el agua",
+    "scripture": "Matthew 14:22–33",
+    "asset": "heroes/hero-25-walking-on-water.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 26,
+    "title_en": "The Transfiguration",
+    "title_es": "La transfiguración",
+    "scripture": "Matthew 17:1–8",
+    "asset": null,
+    "status": "pending",
+    "notes": "Previously generated, but exact image unavailable in current files. Recover original."
+  },
+  {
+    "id": 27,
+    "title_en": "The Triumphal Entry",
+    "title_es": "La entrada triunfal",
+    "scripture": "Matthew 21:1–11",
+    "asset": "heroes/hero-27-triumphal-entry.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 28,
+    "title_en": "The Last Supper",
+    "title_es": "La última cena",
+    "scripture": "Matthew 26:17–30",
+    "asset": "heroes/hero-28-last-supper.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 29,
+    "title_en": "Jesus Praying in Gethsemane",
+    "title_es": "Jesús ora en Getsemaní",
+    "scripture": "Matthew 26:36–46",
+    "asset": "heroes/hero-29-gethsemane.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 30,
+    "title_en": "The Betrayal and Arrest of Jesus",
+    "title_es": "La traición y el arresto de Jesús",
+    "scripture": "Matthew 26:47–56",
+    "asset": "heroes/hero-30-betrayal-and-arrest.png",
+    "status": "available",
+    "notes": "Review: Jesus has bruises before the mistreatment described after arrest.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 31,
+    "title_en": "The Trial of Jesus",
+    "title_es": "El juicio de Jesús",
+    "scripture": "Matthew 26:57–68",
+    "asset": "heroes/hero-31-trial-of-jesus.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 32,
+    "title_en": "The Crucifixion",
+    "title_es": "La crucifixión",
+    "scripture": "John 19:16–37",
+    "asset": "heroes/hero-32-crucifixion.png",
+    "status": "available",
+    "notes": "User requested original composition with background crosses removed.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 33,
+    "title_en": "The Resurrection",
+    "title_es": "La resurrección",
+    "scripture": "John 20:1–18",
+    "asset": "heroes/hero-33-resurrection.png",
+    "status": "available",
+    "notes": "Artistic composite of resurrection encounters; John 20 describes them separately.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 34,
+    "title_en": "The Ascension of Jesus",
+    "title_es": "La ascensión de Jesús",
+    "scripture": "Acts 1:6–12",
+    "asset": "heroes/hero-34-ascension.png",
+    "status": "available",
+    "notes": "White robe revision; two men in white are not clearly depicted.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 35,
+    "title_en": "Pentecost",
+    "title_es": "Pentecostés",
+    "scripture": "Acts 2:1–13",
+    "asset": "heroes/hero-35-pentecost.png",
+    "status": "available",
+    "notes": "Original version, not later dove or circular versions.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 36,
+    "title_en": "The Conversion of Saul",
+    "title_es": "La conversión de Saulo",
+    "scripture": "Acts 9:1–19",
+    "asset": "heroes/hero-36-conversion-of-saul.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 37,
+    "title_en": "Paul’s Missionary Journeys",
+    "title_es": "Los viajes misioneros de Pablo",
+    "scripture": "Acts 13–14; 16–21",
+    "asset": "heroes/hero-37-missionary-journeys.png",
+    "status": "available",
+    "notes": "",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": 38,
+    "title_en": "Paul and Silas in Prison",
+    "title_es": "Pablo y Silas en prisión",
+    "scripture": "Acts 16:25–34",
+    "asset": null,
+    "status": "pending",
+    "notes": "Generation blocked by image usage limit. Pending creation."
+  },
+  {
+    "id": 39,
+    "title_en": "The Letters of Paul",
+    "title_es": "Las cartas de Pablo",
+    "scripture": "Philippians 1:12–14; Colossians 4:18",
+    "asset": "heroes/hero-39-letters-of-paul.png",
+    "status": "available",
+    "notes": "Reserved by user from earlier generation.",
+    "width": 1774,
+    "height": 887
+  }
+]
