@@ -1,5 +1,5 @@
 /* Abide offline worker: keeps the app working without internet. */
-const CACHE = 'abide-v70';
+const CACHE = 'abide-v71';
 const FONT_CACHE = 'abide-fonts-v1';
 /* Bible Panorama hero art: the phone and tablet sizes are saved in the background so the pictures work offline */
 const PANO_ART = ["hero-00-panorama", "hero-01-creation", "hero-02-garden-and-fall", "hero-03-before-the-flood", "hero-04-nations-and-babel", "hero-05-abraham", "hero-06-jacob", "hero-07-joseph", "hero-08-out-of-egypt", "hero-09-sinai-and-wilderness", "hero-10-joshua", "hero-11-judges-and-ruth", "hero-12-samuel-saul-david", "hero-13-solomon", "hero-14-divided-kingdom", "hero-15-exile-in-babylon", "hero-16-return-and-rebuilding", "hero-17-wisdom-books", "hero-18-prophets-and-promise", "hero-19-birth-of-jesus", "hero-20-baptism-of-jesus", "hero-21-temptation-of-jesus", "hero-22-calling-of-disciples", "hero-23-sermon-on-the-mount", "hero-24-feeding-five-thousand", "hero-25-walking-on-water", "hero-26-transfiguration", "hero-27-triumphal-entry", "hero-28-last-supper", "hero-29-gethsemane", "hero-30-betrayal-and-arrest", "hero-31-trial-of-jesus", "hero-32-crucifixion", "hero-33-resurrection", "hero-34-ascension", "hero-35-pentecost", "hero-36-conversion-of-saul", "hero-37-missionary-journeys", "hero-39-letters-of-paul"];
