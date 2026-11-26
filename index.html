@@ -25939,14 +25939,14 @@ var IC={
 function svg(p){return '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
 /* chip: [icon, en, es, kind, value]  kind: open (toggle a row open and scroll to it), go (open a page), scroll (scroll to a part), act (run an action) */
 function chipsHtml(list){return '<div class="sp-chips qc-chips">'+list.map(function(c){var attrs=c[3]==='go'?'data-a="go" data-to="'+c[4]+'"':c[3]==='act'?'data-a="'+c[4].split('|')[0]+'" data-id="'+(c[4].split('|')[1]||'')+'"':'data-a="qc" data-k="'+c[3]+'" data-v="'+esc(c[4])+'"';return '<button class="sp-chip" '+attrs+'>'+svg(IC[c[0]])+'<b class="serif">'+L(c[1],c[2])+'</b></button>';}).join('')+'</div>';}
-var TRN={kjv:['KJV','King James Version','King James (inglés)'],web:['WEB','World English Bible','World English Bible (inglés)'],rv1909:['RV1909','Reina-Valera 1909','Reina-Valera 1909']};
+var TRN={kjv:['KJV','King James Version','King James (inglés)'],web:['WEB','World English Bible','World English Bible (inglés)'],asv:['ASV','American Standard Version','American Standard Version (inglés)'],rv1909:['RV1909','Reina-Valera 1909','Reina-Valera 1909']};
 var DOWN='<path d="M6 9l6 6 6-6"/>';
 function bibleChips(){var B=S.bible,cur=B.tr||'kjv',t=TRN[cur]||TRN.kjv,last=B.last||{b:'GEN',c:1},pan=UI.qcPanel,nm='';try{nm=chapName(last.b,last.c);}catch(e){AB.err(e)}
  var h='<div class="sp-chips qc-chips">'+
   '<button class="sp-chip'+(pan==='tr'?' on':'')+'" data-a="qc" data-k="panel" data-v="tr" aria-expanded="'+(pan==='tr')+'" aria-label="'+esc(L('Translation','Traducción')+': '+t[1])+'">'+svg(IC.book)+'<b class="serif">'+t[0]+'</b>'+svg(DOWN).replace('width="22" height="22"','width="15" height="15"')+'</button>'+
   '<button class="sp-chip" data-a="openCh" data-b="'+last.b+'" data-c="'+last.c+'" aria-label="'+esc(L('Continue reading','Seguir leyendo')+(nm?': '+nm:''))+'">'+svg(IC.play)+'<b class="serif">'+L('Continue','Seguir')+'</b></button>'+
   '<button class="sp-chip'+(pan==='sr'?' on':'')+'" data-a="qc" data-k="panel" data-v="sr" aria-expanded="'+(pan==='sr')+'">'+svg(IC.search)+'<b class="serif">'+L('Search','Buscar')+'</b></button></div>';
- if(pan==='tr')h+='<div class="qc-drop" role="listbox" aria-label="'+L('Translation','Traducción')+'">'+Object.keys(TRN).map(function(k){var on=k===cur;return '<button role="option" aria-selected="'+on+'" class="qc-opt'+(on?' on':'')+'" data-a="bTr" data-id="'+k+'"><b>'+TRN[k][0]+'</b><span>'+L(TRN[k][1],TRN[k][2])+'</span>'+(on?svg('<path d="M5 12.5l4.5 4.5L19 7"/>'):'')+'</button>';}).join('')+'<p class="small muted" style="margin:4px 6px 0">'+L('KJV and RV1909 work offline. WEB loads from the internet.','KJV y RV1909 funcionan sin conexión. WEB se carga de internet.')+'</p></div>';
+ if(pan==='tr')h+='<div class="qc-drop" role="listbox" aria-label="'+L('Translation','Traducción')+'">'+Object.keys(TRN).map(function(k){var on=k===cur;return '<button role="option" aria-selected="'+on+'" class="qc-opt'+(on?' on':'')+'" data-a="bTr" data-id="'+k+'"><b>'+TRN[k][0]+'</b><span>'+L(TRN[k][1],TRN[k][2])+'</span>'+(on?svg('<path d="M5 12.5l4.5 4.5L19 7"/>'):'')+'</button>';}).join('')+'<p class="small muted" style="margin:4px 6px 0">'+L('KJV and RV1909 work offline. ASV downloads once, then works offline. WEB loads from the internet.','KJV y RV1909 funcionan sin conexión. ASV se descarga una vez y luego funciona sin conexión. WEB se carga de internet.')+'</p></div>';
  if(pan==='sr'&&typeof searchBox==='function')h+='<div class="qc-drop qc-srch">'+searchBox()+'</div>';
  return h;}
 (function(){var _t=A.bTr;A.bTr=function(t){UI.qcPanel=null;return _t(t);};})();
@@ -26791,6 +26791,24 @@ document.head.appendChild(css);
 (function(){var _vs=vSettings;vSettings=function(){var h=_vs.apply(this,arguments);var n=AB.errs.length;var card='<section class="card stack gap8" id="abhealth"><div class="row between" style="align-items:center"><b class="serif" style="font-size:17px">'+T('App health')+'</b><span class="small" style="font-weight:800;color:'+(n?'#B5483E':'#3F4F26')+'">'+(n?n+' '+T('notes'):'✓ '+T('All good'))+'</span></div><span class="small muted">'+T('If something looks wrong, copy this report and send it with your question.')+'</span><button class="btn btn-ghost sm" style="align-self:flex-start" data-a="abCopy">'+T('Copy report')+'</button></section>';return h+card;};})();
 A.abCopy=function(){var rep='Abide report '+new Date().toISOString()+'\n'+navigator.userAgent+'\n'+(AB.errs.length?AB.errs.map(function(e){return e.w+' ×'+e.n+': '+e.m;}).join('\n'):'No errors logged');try{navigator.clipboard.writeText(rep).then(function(){toast(T('Report copied'));},function(){toast(T('Could not copy'));});}catch(e){toast(T('Could not copy'));}};
 (function(o){for(var k in o)if(ES[k]==null)ES[k]=o[k];})({'App health':'Estado de la app','notes':'notas','All good':'Todo bien','If something looks wrong, copy this report and send it with your question.':'Si algo se ve mal, copia este informe y envíalo con tu pregunta.','Copy report':'Copiar informe','Report copied':'Informe copiado','Could not copy':'No se pudo copiar'});
+
+/* ---------- American Standard Version (1901, public domain): loaded once from asv.json, then kept offline ---------- */
+(function(){
+var _ASV=null,_ASVP=null;
+function asvLoad(){if(_ASV)return Promise.resolve(_ASV);if(_ASVP)return _ASVP;
+ _ASVP=fetch('asv.json').then(function(r){if(!r.ok)throw new Error('asv '+r.status);return r.json();}).then(function(j){_ASV=j;return j;}).catch(function(e){_ASVP=null;throw e;});return _ASVP;}
+window.asvLoad=asvLoad;
+window.ASVJ=function(b,c,v){var B=_ASV&&_ASV[b];return B&&B[c-1]&&B[c-1][v-1]||'';};
+var _lc=loadChapter;loadChapter=function(tr,b,c){if(tr!=='asv')return _lc(tr,b,c);
+ return asvLoad().then(function(A){var B=A[b];if(!B||!B[c-1])throw new Error('missing');return {verses:B[c-1].map(function(t,i){return {n:i+1,t:t};}),tr:'asv'};})
+  .catch(function(){return _lc('kjv',b,c).then(function(r){r.offline=true;return r;});});};
+/* translation button in the reader cycles through all four */
+A.bTrR=function(){var o=['kjv','asv','web','rv1909'],i=o.indexOf(S.bible.tr);S.bible.tr=o[(i+1)%o.length];if(S.bible.tr==='asv')asvLoad().catch(function(){});save();go('reader',{b:V.p.b,c:V.p.c});};
+var _bt=A.bTr;A.bTr=function(t){if(t&&t.dataset&&t.dataset.id==='asv')asvLoad().catch(function(){});return _bt.apply(this,arguments);};
+/* start loading early if ASV is the chosen translation */
+try{if(S.bible&&S.bible.tr==='asv')setTimeout(function(){asvLoad().catch(function(){});},1500);}catch(e){}
+try{Object.assign(ES,{'American Standard Version':'American Standard Version'});}catch(e){}
+})();
 
 /* ---------- Dark mode: keep art, banners, text and icons readable ---------- */
 (function(){

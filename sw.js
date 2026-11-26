@@ -1,6 +1,7 @@
 /* Abide offline worker: keeps the app working without internet. */
-const CACHE = 'abide-v68';
+const CACHE = 'abide-v69';
 const FONT_CACHE = 'abide-fonts-v1';
+const DATA_CACHE = 'abide-data-v1'; /* big Bible files (ASV): kept across app updates */
 /* Bible Panorama hero art: the phone and tablet sizes are saved in the background so the pictures work offline */
 const PANO_ART = ["hero-00-panorama", "hero-01-creation", "hero-02-garden-and-fall", "hero-03-before-the-flood", "hero-04-nations-and-babel", "hero-05-abraham", "hero-06-jacob", "hero-07-joseph", "hero-08-out-of-egypt", "hero-09-sinai-and-wilderness", "hero-10-joshua", "hero-11-judges-and-ruth", "hero-12-samuel-saul-david", "hero-13-solomon", "hero-14-divided-kingdom", "hero-15-exile-in-babylon", "hero-16-return-and-rebuilding", "hero-17-wisdom-books", "hero-18-prophets-and-promise", "hero-19-birth-of-jesus", "hero-20-baptism-of-jesus", "hero-21-temptation-of-jesus", "hero-22-calling-of-disciples", "hero-23-sermon-on-the-mount", "hero-24-feeding-five-thousand", "hero-25-walking-on-water", "hero-26-transfiguration", "hero-27-triumphal-entry", "hero-28-last-supper", "hero-29-gethsemane", "hero-30-betrayal-and-arrest", "hero-31-trial-of-jesus", "hero-32-crucifixion", "hero-33-resurrection", "hero-34-ascension", "hero-35-pentecost", "hero-36-conversion-of-saul", "hero-37-missionary-journeys", "hero-39-letters-of-paul"];
 const PANO_SAVE = PANO_ART.flatMap(n => ['480', '960'].map(w => './assets/panorama/' + n + '-' + w + '.webp'));
@@ -16,7 +17,7 @@ function savePanoArt() {
   return caches.open(CACHE).then(c => PANO_SAVE.reduce((p, u) => p.then(() => c.match(u).then(hit => hit || c.add(u).catch(() => null))), Promise.resolve()));
 }
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE && k !== FONT_CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()).then(() => { savePanoArt(); }));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE && k !== FONT_CACHE && k !== DATA_CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()).then(() => { savePanoArt(); }));
 });
 self.addEventListener('fetch', e => {
   const req = e.request;
@@ -33,6 +34,10 @@ self.addEventListener('fetch', e => {
   if (new URL(req.url).origin !== location.origin) return;
   /* audio streams use range requests; let the browser handle them directly */
   if (req.headers.has('range') || req.destination === 'audio' || req.destination === 'video') return;
+  if (/\/asv\.json$/.test(new URL(req.url).pathname)) {
+    e.respondWith(caches.open(DATA_CACHE).then(c => c.match(req).then(hit => hit || fetch(req).then(r => { if (r && r.ok) c.put(req, r.clone()); return r; }))));
+    return;
+  }
   const isPage = req.mode === 'navigate' || req.destination === 'document';
   if (isPage) {
     /* page: try for the newest version, but never keep you waiting.
