@@ -1,0 +1,899 @@
+{
+ "id": "biblical-v1",
+ "title": [
+  "Biblical illustrations",
+  "Ilustraciones bíblicas"
+ ],
+ "style": "Vintage hand-painted biblical art",
+ "scope": "Bible section (Bible home, Encyclopedia, Hymns, Reading Plans, Bible studies, Bible Panorama)",
+ "sizes": {
+  "objects": [
+   160,
+   320,
+   640
+  ],
+  "world": [
+   160,
+   320,
+   640
+  ],
+  "nature": [
+   160,
+   320,
+   640
+  ],
+  "badges": [
+   160,
+   320
+  ],
+  "scenes": [
+   480,
+   960
+  ],
+  "banners": [
+   800,
+   1600
+  ]
+ },
+ "offline": {
+  "objects": 320,
+  "world": 320,
+  "nature": 320,
+  "badges": 320,
+  "scenes": 480,
+  "banners": 800
+ },
+ "items": {
+  "objects/open-bible": {
+   "alt": [
+    "Open Bible with a red ribbon",
+    "Biblia abierta con un listón rojo"
+   ],
+   "tags": [
+    "bible",
+    "scripture",
+    "word",
+    "read"
+   ]
+  },
+  "objects/scroll": {
+   "alt": [
+    "Unrolled parchment scroll",
+    "Rollo de pergamino desenrollado"
+   ],
+   "tags": [
+    "scroll",
+    "scripture",
+    "law"
+   ]
+  },
+  "objects/scrolls-pair": {
+   "alt": [
+    "Two rolled scrolls",
+    "Dos rollos enrollados"
+   ],
+   "tags": [
+    "scroll",
+    "scripture"
+   ]
+  },
+  "objects/old-books": {
+   "alt": [
+    "Stack of old leather books",
+    "Pila de libros antiguos de cuero"
+   ],
+   "tags": [
+    "books",
+    "study",
+    "encyclopedia"
+   ]
+  },
+  "objects/quill": {
+   "alt": [
+    "Feather quill pen",
+    "Pluma de ave para escribir"
+   ],
+   "tags": [
+    "write",
+    "journal",
+    "notes"
+   ]
+  },
+  "objects/ink-pot": {
+   "alt": [
+    "Glass ink pot",
+    "Tintero de vidrio"
+   ],
+   "tags": [
+    "write",
+    "notes"
+   ]
+  },
+  "objects/oil-lamp": {
+   "alt": [
+    "Lit clay oil lamp",
+    "Lámpara de aceite de barro encendida"
+   ],
+   "tags": [
+    "lamp",
+    "light",
+    "word"
+   ]
+  },
+  "objects/candle": {
+   "alt": [
+    "Lit candle in a brass holder",
+    "Vela encendida en un candelero de bronce"
+   ],
+   "tags": [
+    "light",
+    "prayer"
+   ]
+  },
+  "objects/wooden-cross": {
+   "alt": [
+    "Rough wooden cross",
+    "Cruz de madera rústica"
+   ],
+   "tags": [
+    "cross",
+    "jesus",
+    "gospel"
+   ]
+  },
+  "objects/cross-linen": {
+   "alt": [
+    "Wooden cross draped with linen",
+    "Cruz de madera cubierta con un lienzo"
+   ],
+   "tags": [
+    "cross",
+    "resurrection",
+    "easter"
+   ]
+  },
+  "objects/crown-of-thorns": {
+   "alt": [
+    "Crown of thorns",
+    "Corona de espinas"
+   ],
+   "tags": [
+    "cross",
+    "passion"
+   ]
+  },
+  "objects/cup": {
+   "alt": [
+    "Wooden cup",
+    "Copa de madera"
+   ],
+   "tags": [
+    "communion",
+    "supper"
+   ]
+  },
+  "objects/bread": {
+   "alt": [
+    "Broken loaf of bread",
+    "Pan partido"
+   ],
+   "tags": [
+    "bread",
+    "communion",
+    "provision"
+   ]
+  },
+  "objects/basket-bread-fish": {
+   "alt": [
+    "Basket of bread and fish",
+    "Cesta con panes y peces"
+   ],
+   "tags": [
+    "miracle",
+    "provision"
+   ]
+  },
+  "objects/fish": {
+   "alt": [
+    "Fish",
+    "Pez"
+   ],
+   "tags": [
+    "fishers",
+    "disciples"
+   ]
+  },
+  "objects/clay-jar": {
+   "alt": [
+    "Clay jar with two handles",
+    "Cántaro de barro con dos asas"
+   ],
+   "tags": [
+    "jar",
+    "water"
+   ]
+  },
+  "objects/painted-jar": {
+   "alt": [
+    "Painted clay jar",
+    "Cántaro de barro pintado"
+   ],
+   "tags": [
+    "jar"
+   ]
+  },
+  "objects/oil-jug": {
+   "alt": [
+    "Jug of olive oil",
+    "Jarra de aceite de oliva"
+   ],
+   "tags": [
+    "oil",
+    "anointing"
+   ]
+  },
+  "objects/oil-jar-glass": {
+   "alt": [
+    "Glass jar of olive oil",
+    "Frasco de vidrio con aceite de oliva"
+   ],
+   "tags": [
+    "oil"
+   ]
+  },
+  "objects/shepherd-staff": {
+   "alt": [
+    "Shepherd’s staff",
+    "Cayado de pastor"
+   ],
+   "tags": [
+    "shepherd",
+    "psalm"
+   ]
+  },
+  "objects/sandals": {
+   "alt": [
+    "Leather sandals",
+    "Sandalias de cuero"
+   ],
+   "tags": [
+    "journey",
+    "walk"
+   ]
+  },
+  "objects/arched-door": {
+   "alt": [
+    "Wooden door in a stone arch",
+    "Puerta de madera en un arco de piedra"
+   ],
+   "tags": [
+    "door",
+    "knock"
+   ]
+  },
+  "objects/stone-tablets": {
+   "alt": [
+    "Two stone tablets",
+    "Dos tablas de piedra"
+   ],
+   "tags": [
+    "law",
+    "commandments"
+   ]
+  },
+  "objects/boat": {
+   "alt": [
+    "Wooden fishing boat",
+    "Barca de pesca de madera"
+   ],
+   "tags": [
+    "boat",
+    "galilee"
+   ]
+  },
+  "objects/boat-net": {
+   "alt": [
+    "Fishing boat with a net on the water",
+    "Barca de pesca con una red sobre el agua"
+   ],
+   "tags": [
+    "boat",
+    "fishers"
+   ]
+  },
+  "objects/fishing-net": {
+   "alt": [
+    "Fishing net hung between posts",
+    "Red de pesca colgada entre postes"
+   ],
+   "tags": [
+    "fishers"
+   ]
+  },
+  "objects/coin-pouch": {
+   "alt": [
+    "Pouch of silver coins",
+    "Bolsa con monedas de plata"
+   ],
+   "tags": [
+    "money",
+    "give",
+    "parable"
+   ]
+  },
+  "objects/royal-crown": {
+   "alt": [
+    "Golden royal crown",
+    "Corona real de oro"
+   ],
+   "tags": [
+    "king",
+    "kingdom"
+   ]
+  },
+  "objects/praying-hands": {
+   "alt": [
+    "Praying hands",
+    "Manos en oración"
+   ],
+   "tags": [
+    "prayer"
+   ]
+  },
+  "world/menorah": {
+   "alt": [
+    "Golden lampstand (menorah)",
+    "Candelero de oro (menorá)"
+   ],
+   "tags": [
+    "tabernacle",
+    "temple",
+    "light"
+   ]
+  },
+  "world/ark-of-the-covenant": {
+   "alt": [
+    "The ark of the covenant",
+    "El arca del pacto"
+   ],
+   "tags": [
+    "tabernacle",
+    "covenant"
+   ]
+  },
+  "world/tabernacle": {
+   "alt": [
+    "The tabernacle tent",
+    "El tabernáculo"
+   ],
+   "tags": [
+    "tabernacle",
+    "wilderness"
+   ]
+  },
+  "world/temple": {
+   "alt": [
+    "Stone temple with columns",
+    "Templo de piedra con columnas"
+   ],
+   "tags": [
+    "temple",
+    "jerusalem"
+   ]
+  },
+  "world/burning-bush": {
+   "alt": [
+    "The burning bush",
+    "La zarza ardiente"
+   ],
+   "tags": [
+    "moses",
+    "exodus"
+   ]
+  },
+  "world/manger": {
+   "alt": [
+    "Manger filled with straw",
+    "Pesebre lleno de paja"
+   ],
+   "tags": [
+    "nativity",
+    "christmas"
+   ]
+  },
+  "world/empty-tomb": {
+   "alt": [
+    "Empty tomb with the stone rolled away",
+    "Sepulcro vacío con la piedra removida"
+   ],
+   "tags": [
+    "resurrection",
+    "easter"
+   ]
+  },
+  "world/three-crosses": {
+   "alt": [
+    "Three crosses on a hill",
+    "Tres cruces sobre un monte"
+   ],
+   "tags": [
+    "calvary",
+    "crucifixion"
+   ]
+  },
+  "world/city-walls": {
+   "alt": [
+    "Walled city with a gate",
+    "Ciudad amurallada con una puerta"
+   ],
+   "tags": [
+    "jerusalem",
+    "jericho"
+   ]
+  },
+  "world/hillside-village": {
+   "alt": [
+    "Village on a green hillside",
+    "Aldea en una colina verde"
+   ],
+   "tags": [
+    "bethlehem",
+    "nazareth"
+   ]
+  },
+  "world/nomad-tent": {
+   "alt": [
+    "Striped tent with clay jars",
+    "Tienda a rayas con cántaros"
+   ],
+   "tags": [
+    "abraham",
+    "patriarchs"
+   ]
+  },
+  "world/stone-well": {
+   "alt": [
+    "Stone well with a water jar",
+    "Pozo de piedra con un cántaro"
+   ],
+   "tags": [
+    "well",
+    "water",
+    "samaritan"
+   ]
+  },
+  "world/stream": {
+   "alt": [
+    "Stream flowing over rocks",
+    "Arroyo que corre entre las rocas"
+   ],
+   "tags": [
+    "water",
+    "psalm"
+   ]
+  },
+  "world/lion": {
+   "alt": [
+    "Lion",
+    "León"
+   ],
+   "tags": [
+    "judah",
+    "daniel"
+   ]
+  },
+  "world/lamb": {
+   "alt": [
+    "Lamb resting",
+    "Cordero recostado"
+   ],
+   "tags": [
+    "lamb",
+    "passover"
+   ]
+  },
+  "world/sheep": {
+   "alt": [
+    "Sheep",
+    "Oveja"
+   ],
+   "tags": [
+    "shepherd",
+    "flock"
+   ]
+  },
+  "world/dove": {
+   "alt": [
+    "White dove in flight",
+    "Paloma blanca volando"
+   ],
+   "tags": [
+    "spirit",
+    "peace"
+   ]
+  },
+  "nature/grapes": {
+   "alt": [
+    "Bunch of grapes with leaves",
+    "Racimo de uvas con hojas"
+   ],
+   "tags": [
+    "vine",
+    "fruit"
+   ]
+  },
+  "nature/wheat-sheaf": {
+   "alt": [
+    "Sheaf of wheat",
+    "Gavilla de trigo"
+   ],
+   "tags": [
+    "harvest",
+    "ruth"
+   ]
+  },
+  "nature/wheat-stalks": {
+   "alt": [
+    "Stalks of wheat",
+    "Espigas de trigo"
+   ],
+   "tags": [
+    "harvest"
+   ]
+  },
+  "nature/olive-branch": {
+   "alt": [
+    "Olive branch",
+    "Rama de olivo"
+   ],
+   "tags": [
+    "peace",
+    "olive"
+   ]
+  },
+  "nature/flowering-branch": {
+   "alt": [
+    "Branch with white blossoms",
+    "Rama con flores blancas"
+   ],
+   "tags": [
+    "spring"
+   ]
+  },
+  "nature/lily": {
+   "alt": [
+    "White lily",
+    "Lirio blanco"
+   ],
+   "tags": [
+    "lilies",
+    "of",
+    "the",
+    "field"
+   ]
+  },
+  "nature/lavender": {
+   "alt": [
+    "Lavender",
+    "Lavanda"
+   ],
+   "tags": [
+    "field"
+   ]
+  },
+  "nature/red-flower": {
+   "alt": [
+    "Red flower",
+    "Flor roja"
+   ],
+   "tags": [
+    "field"
+   ]
+  },
+  "nature/wildflowers": {
+   "alt": [
+    "Yellow wildflowers",
+    "Flores silvestres amarillas"
+   ],
+   "tags": [
+    "field"
+   ]
+  },
+  "nature/pomegranate": {
+   "alt": [
+    "Open pomegranate",
+    "Granada abierta"
+   ],
+   "tags": [
+    "fruit"
+   ]
+  },
+  "nature/figs": {
+   "alt": [
+    "Figs",
+    "Higos"
+   ],
+   "tags": [
+    "fruit"
+   ]
+  },
+  "nature/dates": {
+   "alt": [
+    "Dates",
+    "Dátiles"
+   ],
+   "tags": [
+    "fruit"
+   ]
+  },
+  "nature/olive-tree": {
+   "alt": [
+    "Olive tree",
+    "Olivo"
+   ],
+   "tags": [
+    "tree"
+   ]
+  },
+  "nature/pomegranate-tree": {
+   "alt": [
+    "Pomegranate tree",
+    "Granado"
+   ],
+   "tags": [
+    "tree",
+    "fruit"
+   ]
+  },
+  "nature/rocks": {
+   "alt": [
+    "Rocks and grass",
+    "Rocas y hierba"
+   ],
+   "tags": [
+    "rock"
+   ]
+  },
+  "nature/cross-on-hill": {
+   "alt": [
+    "Wooden cross on a grassy hill",
+    "Cruz de madera en una colina"
+   ],
+   "tags": [
+    "cross"
+   ]
+  },
+  "badges/sunrise": {
+   "alt": [
+    "Sunrise over hills",
+    "Amanecer sobre las colinas"
+   ],
+   "tags": [
+    "morning"
+   ]
+  },
+  "badges/night-sky": {
+   "alt": [
+    "Crescent moon in a starry sky",
+    "Luna creciente en un cielo estrellado"
+   ],
+   "tags": [
+    "night"
+   ]
+  },
+  "badges/desert": {
+   "alt": [
+    "Desert dunes",
+    "Dunas del desierto"
+   ],
+   "tags": [
+    "wilderness"
+   ]
+  },
+  "badges/river-valley": {
+   "alt": [
+    "River through a green valley",
+    "Río en un valle verde"
+   ],
+   "tags": [
+    "water"
+   ]
+  },
+  "badges/sea-waves": {
+   "alt": [
+    "Waves on the sea",
+    "Olas del mar"
+   ],
+   "tags": [
+    "sea",
+    "storm"
+   ]
+  },
+  "badges/mountain": {
+   "alt": [
+    "Rocky mountain",
+    "Monte rocoso"
+   ],
+   "tags": [
+    "mountain"
+   ]
+  },
+  "badges/tree": {
+   "alt": [
+    "Tree in a field",
+    "Árbol en el campo"
+   ],
+   "tags": [
+    "tree"
+   ]
+  },
+  "badges/village": {
+   "alt": [
+    "Stone village",
+    "Aldea de piedra"
+   ],
+   "tags": [
+    "town"
+   ]
+  },
+  "scenes/sunrise-hills": {
+   "alt": [
+    "Sunrise over hills and a village beside an olive tree",
+    "Amanecer sobre colinas y una aldea junto a un olivo"
+   ],
+   "tags": [
+    "landscape"
+   ]
+  },
+  "scenes/desert-path": {
+   "alt": [
+    "Rocky path through desert hills",
+    "Sendero rocoso entre colinas del desierto"
+   ],
+   "tags": [
+    "wilderness",
+    "journey"
+   ]
+  },
+  "scenes/stone-courtyard": {
+   "alt": [
+    "Stone courtyard with an olive tree",
+    "Patio de piedra con un olivo"
+   ],
+   "tags": [
+    "house"
+   ]
+  },
+  "scenes/galilee-shore": {
+   "alt": [
+    "Fishing boat on the shore of Galilee",
+    "Barca de pesca en la orilla de Galilea"
+   ],
+   "tags": [
+    "galilee",
+    "fishers"
+   ]
+  },
+  "scenes/shepherd-night": {
+   "alt": [
+    "Shepherd watching his sheep under the stars",
+    "Pastor cuidando sus ovejas bajo las estrellas"
+   ],
+   "tags": [
+    "shepherd",
+    "night"
+   ]
+  },
+  "scenes/praying-window": {
+   "alt": [
+    "Man praying by a window",
+    "Hombre orando junto a una ventana"
+   ],
+   "tags": [
+    "prayer"
+   ]
+  },
+  "scenes/bread-cup-olives": {
+   "alt": [
+    "Bread, a cup and olives on a cloth",
+    "Pan, una copa y aceitunas sobre un paño"
+   ],
+   "tags": [
+    "supper"
+   ]
+  },
+  "scenes/prayer-lamplight": {
+   "alt": [
+    "Man praying by lamplight",
+    "Hombre orando a la luz de una lámpara"
+   ],
+   "tags": [
+    "prayer",
+    "night"
+   ]
+  },
+  "scenes/desert-traveler": {
+   "alt": [
+    "Traveler with a staff on a desert road",
+    "Viajero con cayado en un camino del desierto"
+   ],
+   "tags": [
+    "journey"
+   ]
+  },
+  "scenes/garden-steps": {
+   "alt": [
+    "Stone steps through a blossoming garden",
+    "Escalones de piedra en un jardín florido"
+   ],
+   "tags": [
+    "garden"
+   ]
+  },
+  "scenes/sunrise-ruins": {
+   "alt": [
+    "Sunrise over an ancient city",
+    "Amanecer sobre una ciudad antigua"
+   ],
+   "tags": [
+    "morning"
+   ]
+  },
+  "banners/galilee": {
+   "alt": [
+    "Sea of Galilee with a boat and village",
+    "El mar de Galilea con una barca y una aldea"
+   ],
+   "tags": [
+    "galilee"
+   ]
+  },
+  "banners/shepherd-hills": {
+   "alt": [
+    "Shepherd resting with his sheep on the hills",
+    "Pastor descansando con sus ovejas en las colinas"
+   ],
+   "tags": [
+    "shepherd",
+    "psalm"
+   ]
+  },
+  "banners/reading-hills": {
+   "alt": [
+    "Man reading Scripture under an olive tree above Jerusalem",
+    "Hombre leyendo las Escrituras bajo un olivo sobre Jerusalén"
+   ],
+   "tags": [
+    "reading",
+    "bible"
+   ]
+  },
+  "banners/sunrise-path": {
+   "alt": [
+    "Path beside a stone wall toward the sunrise",
+    "Camino junto a un muro de piedra hacia el amanecer"
+   ],
+   "tags": [
+    "journey"
+   ]
+  },
+  "banners/galilee-sail": {
+   "alt": [
+    "Sailboat on a calm sea at sunrise",
+    "Barca de vela en un mar en calma al amanecer"
+   ],
+   "tags": [
+    "galilee"
+   ]
+  },
+  "banners/desert-hills": {
+   "alt": [
+    "Desert hills at dawn",
+    "Colinas del desierto al amanecer"
+   ],
+   "tags": [
+    "wilderness"
+   ]
+  }
+ }
+}

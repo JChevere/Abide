@@ -1,0 +1,212 @@
+[
+  {
+    "path": "original-sheets/01-biblical-symbols.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha": true
+  },
+  {
+    "path": "original-sheets/02-biblical-world.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha": true
+  },
+  {
+    "path": "original-sheets/03-sacred-objects.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha": true
+  },
+  {
+    "path": "original-sheets/04-landscapes-and-devotion.png",
+    "size": [
+      1672,
+      941
+    ],
+    "alpha": true
+  },
+  {
+    "path": "individual-previews/sunrise-village.png",
+    "size": [
+      820,
+      280
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/desert-trail.png",
+    "size": [
+      848,
+      280
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/galilee-boat.png",
+    "size": [
+      820,
+      287
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/stone-courtyard.png",
+    "size": [
+      848,
+      287
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/shepherd-night.png",
+    "size": [
+      475,
+      371
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/praying-man.png",
+    "size": [
+      367,
+      371
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/bread-and-cup.png",
+    "size": [
+      418,
+      371
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/pomegranate-tree.png",
+    "size": [
+      412,
+      371
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "original-sheets/05-prayer-and-journey.png",
+    "size": [
+      1672,
+      941
+    ],
+    "alpha": true
+  },
+  {
+    "path": "individual-previews/galilee-banner.png",
+    "size": [
+      1100,
+      260
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/shepherd-banner.png",
+    "size": [
+      1100,
+      215
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/reading-banner.png",
+    "size": [
+      1100,
+      225
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/prayer-lamp.png",
+    "size": [
+      572,
+      235
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/desert-traveler.png",
+    "size": [
+      572,
+      245
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/garden-path.png",
+    "size": [
+      572,
+      230
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/cross.png",
+    "size": [
+      340,
+      241
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/sunrise-ruins.png",
+    "size": [
+      620,
+      241
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/olive-branch.png",
+    "size": [
+      340,
+      231
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "individual-previews/lilies.png",
+    "size": [
+      372,
+      231
+    ],
+    "alpha": true,
+    "status": "manual crop; inspect edges before production"
+  },
+  {
+    "path": "original-sheets/06-botanical-and-banners.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha": true
+  }
+]
