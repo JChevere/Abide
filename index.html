@@ -1905,10 +1905,10 @@ function vHelp(){
   '<section class="card stack gap10"><h2 class="h2">Tell someone you trust</h2><p style="font-size:15px;line-height:1.55">A friend, family member, pastor or counselor. You can simply say: “I’m not okay and I need you to check on me.”</p>'+
    '<a class="btn btn-ghost sm" style="align-self:flex-start" href="sms:?&body='+encodeURIComponent('I’m not okay and I need you to check on me.')+'">Write a text</a></section>'+
   '<section class="card stack gap10"><h2 class="h2">Getting help is biblical</h2><p style="font-size:15px;line-height:1.55">God often heals through people: doctors, counselors and church family. Luke, who wrote two books of the Bible, was a physician who traveled with Paul.</p>'+
-   '<p class="serif" style="font-style:italic;font-size:18px;line-height:1.45">“Where no counsel is, the people fall: but in the multitude of counsellors there is safety.”</p><span class="small" style="font-weight:700;color:var(--accent)">Proverbs 11:14 (KJV)</span></section>'+
+   '<p class="serif" style="font-style:italic;font-size:18px;line-height:1.45">“'+esc(asvPair('Where no counsel is, the people fall: but in the multitude of counsellors there is safety.','Proverbs 11:14','KJV')[0])+'”</p><span class="small" style="font-weight:700;color:var(--accent)">Proverbs 11:14 ('+asvPair('Where no counsel is, the people fall: but in the multitude of counsellors there is safety.','Proverbs 11:14','KJV')[1]+')</span></section>'+
   '<section class="p stack gap10" style="padding:18px;border-radius:24px;background:#DCE5CB"><h2 class="h2">For right now</h2>'+
    '<p style="font-size:15px;line-height:1.55">Breathe slowly. Name 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, 1 you can taste. Then pray one sentence: “Lord, be near me.”</p>'+
-   '<p class="serif" style="font-style:italic;font-size:18px;line-height:1.45">“The LORD is nigh unto them that are of a broken heart.”</p><span class="small" style="font-weight:700;color:#3F4F26">Psalm 34:18 (KJV)</span>'+
+   '<p class="serif" style="font-style:italic;font-size:18px;line-height:1.45">“'+esc(asvPair('The LORD is nigh unto them that are of a broken heart.','Psalm 34:18','KJV')[0])+'”</p><span class="small" style="font-weight:700;color:#3F4F26">Psalm 34:18 ('+asvPair('The LORD is nigh unto them that are of a broken heart.','Psalm 34:18','KJV')[1]+')</span>'+
    '<div class="row gap8" style="flex-wrap:wrap"><button class="btn sm" style="background:#3F4F26;color:#FBF6EF" data-a="go" data-to="bdetail" data-id="still">Breathe with me</button><button class="btn sm" style="background:transparent;border:1.5px solid rgba(31,36,24,.3);color:#1F2418" data-a="go" data-to="step" data-id="h1">Read Elijah’s story</button><button class="btn sm" style="background:transparent;border:1.5px solid rgba(31,36,24,.3);color:#1F2418" data-a="go" data-to="sick">Hope in sickness</button></div></section>'+
   '<p class="small muted" style="line-height:1.5">Abide offers Scripture and encouragement. It isn’t a crisis service or a replacement for medical or mental health care.</p></div>';
 }
@@ -4972,7 +4972,7 @@ function vTHungry(){
   '<div class="stack gap8"><h1 class="h1">Hungry or <b>hurting?</b></h1><p class="muted" style="font-size:15px;line-height:1.55">Before you eat, take one minute with God. There’s no shame here; this is about noticing what you really need.</p></div>'+
   '<section class="card stack gap10"><h2 class="h2">1. Pause and breathe</h2><p style="font-size:15.5px;line-height:1.55">Take three slow breaths. Breathe in “Jesus,” breathe out “You satisfy me.”</p><button class="btn btn-ghost sm" style="align-self:flex-start" data-a="go" data-to="bdetail" data-id="give">Breathe for 3 minutes</button></section>'+
   '<section class="card stack gap10"><h2 class="h2">2. Ask: what am I feeling?</h2><div class="grid2">'+[['Hungry','Real hunger builds slowly and any healthy food would do.'],['Stressed or angry','Food is a quick comfort when life feels heavy.'],['Lonely or sad','Food can feel like company.'],['Tired or bored','Low energy often looks like a craving.']].map(function(x){return '<div class="p" style="padding:12px;border-radius:18px;background:var(--chip)"><b style="display:block">'+esc(T(x[0]))+'</b><span class="small" style="line-height:1.45">'+esc(T(x[1]))+'</span></div>';}).join('')+'</div></section>'+
-  '<section class="card stack gap10"><h2 class="h2">3. Bring it to Jesus</h2><p class="serif" style="font-size:18px;line-height:1.45">“I am the bread of life: he that cometh to me shall never hunger; and he that believeth on me shall never thirst.”</p><span class="small" style="font-weight:700;color:var(--accent)">John 6:35 (KJV)</span><p style="font-size:15.5px;line-height:1.55">Tell Him honestly what you feel. If it’s hunger, eat with thanks and enjoy it. If it’s something else, ask Him for what you really need: rest, a friend, comfort, or a break.</p></section>'+
+  '<section class="card stack gap10"><h2 class="h2">3. Bring it to Jesus</h2><p class="serif" style="font-size:18px;line-height:1.45">“'+esc(asvPair('I am the bread of life: he that cometh to me shall never hunger; and he that believeth on me shall never thirst.','John 6:35','KJV')[0])+'”</p><span class="small" style="font-weight:700;color:var(--accent)">John 6:35 ('+asvPair('I am the bread of life: he that cometh to me shall never hunger; and he that believeth on me shall never thirst.','John 6:35','KJV')[1]+')</span><p style="font-size:15.5px;line-height:1.55">Tell Him honestly what you feel. If it’s hunger, eat with thanks and enjoy it. If it’s something else, ask Him for what you really need: rest, a friend, comfort, or a break.</p></section>'+
   '<section class="card stack gap10"><h2 class="h2">4. Choose your next step</h2><div class="stack gap8">'+
    '<button class="sess" data-a="go" data-to="write"><span class="badge p" style="background:#F4E3A6">'+ic(I.pen,{c:'#1F2418'})+'</span><span style="flex:1;font-weight:600">Write it to God in your journal</span>'+ic(I.chev,{s:18,w:2})+'</button>'+
    '<button class="sess" data-a="go" data-to="chat"><span class="badge p" style="background:#CFE3DA">'+ic(I.book,{c:'#1F2418'})+'</span><span style="flex:1;font-weight:600">Find a verse for what I feel</span>'+ic(I.chev,{s:18,w:2})+'</button>'+
@@ -4984,7 +4984,7 @@ function vTFast(){
   return '<div class="stack gap18">'+
   '<div class="row between"><button class="icon-btn flat" data-a="go" data-to="temple" aria-label="Back">'+ic(I.back,{w:2})+'</button><span></span></div>'+
   '<div class="stack gap8"><h1 class="h1">Biblical <b>fasting</b></h1><p class="muted" style="font-size:15px;line-height:1.55">In the Bible, fasting is setting food aside for a time to seek God, not a way to lose weight or punish the body.</p></div>'+
-  '<section class="card stack gap10"><h2 class="h2">Jesus expected it</h2><p class="serif" style="font-size:18px;line-height:1.45">“Moreover when ye fast, be not, as the hypocrites, of a sad countenance:”</p><span class="small" style="font-weight:700;color:var(--accent)">Matthew 6:16 (KJV)</span><p style="font-size:15.5px;line-height:1.55">Jesus said “when ye fast,” not “if.” He taught that it should be quiet, humble and focused on the Father.</p><button class="btn btn-ghost sm" style="align-self:flex-start" data-a="openCh" data-b="MAT" data-c="6">Read Matthew 6</button></section>'+
+  '<section class="card stack gap10"><h2 class="h2">Jesus expected it</h2><p class="serif" style="font-size:18px;line-height:1.45">“'+esc(asvPair('Moreover when ye fast, be not, as the hypocrites, of a sad countenance:','Matthew 6:16','KJV')[0])+'”</p><span class="small" style="font-weight:700;color:var(--accent)">Matthew 6:16 ('+asvPair('Moreover when ye fast, be not, as the hypocrites, of a sad countenance:','Matthew 6:16','KJV')[1]+')</span><p style="font-size:15.5px;line-height:1.55">Jesus said “when ye fast,” not “if.” He taught that it should be quiet, humble and focused on the Father.</p><button class="btn btn-ghost sm" style="align-self:flex-start" data-a="openCh" data-b="MAT" data-c="6">Read Matthew 6</button></section>'+
   '<section class="card stack gap10"><h2 class="h2">Gentle ways to begin</h2>'+[['Skip one meal','Use that time to read Scripture and pray.'],['A Daniel fast','Like Daniel 1, eat simple food such as vegetables and water for a few days.'],['Fast from one thing','Set aside sweets, soda, coffee or social media for a set time.'],['Sunrise to sunset','Only if you’re healthy and your doctor agrees.']].map(function(x){return '<div class="stack" style="gap:2px"><b>'+esc(T(x[0]))+'</b><span class="small muted" style="line-height:1.5">'+esc(T(x[1]))+'</span></div>';}).join('')+'</section>'+
   '<section class="card stack gap8" style="box-shadow:inset 0 0 0 1.5px #E2B23A,var(--sh)"><h2 class="h2">Safety first</h2><p style="font-size:15px;line-height:1.55">Don’t fast from food without your doctor’s okay if you are pregnant or nursing, have diabetes or another medical condition, take medicine that needs food, are under 18, or have ever struggled with an eating disorder. Fasting from something other than food is a great choice instead. Always keep drinking water.</p></section>'+
   '<section class="hero p" style="background:#C9CCF4;text-align:left">'+bokeh('j')+'<h2 class="h2">A prayer to begin a fast</h2><p class="serif mt8" style="font-size:18px;line-height:1.55">Lord, I set this aside to seek You. When I feel hungry, remind me that You are what I need most. Speak to me, change me, and draw me close. In Jesus’ name, Amen.</p></section></div>';
@@ -5086,7 +5086,7 @@ function vFruit(){
      '<button class="btn btn-ghost sm" style="align-self:flex-start" data-a="fFocus" data-id="'+f.id+'">'+(FR().focus===f.id?'This is my focus fruit':'Make this my focus fruit')+'</button></section>';
   } else {
     var steps=[['m','Morning surrender','Before your day starts, pray: “Holy Spirit, fill me with '+f.n.toLowerCase()+' today.”'],['d','Midday check-in','Pause and ask: “Have I shown '+f.n.toLowerCase()+' so far? Where do I need Your help this afternoon?”'],['e','Evening review','Look back with the Spirit: where did '+f.n.toLowerCase()+' grow today, and where did you miss it? Thank Him and receive His grace.']];
-    body='<section class="p stack gap10" style="padding:18px;border-radius:26px;background:#DCE5CB"><span class="small pm" style="font-weight:700">Walk in the Spirit</span><p class="serif" style="font-style:italic;font-size:18px;line-height:1.45">“This I say then, Walk in the Spirit, and ye shall not fulfil the lust of the flesh.”</p><span class="small" style="font-weight:700;color:#3F4F26">Galatians 5:16 (KJV)</span></section>'+
+    body='<section class="p stack gap10" style="padding:18px;border-radius:26px;background:#DCE5CB"><span class="small pm" style="font-weight:700">Walk in the Spirit</span><p class="serif" style="font-style:italic;font-size:18px;line-height:1.45">“'+esc(asvPair('This I say then, Walk in the Spirit, and ye shall not fulfil the lust of the flesh.','Galatians 5:16','KJV')[0])+'”</p><span class="small" style="font-weight:700;color:#3F4F26">Galatians 5:16 ('+asvPair('This I say then, Walk in the Spirit, and ye shall not fulfil the lust of the flesh.','Galatians 5:16','KJV')[1]+')</span></section>'+
     '<p class="muted" style="font-size:15px;line-height:1.5">Three moments with the Holy Spirit today, focused on '+esc(T(f.n).toLowerCase())+'.</p>'+
     steps.map(function(s){var on=!!wt[s[0]];return '<button class="card row gap10" data-a="fWalk" data-id="'+f.id+'" data-k="'+s[0]+'" aria-pressed="'+on+'" style="width:100%;text-align:left;align-items:flex-start;'+(on?'box-shadow:0 0 0 2px var(--accent),var(--sh)':'')+'"><span style="width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;border:2px solid var(--accent);background:'+(on?'var(--accent)':'transparent')+';color:var(--on-accent)">'+(on?ic('<path d="M5 12l5 5 9-10"/>',{s:16,w:3}):'')+'</span><span class="stack" style="gap:4px;flex:1"><span style="font-weight:700">'+esc(T(s[1]))+'</span><span style="font-size:14.5px;line-height:1.5;color:var(--muted)">'+esc(s[2])+'</span></span></button>';}).join('')+
     '<section class="card stack gap10"><label class="h2" for="frefl">Reflect</label><p class="serif" style="font-size:18px;line-height:1.4">Where did you see '+esc(T(f.n).toLowerCase())+' grow in you today, or where did you need it most?</p><textarea id="frefl" class="field" style="min-height:100px" placeholder="Write freely. It saves to your journal."></textarea><button class="btn btn-ghost sm" style="align-self:flex-start" data-a="fRefl" data-id="'+f.id+'">Save to journal</button></section>'+
@@ -5492,7 +5492,7 @@ function vSick(){
   var k=SK(),td=k.thanks[today()],dt=k.day[today()],tab=UI.sktab||'today';
   var tabs=[['today','Today'],['truth','God’s truth'],['stories','Stories'],['pray','Prayers']],body='';
   if(tab==='today'){
-    body='<section class="p stack gap10" style="padding:18px;border-radius:26px;background:#F4E3A6;text-align:center"><span class="small pm" style="font-weight:700">'+T('Another day, another gift')+'</span><p class="serif" style="font-size:20px;line-height:1.4;font-style:italic">“This is the day which the LORD hath made; we will rejoice and be glad in it.”</p><span class="small" style="font-weight:700;color:#5C4A12">Psalm 118:24 (KJV)</span>'+
+    body='<section class="p stack gap10" style="padding:18px;border-radius:26px;background:#F4E3A6;text-align:center"><span class="small pm" style="font-weight:700">'+T('Another day, another gift')+'</span><p class="serif" style="font-size:20px;line-height:1.4;font-style:italic">“'+esc(asvPair('This is the day which the LORD hath made; we will rejoice and be glad in it.','Psalm 118:24','KJV')[0])+'”</p><span class="small" style="font-weight:700;color:#5C4A12">Psalm 118:24 ('+asvPair('This is the day which the LORD hath made; we will rejoice and be glad in it.','Psalm 118:24','KJV')[1]+')</span>'+
      (td?'<p style="font-weight:700;margin-top:4px">'+T('You thanked God for today.')+'</p>'+(td.length?'<div class="stack gap4" style="text-align:left">'+td.map(function(x){return '<span style="font-size:14.5px" data-notr>• '+esc(x)+'</span>';}).join('')+'</div>':''):
      '<input id="skg1" class="field" style="height:46px" placeholder="'+esc(T('One thing I’m thankful for today'))+'"><input id="skg2" class="field" style="height:46px" placeholder="'+esc(T('Another gift from God (optional)'))+'"><button class="btn wide" style="background:#3F4F26;color:#FBF6EF" data-a="skThank">'+T('Thank You, Lord, for this day')+'</button>')+
      '<span class="small pm">'+thankDays()+' '+T(thankDays()===1?'day of thanks':'days of thanks')+'</span></section>'+
@@ -5888,7 +5888,7 @@ function spEnd(){var P=UI.sp,counts={};P.grown.forEach(function(id){counts[id]=(
   return '<div class="stack gap18">'+
   '<div class="p" style="border-radius:32px;padding:24px 18px;background:linear-gradient(170deg,#EEF2E3,#F4E3A6);text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px">'+spTree(P.grown,190)+
    '<span class="serif" style="font-size:28px;font-weight:800">'+T('You walked in the Spirit')+'</span><span style="font-size:15px">'+P.first+' / '+P.stops.length+' '+T('first-choice Spirit steps')+' · '+P.grown.length+' '+T('fruits grown')+'</span>'+
-   '<p class="serif" style="font-style:italic;font-size:17px;line-height:1.45;margin-top:6px">“If we live in the Spirit, let us also walk in the Spirit.”</p><span class="small" style="font-weight:700">Galatians 5:25 (KJV)</span></div>'+
+   '<p class="serif" style="font-style:italic;font-size:17px;line-height:1.45;margin-top:6px">“'+esc(asvPair('If we live in the Spirit, let us also walk in the Spirit.','Galatians 5:25','KJV')[0])+'”</p><span class="small" style="font-weight:700">Galatians 5:25 ('+asvPair('If we live in the Spirit, let us also walk in the Spirit.','Galatians 5:25','KJV')[1]+')</span></div>'+
   (ids.length?'<section class="card stack gap10"><h2 class="h2">'+T('Carry one fruit into today')+'</h2><p class="small muted">'+T('Choose the fruit you most want the Spirit to grow in you today.')+'</p>'+ids.map(function(id){var f=fruit(id),on=FR().focus===id;return '<button class="row gap10" data-a="spCarry" data-id="'+id+'" style="width:100%;text-align:left;border:1.5px solid '+(on?'var(--accent)':'var(--line)')+';background:'+(on?'var(--sage)':'transparent')+';border-radius:16px;padding:10px 12px;color:var(--ink)"><span class="badge p" style="width:40px;height:40px;background:'+f.bg+';color:#1F2418;flex:none">'+motif(f.art,36)+'</span><span style="flex:1;font-weight:700">'+esc(T(f.n))+'</span>'+(on?'<span class="small" style="font-weight:700;color:var(--accent)">'+T('Carrying today')+'</span>':'')+'</button>';}).join('')+'</section>':'')+
   '<section class="hero p" style="background:#DCE5CB;text-align:left">'+bokeh('j')+'<h2 class="h2">'+T('Pray')+'</h2><p class="serif mt8" style="font-size:18px;line-height:1.55">'+T('Holy Spirit, walk with me through every moment of this day. When the flesh pulls, lead me Your way. Grow Your fruit in me. Amen.')+'</p></section>'+
   '<p class="muted" style="text-align:center;font-size:15px">'+T(P.daily?'A new path with new moments opens tomorrow.':'Walk again for a different path.')+'</p>'+
@@ -7791,7 +7791,7 @@ function modern(t){return t.replace(/\b([A-Za-z]+)\b/g,function(w){var lw=w.toLo
   if(!r&&lw.length>5&&/eth$/.test(lw)){var b=lw.slice(0,-3);r=/(s|sh|ch|x|z|o)$/.test(b)?b+'es':(/^[^aeiou]*[aeiou][^aeiouwy]$/.test(b)&&b.length<=5?b+'es':b+'s');}
   if(!r&&lw.length>5&&/est$/.test(lw)&&!/(best|rest|test|west|nest|least|feast|beast|priest|harvest|forest|honest|east|guest|chest|breast|interest|request|modest|earnest|dearest|highest|greatest|oldest|youngest|manifest)$/.test(lw)){var b2=lw.slice(0,-3);r=(/^[^aeiou]*[aeiou][^aeiouwy]$/.test(b2)&&b2.length<=5)?b2+'e':b2;}
   if(!r)return w;if(w[0]===w[0].toUpperCase())r=r.charAt(0).toUpperCase()+r.slice(1);return r;});}
-(function(){var _vc=verseCard;verseCard=function(text,ref,tr,b,c){var h=_vc(text,ref,tr,b,c);if(AGE()==='adult'||!/KJV/.test(tr||'KJV'))return h;var m=modern(text);if(m===text)return h;
+(function(){var _vc=verseCard;verseCard=function(text,ref,tr,b,c){var h=_vc(text,ref,tr,b,c);if(AGE()==='adult'||!/KJV|ASV/.test(tr||'KJV'))return h;var m=modern(text);if(m===text)return h;
   var add='<div class="vsimple'+(AGE()==='kid'?' open':'')+'"><button class="vsbtn" data-a="vsTog">'+T(AGE()==='kid'?'In everyday words':'Say it in modern words')+'</button><p style="font-size:16px;line-height:1.45;font-family:DM Sans,DMSansFallback,system-ui,sans-serif">'+esc(m)+'</p><span class="small" style="opacity:.75">'+T('Simplified wording to help understanding, not a Bible translation.')+'</span></div>';
   var k=h.lastIndexOf('<svg class="vleaf"');return k>=0?h.slice(0,k)+add+h.slice(k):h+add;};})();
 A.vsTog=function(t){var p=t.parentNode;p.classList.toggle('open');};
@@ -10394,7 +10394,7 @@ function ashuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=arnd(i+1),t=a[
 function pick(a){return a[arnd(a.length)];}
 function bkN(b){return T(bookName(b)[1]);}
 function bIntro(b){return (LANG()==='es'&&BINTRO_ES[b])||BINTRO[b];}
-function vtext(b,c,v){var K=LANG()==='es'?RVB():KJV();try{return (K[b][c-1][v-1]||'').trim();}catch(e){return '';}}
+function vtext(b,c,v){if(LANG()!=='es'){try{return (KJ(b,c,v)||'').trim();}catch(e){return '';}}var K=RVB();try{return (K[b][c-1][v-1]||'').trim();}catch(e){return '';}}
 function bkCat(b){var r=null;BCATS.forEach(function(c){if(c.books.indexOf(b)>=0)r=c;});return r;}
 function mc(q,right,wrongs,explain){var o=ashuf([right].concat(ashuf(wrongs).slice(0,3)));return {kind:'mc',q:q,opts:o,a:o.indexOf(right),ex:explain||''};}
 var ARC_GEN={
@@ -19874,7 +19874,7 @@ function card(){var p=today_();if(!p)return '';var t=TH[p[3]],tx=text(p);if(!tx)
 window.promiseDayCard=card;
 A.promSave=function(){var p=today_();if(!p)return;var B=S.bible;if(!B.saved)B.saved=[];var k=savedKey(p[0],p[1],p[2]);
   if(saved(p)){B.saved=B.saved.filter(function(s){return s.k!==k;});toast(T('Removed from Saved'));}
-  else{B.saved.push({k:k,b:p[0],c:p[1],n:p[2],t:text(p),tr:es()?'RVR':'KJV',ref:ref(p),ts:Date.now()});PR().saves=(PR().saves||0)+1;toast('★ '+T('Saved'));}save();render();};
+  else{B.saved.push({k:k,b:p[0],c:p[1],n:p[2],t:text(p),tr:es()?'RVR':enTr(),ref:ref(p),ts:Date.now()});PR().saves=(PR().saves||0)+1;toast('★ '+T('Saved'));}save();render();};
 function daysRead(){return Object.keys(PR()).filter(function(k){return k!=='saves';}).length;}
 var _vh=vHome;vHome=function(){var h=_vh.apply(this,arguments);try{if(h.indexOf('id="promday"')<0){var hc='';try{hc=heartCard();}catch(e){AB.err(e)}var i=hc?h.indexOf(hc):-1;
   if(i>=0)h=h.slice(0,i+hc.length)+card()+h.slice(i+hc.length);else{var j=h.indexOf('</section>');if(j>=0)h=h.slice(0,j+10)+card()+h.slice(j+10);}}}catch(e){AB.err(e,'promday');}return h;};
@@ -24903,7 +24903,7 @@ function bname(b){try{return T(bookName(b)[1]);}catch(e){return b;}}
 function ref(p){return bname(p[0])+' '+p[1]+':'+p[2]+(p[3]&&p[3]!==p[2]?'–'+p[3]:'');}
 function vtxt(b,c,v){try{return es()&&typeof RVJ==='function'?RVJ(b,c,v):KJ(b,c,v);}catch(e){return '';}}
 function passage(p,small){var o='';for(var v=p[2];v<=(p[3]||p[2]);v++){var t=vtxt(p[0],p[1],v);if(t)o+='<span class="lp-vs"><sup>'+v+'</sup>'+esc(t)+' </span>';}
-  return '<figure class="lp-pass'+(small?' sm':'')+'"><figcaption><b>'+esc(ref(p))+'</b><span>'+(es()?'RV 1909':'KJV')+'</span></figcaption><blockquote>'+o+'</blockquote><button class="lp-ctx" data-a="openCh" data-b="'+p[0]+'" data-c="'+p[1]+'">'+T('Read the whole chapter')+' →</button></figure>';}
+  return '<figure class="lp-pass'+(small?' sm':'')+'"><figcaption><b>'+esc(ref(p))+'</b><span>'+(es()?'RV 1909':enTr())+'</span></figcaption><blockquote>'+o+'</blockquote><button class="lp-ctx" data-a="openCh" data-b="'+p[0]+'" data-c="'+p[1]+'">'+T('Read the whole chapter')+' →</button></figure>';}
 function item(k,id){return (window.teachItems?teachItems(k):[]).filter(function(x){return x.id===id;})[0];}
 window.lessonCard=function(k,it,i,open){var d=TLD[k][it.id],col=teachCol(k),read=!!TR()[k+':'+it.id];
   if(open)return '<article class="tc tc-feat lc-feat" style="--tc:'+col+'"><div class="lc-in"><span class="tc-lbl">'+T('The big idea')+'</span><b class="lc-t serif">'+esc(it.t)+'</b><p>'+esc(L(d.big))+'</p><div class="lc-meta">'+d.sec.length+' '+T('sections')+' · '+d.sec.map(function(s){return esc(ref(s.p));}).slice(0,2).join(', ')+'…</div><button class="btn lc-go" data-a="tcOpenL" data-k="'+k+'" data-id="'+esc(it.id)+'">'+T('Start the lesson')+' →</button></div></article>';
@@ -26797,7 +26797,7 @@ A.abCopy=function(){var rep='Abide report '+new Date().toISOString()+'\n'+naviga
 (function(){
 var _ASV=null,_ASVP=null;
 function asvLoad(){if(_ASV)return Promise.resolve(_ASV);if(_ASVP)return _ASVP;
- try{var el=document.getElementById('asvdata');if(el){var J=JSON.parse(el.textContent);if(el.getAttribute('data-f')==='kjvdiff'){var K=KJV();Object.keys(J).forEach(function(b){J[b]=J[b].map(function(ch,ci){var kc=(K[b]||[])[ci]||[];return ch.map(function(e,vi){var kv=kc[vi]||'';if(e===0)return kv;if(typeof e!=='string')return e;var t=e.split(' '),hit=false;for(var i=0;i<t.length;i++){var c0=t[i].charAt(0);if((c0==='{'||c0==='}')&&/^\d+$/.test(t[i].slice(1))){hit=true;break;}}if(!hit)return e;var kw=kv.split(' '),ki=0,out=[];t.forEach(function(x){var c=x.charAt(0),n=x.slice(1);if(c==='{'&&/^\d+$/.test(n)){n=+n;for(var j=0;j<n;j++)out.push(kw[ki+j]);ki+=n;}else if(c==='}'&&/^\d+$/.test(n))ki+=+n;else out.push(x);});return out.join(' ');});});});}_ASV=J;return Promise.resolve(_ASV);}}catch(e){AB.err(e)}
+ try{var AJ0=ASVB();if(AJ0){_ASV=AJ0;return Promise.resolve(_ASV);}}catch(e){AB.err(e)}
  _ASVP=fetch('asv.json').then(function(r){if(!r.ok)throw new Error('asv '+r.status);return r.json();}).then(function(j){_ASV=j;return j;}).catch(function(e){_ASVP=null;throw e;});return _ASVP;}
 window.asvLoad=asvLoad;
 window.ASVJ=function(b,c,v){var B=_ASV&&_ASV[b];return B&&B[c-1]&&B[c-1][v-1]||'';};
@@ -26920,9 +26920,42 @@ sndStart=function(id){id=SNDMAP[id]||id;if(!SNDFILES[id])return;var Ctx=window.A
   x.out={gain:{value:0,setTargetAtTime:function(val){el.volume=Math.min(1,val);},cancelScheduledValues:function(){},setValueAtTime:function(){},linearRampToValueAtTime:function(){el.pause();}},disconnect:function(){el.pause();}};});};
 Object.assign(ES,{'Rain':'Lluvia','A gentle downpour':'Un aguacero suave','River':'Río','A river flowing through a winter forest':'Un río que fluye por un bosque en invierno','Fireplace':'Chimenea','A cozy, crackling fire':'Un fuego acogedor y crepitante','Volumen: River':'Volumen: Río','Volume: River':'Volumen: Río','Could not load this sound':'No se pudo cargar este sonido','3 sounds':'3 sonidos'});
 
+/* ---------- ASV everywhere: when ASV is the chosen English translation, every verse, card, lesson and prayer uses it ---------- */
+var _ASVD=null;
+function ASVB(){if(_ASVD)return _ASVD;try{var el=document.getElementById('asvdata');if(!el)return null;var J=JSON.parse(el.textContent);
+ if(el.getAttribute('data-f')==='kjvdiff'){var K=KJV();Object.keys(J).forEach(function(b){J[b]=J[b].map(function(ch,ci){var kc=(K[b]||[])[ci]||[];return ch.map(function(e,vi){var kv=kc[vi]||'';
+  if(e===0)return kv;if(typeof e!=='string')return e;var t=e.split(' '),hit=false;for(var i=0;i<t.length;i++){var c0=t[i].charAt(0);if((c0==='{'||c0==='}')&&/^\d+$/.test(t[i].slice(1))){hit=true;break;}}if(!hit)return e;
+  var kw=kv.split(' '),ki=0,out=[];t.forEach(function(x){var c=x.charAt(0),n=x.slice(1);if(c==='{'&&/^\d+$/.test(n)){n=+n;for(var j=0;j<n;j++)out.push(kw[ki+j]);ki+=n;}else if(c==='}'&&/^\d+$/.test(n))ki+=+n;else out.push(x);});return out.join(' ');});});});}
+ _ASVD=J;return J;}catch(e){AB.err(e);return null;}}
+function enAsv(){try{return LANG()!=='es'&&S.bible&&S.bible.tr==='asv';}catch(e){return false;}}
+function enTr(){return enAsv()?'ASV':'KJV';}
+function AJ(b,c,v){var A=ASVB(),B=A&&A[b];return B&&B[c-1]&&B[c-1][v-1]||'';}
+var _KJraw=KJ;
+KJ=function(b,c,v){if(enAsv()){var t=AJ(b,c,v);if(t)return t;}return _KJraw(b,c,v);};
+var _ABK=null;
+function asvBookCode(name){if(!_ABK){_ABK={};try{BOOKS.forEach(function(x){_ABK[String(x[1]).toLowerCase()]=x[0];});}catch(e){AB.err(e)}_ABK['psalm']='PSA';_ABK['song of songs']='SNG';_ABK['canticles']='SNG';}return _ABK[String(name||'').toLowerCase().trim()]||null;}
+function asvNorm(x){return String(x||'').toLowerCase().replace(/[^a-z]/g,'');}
+/* returns [text,label]: the ASV wording when the quote is exactly the full KJV verse(s); partial or edited quotes keep their KJV wording and label */
+function asvPair(text,ref,tr,b){if(!enAsv()||(tr&&tr!=='KJV'))return [text,tr];
+ var m=String(ref||'').match(/^(.*?)\s*(\d+):(\d+)(?:\s*[–-]\s*(\d+))?\s*$/);if(!m)return [text,tr];
+ var code=asvBookCode(m[1])||b;if(!code)return [text,tr];var c=+m[2],v1=+m[3],v2=+(m[4]||m[3]),kj=[],as=[];
+ for(var v=v1;v<=v2;v++){kj.push(_KJraw(code,c,v));as.push(AJ(code,c,v));}
+ var K=asvNorm(kj.join(' ')),A=as.join(' ');if(!A.trim())return [text,tr];var T0=asvNorm(text);
+ if(T0&&T0===K)return [A,'ASV'];if(T0&&T0===asvNorm(A))return [text,'ASV'];return [text,tr];}
+(function(){var _vc=verseCard;verseCard=function(text,ref,tr,b,c){var r=asvPair(text,ref,tr||'KJV',b);return _vc(r[0],ref,r[1]==='KJV'&&!tr?tr:r[1],b,c);};})();
+/* lessons, prayer sessions and calm verses keep their KJV quotes; when ASV is chosen they show the ASV wording of the same full verses */
+var _asvMode=null;
+function asvApplyData(){var on=enAsv();if(on===_asvMode)return;_asvMode=on;
+ try{LESSONS.forEach(function(l){if(l._kt==null){l._kt=l.ptext;l._kr=l.ptr;}if(on){var r=asvPair(l._kt,l.pref,l._kr||'KJV',l.pb);l.ptext=r[0];l.ptr=r[1]==='ASV'?'ASV':l._kr;}else{l.ptext=l._kt;l.ptr=l._kr;}});}catch(e){AB.err(e)}
+ try{SESS.forEach(function(x){if(x._kt==null){if(x.tr!=='KJV')return;x._kt=x.text;x._kr=x.tr;}if(on){var r=asvPair(x._kt,x.ref,'KJV');x.text=r[0];x.tr=r[1];}else{x.text=x._kt;x.tr=x._kr;}});}catch(e){AB.err(e)}
+ try{CALM.forEach(function(x){if(x._kt==null)x._kt=x[0];x[0]=on?asvPair(x._kt,x[1],'KJV')[0]:x._kt;});}catch(e){AB.err(e)}}
+(function(){var _rA=render;render=function(){try{asvApplyData();}catch(e){AB.err(e)}return _rA.apply(this,arguments);};})();
+
+
 applyLang();
 render();
 })();
+
 </script>
 </body>
 </html>
